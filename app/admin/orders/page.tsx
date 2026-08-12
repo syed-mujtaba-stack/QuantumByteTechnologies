@@ -1,7 +1,8 @@
 import React from 'react';
-import { ShoppingBag, Eye, Truck, CheckCircle2, Clock, ShieldCheck } from 'lucide-react';
+import { ShoppingBag, Truck, Clock } from 'lucide-react';
 import { formatPKR } from '@/sanity/lib/currency';
 import { fetchOrders } from '@/sanity/lib/fetch';
+import { OrderStatusSelect, DeleteOrderButton } from '@/app/admin/admin-buttons';
 
 const FALLBACK_ORDERS = [
   { orderId: 'QB-90812', customerName: 'John Doe', city: 'Karachi', createdAt: '2026-08-10', totalAmount: 3499, paymentMethod: 'Cash on Delivery', status: 'Processing', items: [{ name: 'Apple MacBook Pro 16" M3 Max' }] },
@@ -39,6 +40,7 @@ export default async function AdminOrdersPage() {
                 <th className="py-3 px-2">Payment</th>
                 <th className="py-3 px-2">Status</th>
                 <th className="py-3 px-2">Total Amount</th>
+                <th className="py-3 px-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#1f1f2b]">
@@ -52,17 +54,24 @@ export default async function AdminOrdersPage() {
                   </td>
                   <td className="py-4 px-2 text-[#71717a]">{ord.paymentMethod}</td>
                   <td className="py-4 px-2">
-                    <span className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-extrabold ${
-                      ord.status === 'Delivered'
-                        ? 'bg-[#22c55e]/15 text-[#22c55e]'
-                        : ord.status === 'Shipped'
-                        ? 'bg-[#3b82f6]/15 text-[#3b82f6]'
-                        : 'bg-[#ff003c]/15 text-[#ff003c]'
-                    }`}>
-                      {ord.status}
-                    </span>
+                    {ord._id ? (
+                      <OrderStatusSelect id={ord._id} status={ord.status} />
+                    ) : (
+                      <span className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-extrabold ${
+                        ord.status === 'Delivered'
+                          ? 'bg-[#22c55e]/15 text-[#22c55e]'
+                          : ord.status === 'Shipped'
+                          ? 'bg-[#3b82f6]/15 text-[#3b82f6]'
+                          : 'bg-[#ff003c]/15 text-[#ff003c]'
+                      }`}>
+                        {ord.status}
+                      </span>
+                    )}
                   </td>
                   <td className="py-4 px-2 font-black text-white">{formatPKR(ord.totalAmount)}</td>
+                  <td className="py-4 px-2 text-right">
+                    {ord._id && <DeleteOrderButton id={ord._id} />}
+                  </td>
                 </tr>
               ))}
             </tbody>

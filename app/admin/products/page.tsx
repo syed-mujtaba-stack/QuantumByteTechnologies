@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Package, Plus, Edit, Trash2, Search, Filter, ExternalLink, Star } from 'lucide-react';
+import { Package, Plus, Edit, Star } from 'lucide-react';
 import { fetchProducts } from '@/sanity/lib/fetch';
 import { formatPKR } from '@/sanity/lib/currency';
+import { DeleteProductButton } from '@/app/admin/admin-buttons';
 
 export const revalidate = 60;
 
@@ -77,6 +78,7 @@ export default async function AdminProductsPage() {
                       >
                         <Edit className="h-3.5 w-3.5 text-[#ff003c]" />
                       </Link>
+                      <DeleteProductButton id={p.id} />
                     </div>
                   </td>
                 </tr>

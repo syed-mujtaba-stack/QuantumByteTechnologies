@@ -21,7 +21,8 @@ export default function LoginPage() {
     const res = await login(email, password);
     setSubmitting(false);
     if (res.ok) {
-      router.push('/account/dashboard');
+      const next = new URLSearchParams(window.location.search).get('next');
+      router.push(next && next.startsWith('/') && !next.startsWith('//') ? next : '/account/dashboard');
     } else {
       setError(res.error || 'Login failed. Please try again.');
     }

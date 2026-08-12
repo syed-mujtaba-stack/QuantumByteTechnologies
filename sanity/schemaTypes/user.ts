@@ -46,6 +46,21 @@ export const user = defineType({
       initialValue: false,
     }),
     defineField({
+      name: 'role',
+      title: 'User Role',
+      description: 'Customers cannot access the admin dashboard. Set to "Super Admin" to grant admin access.',
+      type: 'string',
+      initialValue: 'customer',
+      options: {
+        list: [
+          { title: 'Customer', value: 'customer' },
+          { title: 'Staff', value: 'staff' },
+          { title: 'Super Admin', value: 'super admin' },
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
       name: 'createdAt',
       title: 'Member Since',
       type: 'datetime',

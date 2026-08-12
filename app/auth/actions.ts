@@ -18,6 +18,7 @@ export interface PublicUser {
   address: string;
   city: string;
   isAdmin: boolean;
+  role: 'customer' | 'staff' | 'super admin';
   createdAt: string;
   lastLoginAt: string;
 }
@@ -68,6 +69,7 @@ function verifySession(token: string | undefined): string | null {
 }
 
 function toPublicUser(doc: any): PublicUser {
+  const role = ['customer', 'staff', 'super admin'].includes(doc.role) ? doc.role : 'customer';
   return {
     _id: doc._id,
     name: doc.name,
@@ -75,7 +77,8 @@ function toPublicUser(doc: any): PublicUser {
     phone: doc.phone || '',
     address: doc.address || '',
     city: doc.city || '',
-    isAdmin: !!doc.isAdmin,
+    isAdmin: role === 'super admin' || !!doc.isAdmin,
+    role,
     createdAt: doc.createdAt || '',
     lastLoginAt: doc.lastLoginAt || '',
   };
@@ -111,6 +114,7 @@ const USER_BY_EMAIL_QUERY = groq`
     address,
     city,
     isAdmin,
+    role,
     createdAt,
     lastLoginAt
   }
@@ -181,6 +185,7 @@ export async function registerUser(input: {
       phone,
       passwordHash: hashPassword(password),
       isAdmin: false,
+      role: 'customer',
       createdAt: new Date().toISOString(),
     });
 

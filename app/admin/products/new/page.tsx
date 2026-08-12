@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Package, Save, ArrowLeft } from 'lucide-react';
+import { adminCreateProduct } from '@/app/admin/actions';
+import { Package, Save, ArrowLeft, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -16,13 +17,36 @@ export default function AddProductPage() {
     stock: '15',
     description: '',
     specs: '',
-    imageUrl: '/images/computers/quantumbyte_custom_rig.jpg',
+    imageUrl: '',
   });
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Product "${form.name}" added to inventory list!`);
-    router.push('/admin/products');
+    setError('');
+    setSaving(true);
+
+    const res = await adminCreateProduct({
+      name: form.name,
+      brand: form.brand,
+      category: form.category,
+      price: Number(form.price),
+      discountPrice: form.discountPrice ? Number(form.discountPrice) : undefined,
+      stock: Number(form.stock) || 15,
+      description: form.description,
+      imageUrl: form.imageUrl,
+      specs: form.specs.split(',').map((s) => s.trim()).filter(Boolean),
+    });
+
+    setSaving(false);
+
+    if (res.ok) {
+      router.push('/admin/products');
+      router.refresh();
+    } else {
+      setError(res.error || 'Could not save product to Sanity.');
+    }
   };
 
   return (
@@ -39,6 +63,11 @@ export default function AddProductPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-6 glass-panel">
+        {error && (
+          <div className="flex items-center gap-2 rounded-xl border border-[#ef4444]/40 bg-[#ef4444]/10 p-3 text-xs font-bold text-[#ef4444]">
+            <AlertCircle className="h-4 w-4" /> {error}
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div>
             <label className="block font-bold text-[#a1a1aa] mb-1">Product Name *</label>
@@ -139,12 +168,25 @@ export default function AddProductPage() {
           />
         </div>
 
+        <div className="text-xs">
+          <label className="block font-bold text-[#a1a1aa] mb-1">Local Product Image Path (Optional)</label>
+          <input
+            type="text"
+            value={form.imageUrl}
+            onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
+            placeholder="/images/computers/quantumbyte_custom_rig.jpg"
+            className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+          />
+        </div>
+
         <div className="flex justify-end border-t border-[#1f1f2b] pt-4">
           <button
             type="submit"
-            className="red-gradient-btn flex items-center gap-2 rounded-xl px-6 py-3 text-xs font-bold text-white shadow-xl shadow-[#ff003c]/25"
+            disabled={saving}
+            className="red-gradient-btn flex items-center gap-2 rounded-xl px-6 py-3 text-xs font-bold text-white shadow-xl shadow-[#ff003c]/25 disabled:opacity-60"
           >
-            <Save className="h-4 w-4" /> Save & Publish Product
+            {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+            {saving ? 'Publishing to Sanity...' : 'Save & Publish Product'}
           </button>
         </div>
       </form>

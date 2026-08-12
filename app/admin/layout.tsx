@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuth } from '@/app/context/AuthContext';
 import {
   LayoutDashboard,
   Package,
@@ -21,12 +22,73 @@ import {
   ExternalLink,
   Menu,
   X,
-  ShieldAlert
+  ShieldAlert,
+  ShieldX,
+  Loader2
 } from 'lucide-react';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, loading } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [denied, setDenied] = useState(false);
+
+  useEffect(() => {
+    if (loading) return;
+    if (!user) {
+      router.replace('/account/login?next=/admin');
+      return;
+    }
+    if (user.role !== 'super admin') {
+      setDenied(true);
+    }
+  }, [user, loading, router]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#030305] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-[#a1a1aa]">
+          <Loader2 className="h-8 w-8 animate-spin text-[#ff003c]" />
+          <span className="text-xs font-extrabold tracking-widest uppercase">Verifying Admin Access...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user && !denied) {
+    return (
+      <div className="min-h-screen bg-[#030305] flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-[#ff003c]" />
+      </div>
+    );
+  }
+
+  if (denied) {
+    return (
+      <div className="min-h-screen bg-[#030305] flex items-center justify-center p-6">
+        <div className="max-w-md w-full rounded-2xl border border-[#ff003c]/40 bg-[#0e0e12] p-8 text-center space-y-4 glass-panel-red">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ff003c]/15 text-[#ff003c]">
+            <ShieldX className="h-7 w-7" />
+          </div>
+          <div>
+            <span className="text-[10px] font-extrabold text-[#ff003c] uppercase tracking-widest">ACCESS DENIED</span>
+            <h1 className="text-xl font-black text-white mt-1">NOT AUTHORIZED</h1>
+            <p className="text-xs text-[#a1a1aa] mt-2">
+              Your account ({user?.email}) is not assigned the <span className="font-bold text-white">Super Admin</span> role.
+              Ask the platform owner to set your role in the Sanity Studio users list.
+            </p>
+          </div>
+          <Link
+            href={user ? '/account/dashboard' : '/account/login'}
+            className="inline-flex items-center rounded-xl border border-[#22222e] bg-[#16161f] px-5 py-2.5 text-xs font-extrabold text-white hover:border-[#ff003c]"
+          >
+            Return to My Account
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const adminNav = [
     { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -92,7 +154,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             {/* Admin User Chip */}
             <div className="flex items-center gap-2.5 rounded-xl border border-[#ff003c]/40 bg-[#ff003c]/10 px-3 py-1 text-xs font-bold text-white">
               <span className="h-2 w-2 rounded-full bg-[#22c55e]" />
-              <span>Super Admin</span>
+              {user?.email ? (
+                <span className="max-w-[180px] truncate">{user.email}</span>
+              ) : (
+                <span>Super Admin</span>
+              )}
             </div>
           </div>
         </div>
