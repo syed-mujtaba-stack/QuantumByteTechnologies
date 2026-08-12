@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --surface: #0e0e12;
+  --surface-hover: #16161f;
+  --border: #22222e;
+  --foreground: #ffffff;
+  --foreground-muted: #a1a1aa;
+  --primary-red: #ff003c;
+  --primary-red-hover: #e60036;
+  --primary-red-glow: rgba(255, 0, 60, 0.25);
+  --accent-gold: #ffb800;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
   --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-primary-red: var(--primary-red);
+  --color-primary-red-hover: var(--primary-red-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262633;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff003c;
+}
+
+/* Custom Glow & Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(14, 14, 18, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-red {
+  background: rgba(20, 10, 14, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 0, 60, 0.3);
+  box-shadow: 0 0 25px rgba(255, 0, 60, 0.15);
+}
+
+.glow-red-text {
+  text-shadow: 0 0 20px rgba(255, 0, 60, 0.6);
+}
+
+.glow-red-box {
+  box-shadow: 0 0 25px rgba(255, 0, 60, 0.25);
+}
+
+.red-gradient-btn {
+  background: linear-gradient(135deg, #ff003c 0%, #b8002b 100%);
+  transition: all 0.3s ease;
+}
+
+.red-gradient-btn:hover {
+  background: linear-gradient(135deg, #ff1a4f 0%, #d40032 100%);
+  box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
+  transform: translateY(-1px);
+}
+
+.cyber-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(255, 0, 60, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 0, 60, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
