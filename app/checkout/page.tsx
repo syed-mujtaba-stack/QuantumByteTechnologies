@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { useCart } from '@/app/context/CartContext';
+import { useAuth } from '@/app/context/AuthContext';
 import { formatPKR } from '@/sanity/lib/currency';
 import { createOrder } from '@/app/checkout/actions';
 import confetti from 'canvas-confetti';
@@ -14,14 +15,15 @@ import { Lock, Truck, ChevronRight, Wallet } from 'lucide-react';
 export default function CheckoutPage() {
   const router = useRouter();
   const { cart, cartTotal, clearCart } = useCart();
+  const { user } = useAuth();
 
   const [paymentMethod, setPaymentMethod] = useState<'cod'>('cod');
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
+    fullName: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    address: user?.address || '',
+    city: user?.city || '',
     notes: '',
   });
 
@@ -41,7 +43,7 @@ export default function CheckoutPage() {
     const result = await createOrder({
       orderId: generatedId,
       customerName: formData.fullName,
-      customerEmail: formData.email,
+      customerEmail: user?.email || formData.email,
       customerPhone: formData.phone,
       shippingAddress: formData.address,
       city: formData.city,

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/app/context/CartContext';
 import { useWishlist } from '@/app/context/WishlistContext';
+import { useAuth } from '@/app/context/AuthContext';
 import {
   ShoppingBag,
   Search,
@@ -39,6 +40,11 @@ export function Navbar() {
   } = useCart();
 
   const { wishlist, compareList } = useWishlist();
+  const { user } = useAuth();
+
+  const userInitials = user
+    ? user.name.split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase()
+    : '';
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showCategoryMenu, setShowCategoryMenu] = useState(false);
@@ -199,11 +205,20 @@ export function Navbar() {
 
           {/* Account Button */}
           <Link
-            href="/account/dashboard"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#22222e] bg-[#0e0e12] text-white transition hover:border-[#ff003c] hover:bg-[#16161f]"
-            title="My Account"
+            href={user ? '/account/dashboard' : '/account/login'}
+            className="flex h-10 items-center gap-2 rounded-xl border border-[#22222e] bg-[#0e0e12] px-3 text-white transition hover:border-[#ff003c] hover:bg-[#16161f]"
+            title={user ? `Signed in as ${user.name}` : 'Sign in / Register'}
           >
-            <User className="h-4 w-4 text-[#a1a1aa]" />
+            {user ? (
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-[#ff003c] to-[#990024] text-[11px] font-black text-white">
+                {userInitials}
+              </span>
+            ) : (
+              <User className="h-4 w-4 text-[#a1a1aa]" />
+            )}
+            <span className="hidden text-xs font-bold sm:inline">
+              {user ? 'Account' : 'Sign In'}
+            </span>
           </Link>
 
           {/* Cart Drawer Trigger */}

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useCart } from '@/app/context/CartContext';
+import { useAuth } from '@/app/context/AuthContext';
 import { formatPKR } from '@/sanity/lib/currency';
 import { createOrder } from '@/app/checkout/actions';
 import confetti from 'canvas-confetti';
@@ -16,14 +17,15 @@ import {
 
 export function CheckoutModal() {
   const { isCheckoutOpen, closeCheckout, cart, cartTotal, clearCart } = useCart();
+  const { user } = useAuth();
 
   const [step, setStep] = useState<'shipping' | 'payment' | 'success'>('shipping');
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
+    fullName: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    address: user?.address || '',
+    city: user?.city || '',
     paymentMethod: 'cod',
   });
   const [orderId, setOrderId] = useState('');
@@ -52,7 +54,7 @@ export function CheckoutModal() {
     const result = await createOrder({
       orderId: generatedId,
       customerName: formData.fullName,
-      customerEmail: formData.email,
+      customerEmail: user?.email || formData.email,
       customerPhone: formData.phone,
       shippingAddress: formData.address,
       city: formData.city,

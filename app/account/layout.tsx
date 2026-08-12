@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuth } from '@/app/context/AuthContext';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import {
@@ -14,14 +15,23 @@ import {
   Settings,
   LogOut,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  Loader2
 } from 'lucide-react';
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, loading, logout } = useAuth();
 
   // If on auth pages (login, register, forgot-password), render without sidebar layout
   const isAuthPage = ['/account/login', '/account/register', '/account/forgot-password'].includes(pathname);
+
+  useEffect(() => {
+    if (!loading && !user && !isAuthPage) {
+      router.replace('/account/login');
+    }
+  }, [loading, user, isAuthPage, router]);
 
   if (isAuthPage) {
     return (
@@ -34,6 +44,15 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
       </div>
     );
   }
+
+  const handleSignOut = async () => {
+    await logout();
+    router.push('/account/login');
+  };
+
+  const initials = user
+    ? user.name.split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase()
+    : 'QB';
 
   const navItems = [
     { href: '/account/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -57,6 +76,11 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
             <span className="text-white font-bold">Customer Account Portal</span>
           </div>
 
+          {loading || !user ? (
+            <div className="flex items-center justify-center py-24">
+              <Loader2 className="h-8 w-8 animate-spin text-[#ff003c]" />
+            </div>
+          ) : (
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Account Sidebar */}
             <aside className="lg:col-span-3 space-y-6">
@@ -64,13 +88,13 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                 {/* User Card */}
                 <div className="flex items-center gap-3 pb-5 border-b border-[#1f1f2b]">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff003c] to-[#990024] text-white font-black text-lg shadow-md shadow-[#ff003c]/20">
-                    JD
+                    {initials}
                   </div>
                   <div>
-                    <h3 className="text-sm font-extrabold text-white">John Doe</h3>
-                    <p className="text-[11px] text-[#a1a1aa]">john.doe@quantumbyte.tech</p>
+                    <h3 className="text-sm font-extrabold text-white">{user.name}</h3>
+                    <p className="text-[11px] text-[#a1a1aa]">{user.email}</p>
                     <span className="mt-1 inline-flex items-center gap-1 rounded bg-[#ff003c]/15 px-2 py-0.5 text-[10px] font-bold text-[#ff003c]">
-                      <ShieldCheck className="h-3 w-3" /> VIP Member
+                      <ShieldCheck className="h-3 w-3" /> {user.isAdmin ? 'Admin' : 'Verified Member'}
                     </span>
                   </div>
                 </div>
@@ -98,13 +122,13 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
                 </nav>
 
                 <div className="mt-6 pt-4 border-t border-[#1f1f2b]">
-                  <Link
-                    href="/account/login"
+                  <button
+                    onClick={handleSignOut}
                     className="flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-xs font-bold text-[#ef4444] transition hover:bg-[#ef4444]/10"
                   >
                     <LogOut className="h-4 w-4" />
                     Sign Out
-                  </Link>
+                  </button>
                 </div>
               </div>
             </aside>
@@ -114,6 +138,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
               {children}
             </div>
           </div>
+          )}
         </div>
       </main>
 

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Lock, ShieldCheck, Bell, Save, KeyRound } from 'lucide-react';
+import { changePassword } from '@/app/auth/actions';
+import { Lock, ShieldCheck, Bell, Save, KeyRound, Loader2 } from 'lucide-react';
 
 export default function AccountSettingsPage() {
   const [passwords, setPasswords] = useState({
@@ -17,11 +18,33 @@ export default function AccountSettingsPage() {
   });
 
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
+  const [saving, setSaving] = useState(false);
 
-  const handleSaveSecurity = (e: React.FormEvent) => {
+  const handleSaveSecurity = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+    setSaved(false);
+    setError('');
+
+    if (passwords.newPass !== passwords.confirmPass) {
+      setError('New password and confirmation do not match.');
+      return;
+    }
+
+    setSaving(true);
+    const res = await changePassword({
+      currentPassword: passwords.current,
+      newPassword: passwords.newPass,
+    });
+    setSaving(false);
+
+    if (res.ok) {
+      setPasswords({ current: '', newPass: '', confirmPass: '' });
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } else {
+      setError(res.error || 'Could not update password.');
+    }
   };
 
   return (
@@ -39,6 +62,12 @@ export default function AccountSettingsPage() {
         {saved && (
           <div className="rounded-xl border border-[#22c55e]/40 bg-[#22c55e]/10 p-3 text-xs text-[#22c55e] font-bold">
             Security settings successfully updated!
+          </div>
+        )}
+
+        {error && (
+          <div className="rounded-xl border border-[#ef4444]/40 bg-[#ef4444]/10 p-3 text-xs text-[#ef4444] font-bold">
+            {error}
           </div>
         )}
 
@@ -81,10 +110,11 @@ export default function AccountSettingsPage() {
 
           <button
             type="submit"
-            className="red-gradient-btn flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#ff003c]/20"
+            disabled={saving}
+            className="red-gradient-btn flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#ff003c]/20 disabled:opacity-60"
           >
-            <Save className="h-4 w-4" />
-            Update Password
+            {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+            {saving ? 'Updating...' : 'Update Password'}
           </button>
         </form>
       </div>

@@ -3,16 +3,28 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Lock, Mail, ArrowRight, Cpu, ShieldCheck } from 'lucide-react';
+import { useAuth } from '@/app/context/AuthContext';
+import { Lock, Mail, ArrowRight, Cpu, ShieldCheck, Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/account/dashboard');
+    setError('');
+    setSubmitting(true);
+    const res = await login(email, password);
+    setSubmitting(false);
+    if (res.ok) {
+      router.push('/account/dashboard');
+    } else {
+      setError(res.error || 'Login failed. Please try again.');
+    }
   };
 
   return (
@@ -31,6 +43,11 @@ export default function LoginPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
+          {error && (
+            <div className="rounded-xl border border-[#ef4444]/40 bg-[#ef4444]/10 p-3 text-xs font-bold text-[#ef4444]">
+              {error}
+            </div>
+          )}
           <div>
             <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Email Address</label>
             <div className="relative">
@@ -68,10 +85,11 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25 mt-2"
+            disabled={submitting}
+            className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25 mt-2 disabled:opacity-60"
           >
-            Sign In to Dashboard
-            <ArrowRight className="h-4 w-4" />
+            {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
+            {submitting ? 'Signing In...' : 'Sign In to Dashboard'}
           </button>
         </form>
 

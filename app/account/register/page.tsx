@@ -3,20 +3,32 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Lock, Mail, User, Phone, ArrowRight, Cpu } from 'lucide-react';
+import { useAuth } from '@/app/context/AuthContext';
+import { Lock, Mail, User, Phone, ArrowRight, Cpu, Loader2 } from 'lucide-react';
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     password: '',
   });
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/account/dashboard');
+    setError('');
+    setSubmitting(true);
+    const res = await register(formData);
+    setSubmitting(false);
+    if (res.ok) {
+      router.push('/account/dashboard');
+    } else {
+      setError(res.error || 'Registration failed. Please try again.');
+    }
   };
 
   return (
@@ -35,6 +47,11 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
+          {error && (
+            <div className="rounded-xl border border-[#ef4444]/40 bg-[#ef4444]/10 p-3 text-xs font-bold text-[#ef4444]">
+              {error}
+            </div>
+          )}
           <div>
             <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Full Name</label>
             <div className="relative">
@@ -97,10 +114,11 @@ export default function RegisterPage() {
 
           <button
             type="submit"
-            className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25 mt-2"
+            disabled={submitting}
+            className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25 mt-2 disabled:opacity-60"
           >
-            Create Free Account
-            <ArrowRight className="h-4 w-4" />
+            {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4" />}
+            {submitting ? 'Creating Account...' : 'Create Free Account'}
           </button>
         </form>
 
