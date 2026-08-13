@@ -5,6 +5,8 @@ import { ProductDetailModal } from '@/app/components/ProductDetailModal';
 import { CheckoutModal } from '@/app/components/CheckoutModal';
 import { ServiceBookingModal } from '@/app/components/ServiceBookingModal';
 import { TechFeaturesBanner } from '@/app/components/TechFeaturesBanner';
+import { StatsCounter } from '@/app/components/StatsCounter';
+import { FullPageDots } from '@/app/components/FullPageDots';
 import { Footer } from '@/app/components/Footer';
 import { CatalogClient } from '@/app/components/CatalogClient';
 import { fetchProducts, fetchITServices } from '@/sanity/lib/fetch';
@@ -22,6 +24,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
       <Navbar />
+      <FullPageDots />
 
       <main className="flex-1">
         {/* Hero Banner */}
@@ -33,29 +36,8 @@ export default async function Home() {
         {/* Trust Badges */}
         <TechFeaturesBanner />
 
-        {/* Stats Counter */}
-        <section className="border-b border-[#22222e] bg-[#050505] py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div className="space-y-1">
-                <span className="text-3xl sm:text-4xl font-black text-[#ff003c]">{products.length}+</span>
-                <p className="text-xs text-[#a1a1aa] font-semibold uppercase tracking-wider">Premium Products</p>
-              </div>
-              <div className="space-y-1">
-                <span className="text-3xl sm:text-4xl font-black text-white">10,000+</span>
-                <p className="text-xs text-[#a1a1aa] font-semibold uppercase tracking-wider">Happy Customers</p>
-              </div>
-              <div className="space-y-1">
-                <span className="text-3xl sm:text-4xl font-black text-[#ff003c]">100%</span>
-                <p className="text-xs text-[#a1a1aa] font-semibold uppercase tracking-wider">Genuine Hardware</p>
-              </div>
-              <div className="space-y-1">
-                <span className="text-3xl sm:text-4xl font-black text-white">24/7</span>
-                <p className="text-xs text-[#a1a1aa] font-semibold uppercase tracking-wider">Tech Support</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Stats Counter — GSAP count-up */}
+        <StatsCounter productsCount={products.length} />
       </main>
 
       <Footer />

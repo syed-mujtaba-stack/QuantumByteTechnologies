@@ -1,7 +1,16 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { CheckCircle2, Info, AlertTriangle, X } from 'lucide-react';
 import { Product, ITService } from '@/sanity/lib/data';
+
+export type ToastType = 'success' | 'info' | 'warning';
+
+export interface ToastItem {
+  id: number;
+  message: string;
+  type: ToastType;
+}
 
 export interface CartItem {
   product: Product;
@@ -44,8 +53,9 @@ interface CartContextType {
   setSearchQuery: (query: string) => void;
 
   // Toast notifications
-  toastMessage: string | null;
-  showToast: (msg: string) => void;
+  toasts: ToastItem[];
+  showToast: (msg: string, type?: ToastType) => void;
+  dismissToast: (id: number) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -60,7 +70,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   // Load cart from LocalStorage on mount
   useEffect(() => {
@@ -83,12 +93,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [cart]);
 
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
+  const dismissToast = useCallback((id: number) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  const showToast = useCallback((msg: string, type: ToastType = 'success') => {
+    const id = Date.now() + Math.random();
+    setToasts((prev) => [...prev.slice(-3), { id, message: msg, type }]);
     setTimeout(() => {
-      setToastMessage(null);
-    }, 3000);
-  };
+      dismissToast(id);
+    }, 3500);
+  }, [dismissToast]);
 
   const addToCart = (product: Product, quantity: number = 1) => {
     setCart((prev) => {
@@ -186,18 +201,43 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setSelectedCategory,
         searchQuery,
         setSearchQuery,
-        toastMessage,
+        toasts,
         showToast,
+        dismissToast,
       }}
     >
       {children}
-      {/* Global Toast Notification */}
-      {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl border border-[#ff003c]/40 bg-[#0e0e12] px-5 py-3 text-sm font-semibold text-white shadow-2xl shadow-[#ff003c]/20 backdrop-blur-xl animate-bounce">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#ff003c] animate-ping" />
-          {toastMessage}
-        </div>
-      )}
+      {/* Global Toast Notifications */}
+      <div className="fixed right-4 top-24 z-[80] flex w-[calc(100vw-2rem)] max-w-sm flex-col gap-2.5">
+        {toasts.map((toast) => {
+          const isWarning = toast.type === 'warning';
+          const isInfo = toast.type === 'info';
+          const Icon = isWarning ? AlertTriangle : isInfo ? Info : CheckCircle2;
+          return (
+            <div
+              key={toast.id}
+              role="status"
+              className={`qb-toast-in flex items-start gap-3 rounded-xl border bg-[#0e0e12]/95 px-4 py-3 text-xs font-semibold text-white shadow-2xl backdrop-blur-xl ${
+                isWarning
+                  ? 'border-[#f59e0b]/50 shadow-[#f59e0b]/10'
+                  : isInfo
+                  ? 'border-[#3b82f6]/50 shadow-[#3b82f6]/10'
+                  : 'border-[#22c55e]/50 shadow-[#22c55e]/10'
+              }`}
+            >
+              <Icon className={`h-4 w-4 shrink-0 ${isWarning ? 'text-[#f59e0b]' : isInfo ? 'text-[#3b82f6]' : 'text-[#22c55e]'}`} />
+              <span className="flex-1 leading-snug">{toast.message}</span>
+              <button
+                onClick={() => dismissToast(toast.id)}
+                aria-label="Dismiss notification"
+                className="text-[#71717a] transition hover:text-white"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </CartContext.Provider>
   );
 }

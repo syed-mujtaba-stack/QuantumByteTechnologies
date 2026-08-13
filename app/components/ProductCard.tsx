@@ -4,14 +4,17 @@ import React from 'react';
 import Image from 'next/image';
 import { Product } from '@/sanity/lib/data';
 import { useCart } from '@/app/context/CartContext';
+import { useWishlist } from '@/app/context/WishlistContext';
 import { formatPKR } from '@/sanity/lib/currency';
 import { GSAPHoverTilt } from './GSAPWrapper';
-import { Star, ShoppingBag, Eye, Check } from 'lucide-react';
+import { Star, ShoppingBag, Eye, Check, Heart } from 'lucide-react';
 
 export function ProductCard({ product }: { product: Product }) {
   const { addToCart, openProductDetail } = useCart();
+  const { addToWishlist, isInWishlist } = useWishlist();
 
   const discountAmount = product.discountPrice ? product.discountPrice - product.price : 0;
+  const wished = isInWishlist(product.id);
 
   return (
     <GSAPHoverTilt className="h-full">
@@ -44,13 +47,34 @@ export function ProductCard({ product }: { product: Product }) {
             alt={product.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
+            className="object-cover rounded-lg transition-transform duration-700 ease-out group-hover:scale-110"
           />
+
+          {/* Wishlist Heart */}
+          <button
+            onClick={() => addToWishlist(product)}
+            aria-label={wished ? 'Remove from wishlist' : 'Add to wishlist'}
+            className={`absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-lg border transition-all duration-300 ${
+              wished
+                ? 'border-[#ff003c] bg-[#ff003c] text-white opacity-100 shadow-lg shadow-[#ff003c]/40'
+                : 'border-[#22222e] bg-[#0e0e12]/90 text-white opacity-0 hover:border-[#ff003c] hover:text-[#ff003c] group-hover:opacity-100'
+            }`}
+          >
+            <Heart className={`h-4 w-4 ${wished ? 'fill-current' : ''}`} />
+          </button>
+
           {/* Hover Quick Overlay */}
-          <div className="absolute inset-0 bg-[#050505]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+          <div className="absolute inset-0 bg-[#050505]/70 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center gap-2 p-3">
+            <button
+              onClick={() => addToCart(product)}
+              className="flex items-center gap-1.5 rounded-xl bg-[#ff003c] px-3.5 py-2 text-xs font-extrabold text-white shadow-lg shadow-[#ff003c]/30 hover:bg-[#e60036] transition"
+            >
+              <ShoppingBag className="h-3.5 w-3.5" />
+              Add to Cart
+            </button>
             <button
               onClick={() => openProductDetail(product)}
-              className="flex items-center gap-1.5 rounded-xl bg-[#0e0e12] border border-[#ff003c]/40 px-3 py-1.5 text-xs font-bold text-white hover:bg-[#ff003c] transition"
+              className="flex items-center gap-1.5 rounded-xl bg-[#0e0e12] border border-[#ff003c]/40 px-3.5 py-2 text-xs font-bold text-white hover:bg-[#ff003c] transition"
             >
               <Eye className="h-3.5 w-3.5" />
               Quick Specs

@@ -68,7 +68,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#22222e] bg-[#050505]/90 backdrop-blur-xl transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-[#22222e] bg-[#050505]/90 backdrop-blur-md transition-all">
       {/* Top Announcement Bar */}
       <div className="hidden border-b border-[#1f1f2b] bg-[#0d0d12] px-4 py-1.5 text-xs text-[#a1a1aa] sm:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between">

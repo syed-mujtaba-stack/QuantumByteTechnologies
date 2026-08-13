@@ -1,11 +1,48 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { useCart } from '@/app/context/CartContext';
-import { formatPKR } from '@/sanity/lib/currency';
-import { GSAPFadeIn, GSAPHoverTilt } from './GSAPWrapper';
+import { GSAPFadeIn } from './GSAPWrapper';
+import { WaveDivider } from './WaveDivider';
+import Hyperspeed from './Hyperspeed';
 import { ShieldCheck, Cpu, ArrowRight, Wrench, Sparkles, Star } from 'lucide-react';
+
+// Memoized so the WebGL scene isn't recreated on re-renders.
+const HYPERSPEED_OPTIONS = {
+  distortion: 'turbulentDistortion',
+  length: 400,
+  roadWidth: 10,
+  islandWidth: 2,
+  lanesPerRoad: 3,
+  fov: 90,
+  fovSpeedUp: 150,
+  speedUp: 2,
+  carLightsFade: 0.4,
+  totalSideLightSticks: 20,
+  lightPairsPerRoadWay: 40,
+  shoulderLinesWidthPercentage: 0.05,
+  brokenLinesWidthPercentage: 0.1,
+  brokenLinesLengthPercentage: 0.5,
+  lightStickWidth: [0.12, 0.5],
+  lightStickHeight: [1.3, 1.7],
+  movingAwaySpeed: [60, 80],
+  movingCloserSpeed: [-120, -160],
+  carLightsLength: [12, 80],
+  carLightsRadius: [0.05, 0.14],
+  carWidthPercentage: [0.3, 0.5],
+  carShiftX: [-0.8, 0.8],
+  carFloorSeparation: [0, 5],
+  colors: {
+    roadColor: 0x080808,
+    islandColor: 0x0a0a0a,
+    background: 0x000000,
+    shoulderLines: 0xff003c,
+    brokenLines: 0xff003c,
+    leftCars: [0xff003c, 0xd856bf, 0x6750a2],
+    rightCars: [0x03b3c3, 0x0e5ea5, 0xffffff],
+    sticks: 0xff003c
+  }
+};
 
 export function Hero() {
   const { openBooking, setSelectedCategory } = useCart();
@@ -14,34 +51,45 @@ export function Hero() {
     setSelectedCategory('all');
     const catalogEl = document.getElementById('catalog-section');
     if (catalogEl) {
-      catalogEl.scrollIntoView({ behavior: 'smooth' });
+      if (window.__lenis) {
+        window.__lenis.scrollTo(catalogEl, { offset: 88 });
+      } else {
+        catalogEl.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   return (
-    <section className="relative overflow-hidden border-b border-[#22222e] bg-[#050505] py-16 lg:py-24 cyber-grid-bg">
-      {/* Red Ambient Glow Orbs */}
-      <div className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-[#ff003c]/15 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-[#ff003c]/10 blur-[140px]" />
+    <section
+      id="hero-section"
+      className="qb-page-section relative overflow-hidden border-b border-[#22222e] bg-[#050505]"
+    >
+      {/* Hyperspeed — full-bleed animated background */}
+      <div className="absolute inset-0 z-0">
+        <Hyperspeed effectOptions={HYPERSPEED_OPTIONS} />
+      </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Readability scrim over the animation */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#050505]/85 via-[#050505]/40 to-[#050505]/85" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
           {/* Left Column: Heading & CTAs */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div className="lg:col-span-8 space-y-6 text-center lg:text-left">
             {/* Top Badge */}
             <GSAPFadeIn direction="down" delay={0.1}>
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#ff003c]/40 bg-[#ff003c]/10 px-4 py-1.5 text-xs font-extrabold text-white backdrop-blur-md shadow-lg shadow-[#ff003c]/10">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#ff003c]/40 bg-[#050505]/70 px-4 py-1.5 text-xs font-extrabold text-white backdrop-blur-md shadow-lg shadow-[#ff003c]/10">
                 <Sparkles className="h-3.5 w-3.5 text-[#ff003c] animate-spin" />
                 <span>QUANTUMBYTE TECHNOLOGIES</span>
                 <span className="h-1 w-1 rounded-full bg-[#ff003c]" />
-                <span className="text-[#a1a1aa] uppercase tracking-wider font-semibold">Official Hardware & IT Hub</span>
+                <span className="text-[#a1a1aa] uppercase tracking-wider font-semibold">Official Hardware &amp; IT Hub</span>
               </div>
             </GSAPFadeIn>
 
             {/* Main Headline */}
             <GSAPFadeIn direction="up" delay={0.2}>
               <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
-                NEXT-GEN <span className="bg-gradient-to-r from-white via-white to-[#ff003c] bg-clip-text text-transparent">COMPUTERS</span> & ENTERPRISE{' '}
+                NEXT-GEN <span className="bg-gradient-to-r from-white via-white to-[#ff003c] bg-clip-text text-transparent">COMPUTERS</span> &amp; ENTERPRISE{' '}
                 <span className="relative inline-block text-[#ff003c] glow-red-text">
                   IT SERVICES
                 </span>
@@ -50,7 +98,7 @@ export function Hero() {
 
             {/* Subtitle */}
             <GSAPFadeIn direction="up" delay={0.3}>
-              <p className="max-w-2xl text-base text-[#a1a1aa] sm:text-lg lg:text-xl font-normal leading-relaxed mx-auto lg:mx-0">
+              <p className="max-w-2xl text-base text-[#c9c9d1] sm:text-lg lg:text-xl font-normal leading-relaxed mx-auto lg:mx-0">
                 Your premier source for high-performance Gaming PCs, MacBooks, Smartphones, GaN Chargers, Genuine Component Parts, and full-scale Enterprise IT Solutions.
               </p>
             </GSAPFadeIn>
@@ -62,13 +110,13 @@ export function Hero() {
                   onClick={handleExploreStore}
                   className="group red-gradient-btn flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-[#ff003c]/25"
                 >
-                  Shop Products & Parts
+                  Shop Products &amp; Parts
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
 
                 <button
                   onClick={() => openBooking()}
-                  className="flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl border border-[#22222e] bg-[#0e0e12] px-7 py-4 text-sm font-bold text-white transition hover:border-[#ff003c] hover:bg-[#16161f]"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl border border-[#22222e] bg-[#0e0e12]/80 px-7 py-4 text-sm font-bold text-white transition hover:border-[#ff003c] hover:bg-[#16161f]"
                 >
                   <Wrench className="h-4 w-4 text-[#ff003c]" />
                   Book IT Consultation
@@ -78,7 +126,7 @@ export function Hero() {
 
             {/* Trust Badges */}
             <GSAPFadeIn direction="up" delay={0.5}>
-              <div className="pt-6 border-t border-[#1f1f2b] grid grid-cols-3 gap-4 text-left">
+              <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-left">
                 <div className="flex items-center gap-2.5">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
                     <ShieldCheck className="h-4 w-4" />
@@ -95,7 +143,7 @@ export function Hero() {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-white">Custom PCs</h4>
-                    <p className="text-[10px] text-[#a1a1aa]">Overclocked & Tested</p>
+                    <p className="text-[10px] text-[#a1a1aa]">Overclocked &amp; Tested</p>
                   </div>
                 </div>
 
@@ -112,68 +160,11 @@ export function Hero() {
             </GSAPFadeIn>
           </div>
 
-          {/* Right Column: 3D Floating Product Showcase */}
-          <div className="lg:col-span-5 relative flex justify-center">
-            <GSAPFadeIn direction="right" delay={0.3} className="w-full max-w-md">
-              <GSAPHoverTilt>
-                <div className="relative rounded-2xl border border-[#ff003c]/30 bg-[#0e0e14] p-5 shadow-2xl shadow-[#ff003c]/15 glass-panel-red">
-                  {/* Floating Red Tag */}
-                  <div className="absolute -top-3 -right-3 z-10 rounded-full bg-[#ff003c] px-3 py-1 text-[11px] font-extrabold text-white shadow-lg shadow-[#ff003c]/40 uppercase tracking-wider animate-bounce">
-                    FEATURED RIG
-                  </div>
-
-                  {/* Main Product Image */}
-                  <div className="relative h-64 w-full overflow-hidden rounded-xl bg-[#050505] p-2">
-                    <Image
-                      src="/images/computers/quantumbyte_custom_rig.jpg"
-                      alt="QuantumByte Custom Workstation PC"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 400px"
-                      className="object-cover rounded-lg transition-transform duration-500 hover:scale-105"
-                      priority
-                    />
-                  </div>
-
-                  {/* Product Info */}
-                  <div className="mt-4 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#ff003c]">
-                        FLAGSHIP EDITION
-                      </span>
-                      <div className="flex items-center gap-1 text-xs text-[#ffb800]">
-                        <Star className="h-3.5 w-3.5 fill-current" />
-                        <span className="font-bold text-white">5.0</span>
-                      </div>
-                    </div>
-
-                    <h3 className="text-lg font-extrabold text-white">
-                      QuantumByte Cyber Workstation Pro
-                    </h3>
-                    <p className="text-xs text-[#a1a1aa] line-clamp-2">
-                      Dual-loop hardline liquid cooling, Intel i9 14900KS, RTX 4090 24GB, 64GB DDR5.
-                    </p>
-
-                    <div className="flex items-center justify-between pt-2 border-t border-[#1f1f2b]">
-                      <div>
-                        <span className="text-xs text-[#a1a1aa] block">Starting from</span>
-                        <span className="text-xl font-black text-white">{formatPKR(4999)}</span>
-                        <span className="ml-2 text-xs text-[#71717a] line-through">{formatPKR(5499)}</span>
-                      </div>
-
-                      <button
-                        onClick={handleExploreStore}
-                        className="rounded-lg bg-[#ff003c] px-4 py-2 text-xs font-bold text-white shadow-md shadow-[#ff003c]/30 hover:bg-[#e60036] transition"
-                      >
-                        Explore Rig
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </GSAPHoverTilt>
-            </GSAPFadeIn>
-          </div>
+          {/* Right Column: Hyperspeed visual spans the full section; the grid stays balanced for CTA readability */}
+          <div className="hidden lg:col-span-4 lg:block" />
         </div>
       </div>
+      <WaveDivider fill="#060913" />
     </section>
   );
 }

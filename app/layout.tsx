@@ -4,6 +4,11 @@ import "./globals.css";
 import { CartProvider } from "@/app/context/CartContext";
 import { WishlistProvider } from "@/app/context/WishlistContext";
 import { AuthProvider } from "@/app/context/AuthContext";
+import { SmoothScroll } from "@/app/components/SmoothScroll";
+import { ScrollProgress } from "@/app/components/ScrollProgress";
+import { Preloader } from "@/app/components/Preloader";
+import { WhatsAppButton } from "@/app/components/WhatsAppButton";
+import { BackToTop } from "@/app/components/BackToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +37,16 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full dark antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#050505] text-white">
+        <Preloader />
+        <SmoothScroll />
+        <ScrollProgress />
         <AuthProvider>
           <CartProvider>
             <WishlistProvider>{children}</WishlistProvider>
           </CartProvider>
         </AuthProvider>
+        <WhatsAppButton />
+        <BackToTop />
       </body>
     </html>
   );

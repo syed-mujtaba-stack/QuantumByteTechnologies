@@ -35,7 +35,7 @@ export function ProductDetailModal() {
       />
 
       {/* Modal Card */}
-      <div className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#ff003c]/40 bg-[#0e0e12] p-6 shadow-2xl shadow-[#ff003c]/20 glass-panel-red">
+      <div data-lenis-prevent className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#ff003c]/40 bg-[#0e0e12] p-6 shadow-2xl shadow-[#ff003c]/20 glass-panel-red">
         {/* Close Button */}
         <button
           onClick={closeProductDetail}

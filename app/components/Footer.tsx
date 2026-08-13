@@ -48,7 +48,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-[#22222e] bg-[#030305] text-[#a1a1aa] pt-16 pb-8">
+    <footer id="site-footer" className="qb-page-section relative border-t border-[#1a1a26] bg-[#040407] text-[#a1a1aa] pt-16 pb-8">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#ff003c]/50 to-transparent" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-6">

@@ -93,3 +93,85 @@ body {
   background-size: 40px 40px;
 }
 
+/* Full-page scroll snapping — each homepage section behaves like its own page.
+   Only elements with `scroll-snap-align` are affected, so other routes are untouched. */
+html {
+  scroll-snap-type: y proximity;
+}
+
+.qb-page-section {
+  scroll-snap-align: start;
+  scroll-margin-top: 5.5rem;
+  min-height: calc(100svh - 5.5rem);
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* Native CSS snap fights Lenis' smooth scroll and causes jank — turn it off while Lenis drives scrolling */
+html.lenis {
+  scroll-snap-type: none;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
+/* Toast slide-in */
+@keyframes qb-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.qb-toast-in {
+  animation: qb-toast-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Custom red-themed scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff003c #111118;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff003c, #990024);
+  border-radius: 8px;
+  border: 2px solid #0a0a10;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff1a4f, #b3002b);
+}
+

@@ -7,7 +7,8 @@ import { useCart } from '@/app/context/CartContext';
 import { ProductCard } from '@/app/components/ProductCard';
 import { CategoryFilter } from '@/app/components/CategoryFilter';
 import { ITServicesSection } from '@/app/components/ITServicesSection';
-import { GSAPFadeIn } from '@/app/components/GSAPWrapper';
+import { GSAPReveal } from '@/app/components/GSAPWrapper';
+import { WaveDivider } from '@/app/components/WaveDivider';
 import { SlidersHorizontal, Cpu, SearchX, ArrowRight, Package, Flame, Sparkles } from 'lucide-react';
 
 interface CatalogClientProps {
@@ -51,30 +52,29 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
   return (
     <>
       {/* Product Catalog Section */}
-      <section id="catalog-section" className="relative py-20 lg:py-28 border-b border-[#22222e] overflow-hidden">
-
+      <section id="catalog-section" className={`qb-page-section relative overflow-hidden border-b border-[#0e1b3f] bg-[#060913] ${homeMode ? 'py-10 lg:py-14' : 'py-20 lg:py-28'}`}>
         {/* Background decoration */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-[#ff003c]/5 blur-[120px]" />
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#ff003c]/40 to-transparent" />
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-[#3b82f6]/5 blur-[120px]" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#3b82f6]/40 to-transparent" />
           {/* Grid pattern */}
           <div className="absolute inset-0 opacity-[0.03]"
-            style={{ backgroundImage: 'linear-gradient(#ff003c 1px, transparent 1px), linear-gradient(90deg, #ff003c 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+            style={{ backgroundImage: 'linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* ── PREMIUM SECTION HEADER ── */}
-          <div className="mb-12">
-            <GSAPFadeIn direction="down" delay={0.05}>
+          <div className={homeMode ? 'mb-8' : 'mb-12'}>
+            <GSAPReveal direction="down" delay={0.05}>
               {/* Eyebrow pill */}
               <div className="mb-5 flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#ff003c]/30 bg-[#ff003c]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#ff003c]">
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#3b82f6]/30 bg-[#3b82f6]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#3b82f6]">
                   <Cpu className="h-3.5 w-3.5 animate-pulse" />
                   Official Hardware Inventory
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#22222e] bg-[#0e0e12] px-3 py-1.5 text-xs font-bold text-[#a1a1aa]">
-                  <Package className="h-3.5 w-3.5 text-[#ff003c]" />
+                  <Package className="h-3.5 w-3.5 text-[#3b82f6]" />
                   {products.length} Products In Stock
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#22222e] bg-[#0e0e12] px-3 py-1.5 text-xs font-bold text-[#a1a1aa]">
@@ -82,34 +82,34 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
                   8 Categories
                 </span>
               </div>
-            </GSAPFadeIn>
+            </GSAPReveal>
 
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
               {/* Left: Heading */}
               <div className="max-w-2xl">
-                <GSAPFadeIn direction="up" delay={0.15}>
+                <GSAPReveal direction="up" delay={0.15}>
                   <h2 className="text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                     EXPLORE{' '}
                     <span className="relative inline-block">
-                      <span className="text-[#ff003c] glow-red-text">PRODUCTS</span>
+                      <span className="text-[#3b82f6] glow-red-text">PRODUCTS</span>
                     </span>
                     {' '}&amp;{' '}
-                    <span className="text-[#ff003c] glow-red-text">PARTS</span>
+                    <span className="text-[#3b82f6] glow-red-text">PARTS</span>
                   </h2>
-                </GSAPFadeIn>
-                <GSAPFadeIn direction="up" delay={0.25}>
+                </GSAPReveal>
+                <GSAPReveal direction="up" delay={0.25}>
                   <p className="mt-4 text-sm text-[#71717a] max-w-xl leading-relaxed">
                     Premium gaming rigs, flagship laptops, cutting-edge smartphones, GaN chargers, GPUs, RAM, SSDs — every component genuinely sourced &amp; warranty-backed.
                   </p>
-                </GSAPFadeIn>
+                </GSAPReveal>
               </div>
 
               {/* Right: Controls */}
-              <GSAPFadeIn direction="left" delay={0.3}>
+              <GSAPReveal direction="left" delay={0.3}>
                 <div className="flex flex-wrap items-center gap-3">
                   {/* Item count chip */}
                   <div className="flex items-center gap-2 rounded-xl border border-[#22222e] bg-[#0e0e12] px-4 py-2.5 text-xs">
-                    <Sparkles className="h-3.5 w-3.5 text-[#ff003c]" />
+                    <Sparkles className="h-3.5 w-3.5 text-[#3b82f6]" />
                     <span className="text-[#a1a1aa]">Top</span>
                     <strong className="text-white text-sm">{Math.min(10, showcaseProducts.length)}</strong>
                     <span className="text-[#a1a1aa]">{homeMode ? 'picks of' : 'of'}</span>
@@ -117,8 +117,8 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
                   </div>
 
                   {/* Sort dropdown */}
-                  <div className="flex items-center gap-2 rounded-xl border border-[#22222e] bg-[#0e0e12] px-4 py-2.5 text-xs text-white hover:border-[#ff003c]/40 transition-colors">
-                    <SlidersHorizontal className="h-3.5 w-3.5 text-[#ff003c]" />
+                  <div className="flex items-center gap-2 rounded-xl border border-[#22222e] bg-[#0e0e12] px-4 py-2.5 text-xs text-white hover:border-[#3b82f6]/40 transition-colors">
+                    <SlidersHorizontal className="h-3.5 w-3.5 text-[#3b82f6]" />
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
@@ -131,35 +131,35 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
                     </select>
                   </div>
                 </div>
-              </GSAPFadeIn>
+              </GSAPReveal>
             </div>
 
-            {/* Red accent rule */}
-            <GSAPFadeIn direction="up" delay={0.35}>
+            {/* Accent rule */}
+            <GSAPReveal direction="up" delay={0.35}>
               <div className="mt-8 flex items-center gap-4">
-                <div className="h-px flex-1 bg-gradient-to-r from-[#ff003c]/60 via-[#ff003c]/20 to-transparent" />
-                <div className="h-1.5 w-1.5 rotate-45 bg-[#ff003c]" />
+                <div className="h-px flex-1 bg-gradient-to-r from-[#3b82f6]/60 via-[#3b82f6]/20 to-transparent" />
+                <div className="h-1.5 w-1.5 rotate-45 bg-[#3b82f6]" />
                 <div className="h-px w-16 bg-[#22222e]" />
               </div>
-            </GSAPFadeIn>
+            </GSAPReveal>
           </div>
           {/* ── END HEADER ── */}
 
           {/* Category Filter Bar */}
-          <div className="mb-8">
+          <div className={homeMode ? 'mb-5' : 'mb-8'}>
             <CategoryFilter />
           </div>
 
           {/* Active Search Tag */}
           {searchQuery && (
-            <div className="mb-6 flex items-center justify-between rounded-xl border border-[#ff003c]/30 bg-[#ff003c]/10 px-4 py-3 text-xs text-white">
+            <div className="mb-6 flex items-center justify-between rounded-xl border border-[#3b82f6]/30 bg-[#3b82f6]/10 px-4 py-3 text-xs text-white">
               <span>
-                Search results for: <strong className="text-[#ff003c]">&ldquo;{searchQuery}&rdquo;</strong>
+                Search results for: <strong className="text-[#3b82f6]">&ldquo;{searchQuery}&rdquo;</strong>
                 <span className="ml-2 text-[#a1a1aa]">— {filteredProducts.length} result{filteredProducts.length !== 1 ? 's' : ''} found</span>
               </span>
               <button
                 onClick={() => setSearchQuery('')}
-                className="rounded-lg border border-[#ff003c]/40 px-3 py-1 font-bold text-[#ff003c] hover:bg-[#ff003c] hover:text-white transition"
+                className="rounded-lg border border-[#3b82f6]/40 px-3 py-1 font-bold text-[#3b82f6] hover:bg-[#3b82f6] hover:text-white transition"
               >
                 ✕ Clear
               </button>
@@ -180,13 +180,13 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
               )}
 
               {/* Bottom CTA */}
-              <div className="mt-14 flex flex-col items-center gap-4 text-center">
+              <div className={`flex flex-col items-center gap-4 text-center ${homeMode ? 'mt-6' : 'mt-14'}`}>
                 <p className="text-xs text-[#71717a]">
                   Showing <strong className="text-white">{homeMode ? Math.min(10, showcaseProducts.length) : filteredProducts.length}</strong> of <strong className="text-white">{products.length}</strong> products
                 </p>
                 <Link
                   href="/shop"
-                  className="group inline-flex items-center gap-3 rounded-2xl border border-[#ff003c]/40 bg-[#ff003c]/10 px-8 py-4 text-sm font-extrabold text-[#ff003c] uppercase tracking-wider hover:bg-[#ff003c] hover:text-white hover:border-[#ff003c] hover:shadow-xl hover:shadow-[#ff003c]/30 transition-all duration-300"
+                  className="group inline-flex items-center gap-3 rounded-2xl border border-[#3b82f6]/40 bg-[#3b82f6]/10 px-8 py-4 text-sm font-extrabold text-[#3b82f6] uppercase tracking-wider hover:bg-[#3b82f6] hover:text-white hover:border-[#3b82f6] hover:shadow-xl hover:shadow-[#3b82f6]/30 transition-all duration-300"
                 >
                   <Package className="h-4 w-4" />
                   View Full Shop — All {products.length} Products
@@ -215,6 +215,7 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
             </div>
           )}
         </div>
+        <WaveDivider fill="#0b0714" />
       </section>
 
       {/* IT Services */}
@@ -252,8 +253,8 @@ function ProductMarquee({ products }: { products: Product[] }) {
       `}</style>
 
       {/* Edge fade masks */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 bg-gradient-to-r from-[#050505] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 bg-gradient-to-l from-[#050505] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 bg-gradient-to-r from-[#060913] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 bg-gradient-to-l from-[#060913] to-transparent" />
 
       <div className="qb-marquee-track">
         {items.map((product, idx) => (
