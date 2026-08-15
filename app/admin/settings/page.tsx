@@ -24,7 +24,7 @@ export default function AdminSettingsPage() {
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
-        <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+        <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
           SYSTEM CONFIGURATION
         </span>
         <h1 className="text-2xl font-black text-white">PLATFORM SETTINGS</h1>
@@ -44,7 +44,7 @@ export default function AdminSettingsPage() {
               type="text"
               value={storeSettings.storeName}
               onChange={(e) => setStoreSettings({ ...storeSettings, storeName: e.target.value })}
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -54,7 +54,7 @@ export default function AdminSettingsPage() {
               type="email"
               value={storeSettings.supportEmail}
               onChange={(e) => setStoreSettings({ ...storeSettings, supportEmail: e.target.value })}
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -82,7 +82,7 @@ export default function AdminSettingsPage() {
         <div className="flex justify-end border-t border-[#1f1f2b] pt-4">
           <button
             type="submit"
-            className="red-gradient-btn flex items-center gap-2 rounded-xl px-6 py-3 text-xs font-bold text-white shadow-xl shadow-[#ff003c]/25"
+            className="red-gradient-btn flex items-center gap-2 rounded-xl px-6 py-3 text-xs font-bold text-white shadow-xl shadow-[#3B82F6]/25"
           >
             <Save className="h-4 w-4" /> Save System Settings
           </button>

@@ -21,7 +21,7 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#030305] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#05070D] text-white flex flex-col font-sans selection:bg-[#3B82F6] selection:text-white">
       <Navbar />
       <main className="flex-1">
         {/* Hero Banner */}

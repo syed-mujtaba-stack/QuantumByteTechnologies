@@ -13,7 +13,7 @@ export default function AdminCustomersPage() {
   return (
     <div className="space-y-6">
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
-        <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+        <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
           CUSTOMER DIRECTORY
         </span>
         <h1 className="text-2xl font-black text-white">STORE CUSTOMERS ({customers.length})</h1>
@@ -36,14 +36,14 @@ export default function AdminCustomersPage() {
             <tbody className="divide-y divide-[#1f1f2b]">
               {customers.map((c) => (
                 <tr key={c.id} className="hover:bg-[#16161f]/50 transition">
-                  <td className="py-3.5 px-2 font-mono text-[#ff003c] font-bold">{c.id}</td>
+                  <td className="py-3.5 px-2 font-mono text-[#3B82F6] font-bold">{c.id}</td>
                   <td className="py-3.5 px-2 font-bold text-white">{c.name}</td>
                   <td className="py-3.5 px-2 text-[#a1a1aa]">{c.email}</td>
                   <td className="py-3.5 px-2 text-[#71717a]">{c.phone}</td>
                   <td className="py-3.5 px-2 font-bold text-white">{c.orders} orders</td>
                   <td className="py-3.5 px-2 font-black text-white">{formatPKR(c.spent)}</td>
                   <td className="py-3.5 px-2">
-                    <span className="inline-flex items-center gap-1 rounded bg-[#ff003c]/15 px-2.5 py-0.5 text-[11px] font-extrabold text-[#ff003c]">
+                    <span className="inline-flex items-center gap-1 rounded bg-[#3B82F6]/15 px-2.5 py-0.5 text-[11px] font-extrabold text-[#3B82F6]">
                       <Award className="h-3 w-3" /> {c.rank}
                     </span>
                   </td>

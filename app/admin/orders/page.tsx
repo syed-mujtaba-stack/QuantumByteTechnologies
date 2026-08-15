@@ -20,7 +20,7 @@ export default async function AdminOrdersPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
         <div>
-          <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
             FULFILLMENT CENTER
           </span>
           <h1 className="text-2xl font-black text-white">ORDER MANAGEMENT ({allOrders.length})</h1>
@@ -46,7 +46,7 @@ export default async function AdminOrdersPage() {
             <tbody className="divide-y divide-[#1f1f2b]">
               {allOrders.map((ord) => (
                 <tr key={ord.orderId} className="hover:bg-[#16161f]/50 transition">
-                  <td className="py-4 px-2 font-mono font-bold text-[#ff003c]">{ord.orderId}</td>
+                  <td className="py-4 px-2 font-mono font-bold text-[#3B82F6]">{ord.orderId}</td>
                   <td className="py-4 px-2 font-bold text-white">{ord.customerName}</td>
                   <td className="py-4 px-2 text-[#a1a1aa]">{ord.city || '—'}</td>
                   <td className="py-4 px-2 font-semibold text-white max-w-xs truncate">
@@ -62,7 +62,7 @@ export default async function AdminOrdersPage() {
                           ? 'bg-[#22c55e]/15 text-[#22c55e]'
                           : ord.status === 'Shipped'
                           ? 'bg-[#3b82f6]/15 text-[#3b82f6]'
-                          : 'bg-[#ff003c]/15 text-[#ff003c]'
+                          : 'bg-[#3B82F6]/15 text-[#3B82F6]'
                       }`}>
                         {ord.status}
                       </span>

@@ -40,13 +40,13 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       {/* Dashboard Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#ff003c]/40 bg-gradient-to-r from-[#ff003c]/20 via-[#0e0e12] to-[#0e0e12] p-6 shadow-xl glass-panel-red">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#3B82F6]/40 bg-gradient-to-r from-[#3B82F6]/20 via-[#0e0e12] to-[#0e0e12] p-6 shadow-xl glass-panel-red">
         <div>
-          <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
             CONTROL CENTER OVERVIEW
           </span>
           <h1 className="text-2xl sm:text-3xl font-black text-white mt-0.5">
-            ADMIN <span className="text-[#ff003c]">DASHBOARD</span>
+            ADMIN <span className="text-[#3B82F6]">DASHBOARD</span>
           </h1>
           <p className="text-xs text-[#a1a1aa] mt-1">
             Live metrics synced directly from Sanity — products, orders &amp; customers.
@@ -56,7 +56,7 @@ export default async function AdminDashboardPage() {
         <div className="flex items-center gap-3">
           <Link
             href="/admin/products/new"
-            className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#ff003c]/25"
+            className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#3B82F6]/25"
           >
             <Plus className="h-4 w-4" />
             Add New Product
@@ -72,7 +72,7 @@ export default async function AdminDashboardPage() {
             <div key={idx} className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-5 space-y-3 glass-panel">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-[#a1a1aa]">{stat.label}</span>
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#3B82F6]/15 text-[#3B82F6]">
                   <Icon className="h-4 w-4" />
                 </div>
               </div>
@@ -97,7 +97,7 @@ export default async function AdminDashboardPage() {
                 <h3 className="text-base font-black text-white">Live Customer Orders</h3>
                 <p className="text-[11px] text-[#a1a1aa]">Latest orders fetched from Sanity.</p>
               </div>
-              <Link href="/admin/orders" className="text-xs text-[#ff003c] font-bold hover:underline">
+              <Link href="/admin/orders" className="text-xs text-[#3B82F6] font-bold hover:underline">
                 View All Orders →
               </Link>
             </div>
@@ -119,7 +119,7 @@ export default async function AdminDashboardPage() {
                 <tbody className="divide-y divide-[#1f1f2b]">
                   {recentOrders.map((ord) => (
                     <tr key={ord._id} className="hover:bg-[#16161f]/50 transition">
-                      <td className="py-3 px-2 font-mono font-bold text-[#ff003c]">{ord.orderId}</td>
+                      <td className="py-3 px-2 font-mono font-bold text-[#3B82F6]">{ord.orderId}</td>
                       <td className="py-3 px-2">
                         <span className="font-bold text-white block">{ord.customerName}</span>
                         <span className="text-[10px] text-[#71717a]">{ord.customerEmail}</span>
@@ -134,7 +134,7 @@ export default async function AdminDashboardPage() {
                             ? 'bg-[#22c55e]/15 text-[#22c55e]'
                             : ord.status === 'Shipped'
                             ? 'bg-[#3b82f6]/15 text-[#3b82f6]'
-                            : 'bg-[#ff003c]/15 text-[#ff003c]'
+                            : 'bg-[#3B82F6]/15 text-[#3B82F6]'
                         }`}>
                           {ord.status}
                         </span>
@@ -152,7 +152,7 @@ export default async function AdminDashboardPage() {
         <div className="lg:col-span-4 space-y-6">
           <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-4 glass-panel">
             <h3 className="text-base font-black text-white border-b border-[#1f1f2b] pb-3 flex items-center gap-2">
-              <Layers className="h-4 w-4 text-[#ff003c]" />
+              <Layers className="h-4 w-4 text-[#3B82F6]" />
               Category Breakdown
             </h3>
 
@@ -166,10 +166,10 @@ export default async function AdminDashboardPage() {
                   <div key={cat}>
                     <div className="flex justify-between font-bold mb-1">
                       <span className="text-white capitalize">{cat}</span>
-                      <span className="text-[#ff003c]">{count} product{count === 1 ? '' : 's'}</span>
+                      <span className="text-[#3B82F6]">{count} product{count === 1 ? '' : 's'}</span>
                     </div>
                     <div className="h-2 rounded-full bg-[#16161f] overflow-hidden">
-                      <div className="h-full bg-[#ff003c]" style={{ width: `${Math.max(pct, 6)}%` }} />
+                      <div className="h-full bg-[#3B82F6]" style={{ width: `${Math.max(pct, 6)}%` }} />
                     </div>
                   </div>
                 );

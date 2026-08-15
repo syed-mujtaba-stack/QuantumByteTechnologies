@@ -54,10 +54,10 @@ export default function AddProductPage() {
       <div className="flex items-center justify-between border-b border-[#1f1f2b] pb-4">
         <div>
           <Link href="/admin/products" className="text-xs text-[#a1a1aa] hover:text-white flex items-center gap-1 mb-1">
-            <ArrowLeft className="h-3.5 w-3.5 text-[#ff003c]" /> Back to Products List
+            <ArrowLeft className="h-3.5 w-3.5 text-[#3B82F6]" /> Back to Products List
           </Link>
           <h1 className="text-2xl font-black text-white flex items-center gap-2">
-            <Package className="h-6 w-6 text-[#ff003c]" /> ADD NEW PRODUCT
+            <Package className="h-6 w-6 text-[#3B82F6]" /> ADD NEW PRODUCT
           </h1>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function AddProductPage() {
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. Apple MacBook Pro 16-inch M3 Max"
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -89,7 +89,7 @@ export default function AddProductPage() {
               value={form.brand}
               onChange={(e) => setForm({ ...form, brand: e.target.value })}
               placeholder="e.g. Apple, ASUS, Samsung, Anker"
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -98,7 +98,7 @@ export default function AddProductPage() {
             <select
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             >
               <option value="computers">Computers & Workstations</option>
               <option value="laptops">Laptops & Ultrabooks</option>
@@ -119,7 +119,7 @@ export default function AddProductPage() {
               value={form.price}
               onChange={(e) => setForm({ ...form, price: e.target.value })}
               placeholder="1299"
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -130,7 +130,7 @@ export default function AddProductPage() {
               value={form.discountPrice}
               onChange={(e) => setForm({ ...form, discountPrice: e.target.value })}
               placeholder="1499"
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -141,7 +141,7 @@ export default function AddProductPage() {
               required
               value={form.stock}
               onChange={(e) => setForm({ ...form, stock: e.target.value })}
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function AddProductPage() {
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             placeholder="Write complete product specs, features, and warranty details..."
-            className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+            className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
           />
         </div>
 
@@ -164,7 +164,7 @@ export default function AddProductPage() {
             value={form.specs}
             onChange={(e) => setForm({ ...form, specs: e.target.value })}
             placeholder="M3 Max Chip, 36GB RAM, 1TB SSD, 16.2 Inch Liquid Retina XDR"
-            className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+            className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
           />
         </div>
 
@@ -175,7 +175,7 @@ export default function AddProductPage() {
             value={form.imageUrl}
             onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
             placeholder="/images/computers/quantumbyte_custom_rig.jpg"
-            className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+            className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#3B82F6]"
           />
         </div>
 
@@ -183,7 +183,7 @@ export default function AddProductPage() {
           <button
             type="submit"
             disabled={saving}
-            className="red-gradient-btn flex items-center gap-2 rounded-xl px-6 py-3 text-xs font-bold text-white shadow-xl shadow-[#ff003c]/25 disabled:opacity-60"
+            className="red-gradient-btn flex items-center gap-2 rounded-xl px-6 py-3 text-xs font-bold text-white shadow-xl shadow-[#3B82F6]/25 disabled:opacity-60"
           >
             {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
             {saving ? 'Publishing to Sanity...' : 'Save & Publish Product'}

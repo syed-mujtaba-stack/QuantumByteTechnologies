@@ -39,17 +39,17 @@ export default function AccountDashboardPage() {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="rounded-2xl border border-[#ff003c]/40 bg-gradient-to-r from-[#ff003c]/20 via-[#0e0e12] to-[#0e0e12] p-6 shadow-xl glass-panel-red">
+      <div className="rounded-2xl border border-[#3B82F6]/40 bg-gradient-to-r from-[#3B82F6]/20 via-[#0e0e12] to-[#0e0e12] p-6 shadow-xl glass-panel-red">
         <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#990024] text-white font-black text-xl shadow-lg shadow-[#ff003c]/30">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#3B82F6] to-[#990024] text-white font-black text-xl shadow-lg shadow-[#3B82F6]/30">
             {initials}
           </div>
           <div>
-            <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+            <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
               WELCOME BACK, {firstName.toUpperCase()}
             </span>
             <h1 className="text-2xl sm:text-3xl font-black text-white mt-1">
-              CUSTOMER <span className="text-[#ff003c]">DASHBOARD</span>
+              CUSTOMER <span className="text-[#3B82F6]">DASHBOARD</span>
             </h1>
           </div>
         </div>
@@ -61,22 +61,22 @@ export default function AccountDashboardPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="rounded-xl border border-[#22222e] bg-[#0e0e12] p-4 text-center space-y-1">
-          <ShoppingBag className="h-5 w-5 text-[#ff003c] mx-auto" />
+          <ShoppingBag className="h-5 w-5 text-[#3B82F6] mx-auto" />
           <span className="text-2xl font-black text-white">{ordersLoading ? '—' : totalOrders}</span>
           <p className="text-[11px] text-[#a1a1aa] uppercase font-bold">Total Orders</p>
         </div>
         <div className="rounded-xl border border-[#22222e] bg-[#0e0e12] p-4 text-center space-y-1">
-          <Clock className="h-5 w-5 text-[#ff003c] mx-auto" />
+          <Clock className="h-5 w-5 text-[#3B82F6] mx-auto" />
           <span className="text-2xl font-black text-white">{ordersLoading ? '—' : activeShipments}</span>
           <p className="text-[11px] text-[#a1a1aa] uppercase font-bold">Active Shipments</p>
         </div>
         <div className="rounded-xl border border-[#22222e] bg-[#0e0e12] p-4 text-center space-y-1">
-          <Heart className="h-5 w-5 text-[#ff003c] mx-auto" />
+          <Heart className="h-5 w-5 text-[#3B82F6] mx-auto" />
           <span className="text-2xl font-black text-white">{wishlist.length}</span>
           <p className="text-[11px] text-[#a1a1aa] uppercase font-bold">Wishlist Items</p>
         </div>
         <div className="rounded-xl border border-[#22222e] bg-[#0e0e12] p-4 text-center space-y-1">
-          <Award className="h-5 w-5 text-[#ff003c] mx-auto" />
+          <Award className="h-5 w-5 text-[#3B82F6] mx-auto" />
           <span className="text-2xl font-black text-white">{formatPKR(totalSpent)}</span>
           <p className="text-[11px] text-[#a1a1aa] uppercase font-bold">Total Spent</p>
         </div>
@@ -86,19 +86,19 @@ export default function AccountDashboardPage() {
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-4 glass-panel">
         <div className="flex items-center justify-between border-b border-[#1f1f2b] pb-3">
           <h3 className="text-base font-black text-white">Recent Orders</h3>
-          <Link href="/account/orders" className="text-xs text-[#ff003c] font-bold hover:underline flex items-center gap-1">
+          <Link href="/account/orders" className="text-xs text-[#3B82F6] font-bold hover:underline flex items-center gap-1">
             View All Orders <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
 
         {ordersLoading ? (
           <div className="flex items-center justify-center py-8">
-            <Loader2 className="h-6 w-6 animate-spin text-[#ff003c]" />
+            <Loader2 className="h-6 w-6 animate-spin text-[#3B82F6]" />
           </div>
         ) : recentOrders.length === 0 ? (
           <div className="py-8 text-center text-xs text-[#a1a1aa]">
             No orders yet. Start shopping and your hardware orders will appear here.
-            <Link href="/shop" className="block mt-2 font-bold text-[#ff003c] hover:underline">
+            <Link href="/shop" className="block mt-2 font-bold text-[#3B82F6] hover:underline">
               Browse Products
             </Link>
           </div>
@@ -110,7 +110,7 @@ export default function AccountDashboardPage() {
                 <div className="flex items-center gap-2">
                   <span className="font-mono font-bold text-white">{order.orderId}</span>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                    order.status === 'Delivered' ? 'bg-[#22c55e]/15 text-[#22c55e]' : 'bg-[#ff003c]/15 text-[#ff003c]'
+                    order.status === 'Delivered' ? 'bg-[#22c55e]/15 text-[#22c55e]' : 'bg-[#3B82F6]/15 text-[#3B82F6]'
                   }`}>
                     {order.status}
                   </span>
@@ -124,7 +124,7 @@ export default function AccountDashboardPage() {
                 <span className="font-black text-white text-sm">{formatPKR(order.totalAmount)}</span>
                 <Link
                   href={`/account/orders/${order.orderId}`}
-                  className="rounded-lg border border-[#22222e] bg-[#050505] px-3 py-1.5 text-xs font-bold text-white hover:border-[#ff003c]"
+                  className="rounded-lg border border-[#22222e] bg-[#050505] px-3 py-1.5 text-xs font-bold text-white hover:border-[#3B82F6]"
                 >
                   Order Details
                 </Link>

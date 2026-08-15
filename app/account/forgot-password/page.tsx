@@ -16,12 +16,12 @@ export default function ForgotPasswordPage() {
   return (
     <div className="w-full max-w-md space-y-6">
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-8 shadow-2xl glass-panel text-center space-y-6">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ff003c]/20 text-[#ff003c]">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#3B82F6]/20 text-[#3B82F6]">
           <KeyRound className="h-7 w-7" />
         </div>
 
         <div>
-          <span className="text-[10px] font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-[10px] font-extrabold text-[#3B82F6] uppercase tracking-widest">
             PASSWORD RECOVERY
           </span>
           <h1 className="text-2xl font-black text-white mt-1">FORGOT YOUR PASSWORD?</h1>
@@ -46,14 +46,14 @@ export default function ForgotPasswordPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="john.doe@example.com"
-                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-3 pl-10 pr-4 text-xs text-white outline-none focus:border-[#ff003c]"
+                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-3 pl-10 pr-4 text-xs text-white outline-none focus:border-[#3B82F6]"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25 mt-2"
+              className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#3B82F6]/25 mt-2"
             >
               Send Reset Link
               <ArrowRight className="h-4 w-4" />
@@ -63,7 +63,7 @@ export default function ForgotPasswordPage() {
 
         <div className="pt-4 border-t border-[#1f1f2b] text-xs text-[#a1a1aa]">
           Remember your password?{' '}
-          <Link href="/account/login" className="font-bold text-[#ff003c] hover:underline">
+          <Link href="/account/login" className="font-bold text-[#3B82F6] hover:underline">
             Back to Sign In
           </Link>
         </div>

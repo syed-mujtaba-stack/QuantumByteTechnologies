@@ -33,7 +33,7 @@ export default async function CategoryDetailPage({
   const categoryTitle = categoryNames[slug] || slug.toUpperCase();
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#3B82F6] selection:text-white">
       <Navbar />
 
       <main className="flex-1 py-10 lg:py-16">
@@ -41,15 +41,15 @@ export default async function CategoryDetailPage({
           {/* Breadcrumbs */}
           <div className="mb-6 flex items-center gap-2 text-xs text-[#a1a1aa]">
             <Link href="/" className="hover:text-white">Home</Link>
-            <ChevronRight className="h-3 w-3 text-[#ff003c]" />
+            <ChevronRight className="h-3 w-3 text-[#3B82F6]" />
             <Link href="/categories" className="hover:text-white">Categories</Link>
-            <ChevronRight className="h-3 w-3 text-[#ff003c]" />
+            <ChevronRight className="h-3 w-3 text-[#3B82F6]" />
             <span className="text-white font-bold capitalize">{categoryTitle}</span>
           </div>
 
           {/* Category Banner */}
           <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-8 mb-10 cyber-grid-bg shadow-xl glass-panel">
-            <div className="flex items-center gap-3 text-xs font-extrabold text-[#ff003c] uppercase mb-2">
+            <div className="flex items-center gap-3 text-xs font-extrabold text-[#3B82F6] uppercase mb-2">
               <Cpu className="h-4 w-4" />
               <span>Category Inventory</span>
             </div>

@@ -43,28 +43,28 @@ export function CartDrawer() {
     <div className="fixed inset-0 z-50 overflow-hidden animate-fade-in">
       <div
         onClick={() => setIsCartOpen(false)}
-        className="fixed inset-0 bg-[#030305]/85 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#05070D]/85 backdrop-blur-sm transition-opacity"
         aria-hidden="true"
       />
 
       <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
-        <div className="w-screen max-w-md border-l border-[#ff003c]/20 bg-[#08080c] shadow-2xl flex flex-col justify-between animate-slide-in">
+        <div className="w-screen max-w-md border-l border-white/[0.08] bg-[#080B12] shadow-2xl flex flex-col justify-between animate-slide-in">
           <div className="flex flex-col h-full">
             {/* Header */}
-            <div className="p-6 border-b border-[#1a1a24]">
+            <div className="p-6 border-b border-white/[0.06]">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#3B82F6]/[0.12] text-[#3B82F6]">
                     <ShoppingBag className="h-5 w-5" />
                   </div>
                   <div>
                     <h2 className="text-lg font-black text-white">Shopping Cart</h2>
-                    <span className="text-xs text-[#6b6b7a]">{cartCount} item{cartCount !== 1 ? 's' : ''}</span>
+                    <span className="text-xs text-[#64748B]">{cartCount} item{cartCount !== 1 ? 's' : ''}</span>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="btn btn-icon btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+                  className="btn btn-icon btn-ghost text-[#64748B] hover:text-white hover:bg-white/[0.05]"
                   aria-label="Close cart"
                 >
                   <X className="h-5 w-5" />
@@ -72,42 +72,42 @@ export function CartDrawer() {
               </div>
 
               {/* Free Shipping Progress */}
-              <div className="rounded-xl border border-[#232330] bg-[#030305] p-4 space-y-2">
+              <div className="rounded-xl border border-white/[0.06] bg-[#05070D] p-4 space-y-2">
                 <div className="flex items-center justify-between text-sm font-semibold">
                   <span className="text-white flex items-center gap-2">
-                    <ShieldCheck className="h-4 w-4 text-[#ff003c]" />
+                    <ShieldCheck className="h-4 w-4 text-[#3B82F6]" />
                     {cartTotal >= freeShippingThreshold ? (
                       <>
-                        <span>���� Free Express Shipping Unlocked!</span>
-                        <Gift className="h-4 w-4 text-[#00d4aa]" />
+                        <span>Free Express Shipping Unlocked!</span>
+                        <Gift className="h-4 w-4 text-[#06B6D4]" />
                       </>
                     ) : (
                       `Add ${formatPKR(freeShippingThreshold - cartTotal)} for Free Express Shipping`
                     )}
                   </span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-[#14141a] overflow-hidden">
+                <div className="h-2 w-full rounded-full bg-white/[0.06] overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#ff003c] to-[#ff4d73] transition-all duration-500 ease-out"
+                    className="h-full bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] transition-all duration-500 ease-out"
                     style={{ width: `${progressPercent}%` }}
                   />
                 </div>
-                <div className="flex items-center justify-between text-[10px] text-[#6b6b7a]">
+                <div className="flex items-center justify-between text-[10px] text-[#64748B]">
                   <span>Cart Value</span>
                   <span className="font-bold text-white">{formatPKR(cartTotal)}</span>
                 </div>
               </div>
             </div>
 
-            {/* Cart Items List */}
+            {/* Cart Items */}
             <div data-lenis-prevent className="flex-1 overflow-y-auto p-6 space-y-4">
               {cart.length === 0 ? (
                 <div className="flex h-[200px] flex-col items-center justify-center text-center space-y-4">
-                  <div className="flex h-18 w-18 items-center justify-center rounded-2xl bg-[#14141a] text-[#ff003c]">
+                  <div className="flex h-18 w-18 items-center justify-center rounded-2xl bg-white/[0.04] text-[#3B82F6]">
                     <ShoppingBag className="h-9 w-9" />
                   </div>
                   <h3 className="text-base font-bold text-white">Your cart is empty</h3>
-                  <p className="text-sm text-[#6b6b7a] max-w-xs">
+                  <p className="text-sm text-[#64748B] max-w-xs">
                     Browse our high-performance PCs, laptops, mobiles, chargers, and parts catalog to add items!
                   </p>
                   <button
@@ -121,9 +121,9 @@ export function CartDrawer() {
                 cart.map((item) => (
                   <div
                     key={item.product.id}
-                    className="group flex gap-4 rounded-xl border border-[#232330] bg-[#0d0d12] p-3 transition-all hover:border-[#ff003c]/30 hover:shadow-lg hover:shadow-[#ff003c]/10"
+                    className="group flex gap-4 rounded-xl border border-white/[0.06] bg-[#0B0F18] p-3 transition-all hover:border-[#3B82F6]/25 hover:shadow-lg hover:shadow-[#3B82F6]/[0.08]"
                   >
-                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-[#030305]">
+                    <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-[#05070D]">
                       <Image
                         src={item.product.imageUrl}
                         alt={item.product.name}
@@ -137,11 +137,11 @@ export function CartDrawer() {
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <h4 className="line-clamp-1 text-sm font-bold text-white">{item.product.name}</h4>
-                          <span className="text-[10px] font-semibold text-[#ff003c] uppercase tracking-wide">{item.product.brand}</span>
+                          <span className="text-[10px] font-semibold text-[#3B82F6] uppercase tracking-wide">{item.product.brand}</span>
                         </div>
                         <button
                           onClick={() => removeFromCart(item.product.id)}
-                          className="btn btn-icon btn-sm btn-ghost text-[#6b6b7a] hover:text-[#ff3b30] hover:bg-[#ff3b30]/10 flex-shrink-0"
+                          className="btn btn-icon btn-sm btn-ghost text-[#64748B] hover:text-[#EF4444] hover:bg-[#EF4444]/10 flex-shrink-0"
                           aria-label={`Remove ${item.product.name}`}
                         >
                           <Trash2 className="h-4 w-4" />
@@ -149,10 +149,10 @@ export function CartDrawer() {
                       </div>
                       <div className="mt-2 flex items-center justify-between">
                         <span className="text-base font-black text-white">{formatPKR(item.product.price)}</span>
-                        <div className="flex items-center gap-1.5 rounded-lg border border-[#232330] bg-[#030305] px-2.5 py-1.5">
+                        <div className="flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-[#05070D] px-2.5 py-1.5">
                           <button
                             onClick={() => updateQuantity(item.product.id, -1)}
-                            className="btn btn-icon btn-sm btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+                            className="btn btn-icon btn-sm btn-ghost text-[#64748B] hover:text-white hover:bg-white/[0.05]"
                             aria-label="Decrease quantity"
                           >
                             <Minus className="h-3.5 w-3.5" />
@@ -160,14 +160,14 @@ export function CartDrawer() {
                           <span className="text-sm font-bold text-white min-w-6 text-center">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.product.id, 1)}
-                            className="btn btn-icon btn-sm btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+                            className="btn btn-icon btn-sm btn-ghost text-[#64748B] hover:text-white hover:bg-white/[0.05]"
                             aria-label="Increase quantity"
                           >
                             <Plus className="h-3.5 w-3.5" />
                           </button>
                         </div>
                       </div>
-                      <p className="mt-1 text-[11px] text-[#30d158] font-medium flex items-center gap-1">
+                      <p className="mt-1 text-[11px] text-[#10B981] font-medium flex items-center gap-1">
                         <ShieldCheck className="h-3 w-3" />
                         Genuine · {item.product.stock} in stock
                       </p>
@@ -180,11 +180,11 @@ export function CartDrawer() {
 
           {/* Footer & Checkout */}
           {cart.length > 0 && (
-            <div className="border-t border-[#1a1a24] p-6 space-y-4 bg-[#030305]/50">
+            <div className="border-t border-white/[0.06] p-6 space-y-4 bg-[#05070D]/50">
               {/* Promo Input */}
               <div className="flex items-center gap-2">
                 <div className="relative flex-1">
-                  <Tag className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6b6b7a]" aria-hidden="true" />
+                  <Tag className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]" aria-hidden="true" />
                   <input
                     type="text"
                     value={promoCode}
@@ -202,20 +202,20 @@ export function CartDrawer() {
               </div>
 
               {promoApplied && (
-                <div className="flex items-center gap-2 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/30 p-3 animate-scale-in">
-                  <Sparkles className="h-4.5 w-4.5 text-[#00d4aa]" />
-                  <span className="text-sm font-semibold text-[#00d4aa]">Promo applied! 10% off — Saved {formatPKR(discountValue)}</span>
+                <div className="flex items-center gap-2 rounded-lg bg-[#06B6D4]/10 border border-[#06B6D4]/25 p-3 animate-scale-in">
+                  <Sparkles className="h-4.5 w-4.5 text-[#06B6D4]" />
+                  <span className="text-sm font-semibold text-[#06B6D4]">Promo applied! 10% off — Saved {formatPKR(discountValue)}</span>
                 </div>
               )}
 
               {/* Price Breakdown */}
-              <div className="space-y-2.5 text-sm text-[#9c9ca8]">
+              <div className="space-y-2.5 text-sm text-[#94A3B8]">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
                   <span className="font-bold text-white">{formatPKR(cartTotal)}</span>
                 </div>
                 {promoApplied && (
-                  <div className="flex justify-between text-[#00d4aa]">
+                  <div className="flex justify-between text-[#06B6D4]">
                     <span>Promo Discount (10%)</span>
                     <span>-{formatPKR(discountValue)}</span>
                   </div>
@@ -227,15 +227,15 @@ export function CartDrawer() {
                   </span>
                   <span className="font-bold text-white">
                     {cartTotal >= freeShippingThreshold ? (
-                      <span className="text-[#30d158] flex items-center gap-1">FREE <ShieldCheck className="h-3 w-3" /></span>
+                      <span className="text-[#10B981] flex items-center gap-1">FREE <ShieldCheck className="h-3 w-3" /></span>
                     ) : (
                       formatPKR(15)
                     )}
                   </span>
                 </div>
-                <div className="flex justify-between border-t border-[#1a1a24] pt-2 text-base font-extrabold text-white">
+                <div className="flex justify-between border-t border-white/[0.06] pt-2 text-base font-extrabold text-white">
                   <span>Total Amount</span>
-                  <span className="text-[#ff003c]">{formatPKR(finalTotal)}</span>
+                  <span className="text-[#3B82F6]">{formatPKR(finalTotal)}</span>
                 </div>
               </div>
 

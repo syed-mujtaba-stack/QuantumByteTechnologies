@@ -35,7 +35,7 @@ export default async function SearchPage({
   });
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#3B82F6] selection:text-white">
       <Navbar />
 
       <main className="flex-1 py-10 lg:py-16">
@@ -43,13 +43,13 @@ export default async function SearchPage({
           {/* Breadcrumb */}
           <div className="mb-6 flex items-center gap-2 text-xs text-[#a1a1aa]">
             <Link href="/" className="hover:text-white">Home</Link>
-            <ChevronRight className="h-3 w-3 text-[#ff003c]" />
+            <ChevronRight className="h-3 w-3 text-[#3B82F6]" />
             <span className="text-white font-bold">Search Results</span>
           </div>
 
           {/* Search Header */}
           <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-8 mb-10 cyber-grid-bg shadow-xl glass-panel">
-            <div className="flex items-center gap-2 text-xs font-extrabold text-[#ff003c] uppercase mb-2">
+            <div className="flex items-center gap-2 text-xs font-extrabold text-[#3B82F6] uppercase mb-2">
               <Search className="h-4 w-4" />
               <span>SEARCH RESULTS FOR</span>
             </div>
@@ -70,14 +70,14 @@ export default async function SearchPage({
             </div>
           ) : (
             <div className="my-12 flex flex-col items-center justify-center text-center space-y-4 py-16 rounded-2xl border border-dashed border-[#22222e] bg-[#0e0e12]">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#16161f] text-[#ff003c]">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#16161f] text-[#3B82F6]">
                 <SearchX className="h-8 w-8" />
               </div>
               <h3 className="text-lg font-extrabold text-white">No products found for "{query}"</h3>
               <p className="text-xs text-[#a1a1aa] max-w-sm">
                 Try searching for terms like "MacBook", "RTX 4090", "iPhone", "Charger", or "DDR5".
               </p>
-              <Link href="/shop" className="red-gradient-btn rounded-xl px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#ff003c]/20">
+              <Link href="/shop" className="red-gradient-btn rounded-xl px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#3B82F6]/20">
                 Browse Full Shop
               </Link>
             </div>

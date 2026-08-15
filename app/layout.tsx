@@ -42,7 +42,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full dark antialiased`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#030305] text-white">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#05070D] text-white">
         <Preloader />
         <SmoothScroll />
         <ScrollProgress />

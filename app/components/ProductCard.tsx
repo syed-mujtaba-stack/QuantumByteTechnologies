@@ -6,7 +6,6 @@ import { Product } from '@/sanity/lib/data';
 import { useCart } from '@/app/context/CartContext';
 import { useWishlist } from '@/app/context/WishlistContext';
 import { formatPKR } from '@/sanity/lib/currency';
-import { GSAPHoverTilt } from './GSAPWrapper';
 import { Star, ShoppingBag, Eye, Check, Heart, Truck, RotateCcw, ShieldCheck } from 'lucide-react';
 
 export function ProductCard({ product }: { product: Product }) {
@@ -18,162 +17,168 @@ export function ProductCard({ product }: { product: Product }) {
   const wished = isInWishlist(product.id);
 
   return (
-    <GSAPHoverTilt className="h-full">
-      <article className="group relative flex h-full flex-col bg-[#0d0d12] border border-[#232330] rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#ff003c]/40 hover:shadow-xl hover:shadow-[#ff003c]/10 hover:-translate-y-1">
-        <div className="relative overflow-hidden bg-[#030305]">
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030305]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <article className="group relative flex h-full flex-col rounded-2xl border border-white/[0.06] bg-[#0B0F18]/80 overflow-hidden transition-all duration-400 hover:border-[#3B82F6]/25 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)] hover:-translate-y-1">
+      {/* ── Image Section ────────────────────────────────────────── */}
+      <div className="relative overflow-hidden bg-[#080B12]">
+        {/* Badges */}
+        <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5">
+          {product.isNewRelease && (
+            <span className="inline-flex items-center rounded-lg bg-[#3B82F6] px-2 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-lg shadow-[#3B82F6]/30">
+              NEW
+            </span>
+          )}
+          {discountPercent > 0 && (
+            <span className="inline-flex items-center rounded-lg bg-[#EF4444] px-2 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-lg shadow-[#EF4444]/30">
+              -{discountPercent}%
+            </span>
+          )}
+          {product.isFeatured && !product.isNewRelease && discountPercent === 0 && (
+            <span className="inline-flex items-center rounded-lg bg-[#F59E0B]/90 px-2 py-1 text-[10px] font-extrabold uppercase tracking-wider text-white">
+              Featured
+            </span>
+          )}
+        </div>
 
-          <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5">
-            {product.isNewRelease && (
-              <span className="badge badge-new">
-                <span className="relative">NEW</span>
-                <span className="absolute inset-0 bg-[inherit] blur-[4px] opacity-50" aria-hidden="true" />
-              </span>
-            )}
-            {discountPercent > 0 && (
-              <span className="badge badge-sale">
-                -{discountPercent}%
-              </span>
-            )}
-            {product.isFeatured && !product.isNewRelease && discountPercent === 0 && (
-              <span className="badge badge-primary">Featured</span>
-            )}
-          </div>
+        {/* Wishlist */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToWishlist(product);
+          }}
+          aria-label={wished ? 'Remove from wishlist' : 'Add to wishlist'}
+          className={`absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-300 touch-target ${
+            wished
+              ? 'bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/40'
+              : 'bg-[#05070D]/80 text-white/50 hover:bg-[#3B82F6] hover:text-white backdrop-blur-sm'
+          }`}
+        >
+          <Heart className={`h-4 w-4 ${wished ? 'fill-current' : ''}`} />
+        </button>
 
-          <div className="absolute right-3 top-3 z-10 flex items-center gap-1.5">
+        {/* Product Image */}
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+            className="object-contain bg-[#080B12] transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy"
+          />
+
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-[#05070D]/70 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-2.5 p-4">
             <button
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                addToWishlist(product);
+                addToCart(product);
               }}
-              aria-label={wished ? 'Remove from wishlist' : 'Add to wishlist'}
-              className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-300 touch-target ${
-                wished
-                  ? 'bg-[#ff003c] text-white shadow-lg shadow-[#ff003c]/40'
-                  : 'bg-[#08080c]/90 text-white/80 hover:bg-[#ff003c] hover:text-white hover:shadow-lg hover:shadow-[#ff003c]/30 backdrop-blur-sm'
-              }`}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#2563EB] px-5 py-2.5 text-[13px] font-bold text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] active:scale-[0.97] touch-target"
             >
-              <Heart className={`h-4.5 w-4.5 ${wished ? 'fill-current' : ''}`} />
-              {wished && (
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-white text-[10px] font-extrabold text-[#ff003c]" />
-              )}
+              <ShoppingBag className="h-4 w-4" />
+              Add to Cart
             </button>
-          </div>
-
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-              className="object-contain bg-[#030305] transition-transform duration-700 ease-out group-hover:scale-105"
-              loading="lazy"
-            />
-
-            <div className="absolute inset-0 bg-[#030305]/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 p-4">
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  addToCart(product);
-                }}
-                className="btn btn-primary w-full sm:w-auto flex-1 touch-target"
-              >
-                <ShoppingBag className="h-4.5 w-4.5" />
-                <span>Add to Cart</span>
-              </button>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  openProductDetail(product);
-                }}
-                className="btn btn-secondary w-full sm:w-auto flex-1 touch-target"
-              >
-                <Eye className="h-4.5 w-4.5" />
-                <span>Quick View</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-1 flex-col p-4 sm:p-5 space-y-4">
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#ff003c]">
-                {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
-              </span>
-              <div className="flex items-center gap-1">
-                <Star className="h-3.5 w-3.5 fill-current text-[#ffb800]" />
-                <span className="font-bold text-white text-sm">{product.rating}</span>
-                <span className="text-[10px] text-[#6b6b7a]">({product.reviewsCount})</span>
-              </div>
-            </div>
-
-            <h3
-              onClick={() => openProductDetail(product)}
-              className="text-base sm:text-lg font-bold text-white leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-[#ff003c] cursor-pointer"
-            >
-              {product.name}
-            </h3>
-
-            <div className="flex flex-wrap gap-1.5">
-              {product.specs?.slice(0, 3).map((spec, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-0.5 text-[10px] text-[#6b6b7a] bg-[#08080c] border border-[#1a1a24] rounded-full hover:border-[#ff003c]/30 hover:text-white transition-all whitespace-nowrap"
-                >
-                  {spec}
-                </span>
-              ))}
-              {product.specs && product.specs.length > 3 && (
-                <span className="px-2.5 py-0.5 text-[10px] text-[#6b6b7a] bg-[#08080c] border border-[#1a1a24] rounded-full whitespace-nowrap">
-                  +{product.specs.length - 3} more
-                </span>
-              )}
-            </div>
-          </div>
-
-          <div className="mt-auto pt-4 border-t border-[#1a1a24]">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-baseline gap-2">
-                <span className="text-xl sm:text-2xl font-black text-white">{formatPKR(product.price)}</span>
-                {product.discountPrice && (
-                  <span className="text-sm text-[#6b6b7a] line-through">{formatPKR(product.discountPrice)}</span>
-                )}
-              </div>
-              <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#30d158]">
-                <Check className="h-3.5 w-3.5" />
-                In Stock ({product.stock})
-              </div>
-            </div>
-
             <button
-              onClick={() => addToCart(product)}
-              className="group btn btn-primary w-full justify-center gap-2 touch-target"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                openProductDetail(product);
+              }}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.06] text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/[0.1] hover:text-white active:scale-[0.97] touch-target"
+              aria-label="Quick view"
             >
-              <ShoppingBag className="h-4.5 w-4.5 transition-transform group-hover:scale-110" />
-              <span>Add to Cart</span>
+              <Eye className="h-4 w-4" />
             </button>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 text-[10px] text-[#6b6b7a]">
-              <span className="flex items-center gap-1">
-                <Truck className="h-3.5 w-3.5" />
-                Free Shipping
-              </span>
-              <span className="flex items-center gap-1">
-                <RotateCcw className="h-3.5 w-3.5" />
-                14-Day Returns
-              </span>
-              <span className="flex items-center gap-1">
-                <ShieldCheck className="h-3.5 w-3.5" />
-                Genuine Warranty
-              </span>
-            </div>
           </div>
         </div>
-      </article>
-    </GSAPHoverTilt>
+      </div>
+
+      {/* ── Content ──────────────────────────────────────────────── */}
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        {/* Category & Rating */}
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#3B82F6]/80">
+            {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+          </span>
+          <div className="flex items-center gap-1">
+            <Star className="h-3 w-3 fill-[#F59E0B] text-[#F59E0B]" />
+            <span className="text-[12px] font-bold text-white">{product.rating}</span>
+            <span className="text-[10px] text-[#475569]">({product.reviewsCount})</span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3
+          onClick={() => openProductDetail(product)}
+          className="text-[15px] font-bold text-white/90 leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-[#3B82F6] cursor-pointer mb-3"
+        >
+          {product.name}
+        </h3>
+
+        {/* Specs */}
+        {product.specs && product.specs.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {product.specs.slice(0, 2).map((spec, idx) => (
+              <span
+                key={idx}
+                className="inline-block px-2 py-0.5 text-[10px] font-medium text-[#64748B] bg-white/[0.03] border border-white/[0.05] rounded-md"
+              >
+                {spec}
+              </span>
+            ))}
+            {product.specs.length > 2 && (
+              <span className="inline-block px-2 py-0.5 text-[10px] text-[#475569]">
+                +{product.specs.length - 2} more
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Spacer */}
+        <div className="mt-auto" />
+
+        {/* Price & Stock */}
+        <div className="flex items-end justify-between pt-3 border-t border-white/[0.05]">
+          <div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-xl font-black text-white tracking-tight">{formatPKR(product.price)}</span>
+              {product.discountPrice && (
+                <span className="text-[12px] text-[#475569] line-through">{formatPKR(product.discountPrice)}</span>
+              )}
+            </div>
+            <div className="flex items-center gap-1 mt-1">
+              <Check className="h-3 w-3 text-[#22C55E]" />
+              <span className="text-[10px] font-semibold text-[#22C55E]">In Stock ({product.stock})</span>
+            </div>
+          </div>
+
+          <button
+            onClick={() => addToCart(product)}
+            className="group/btn flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#3B82F6] to-[#2563EB] text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.35)] active:scale-[0.95] touch-target"
+            aria-label={`Add ${product.name} to cart`}
+          >
+            <ShoppingBag className="h-4 w-4 transition-transform group-hover/btn:scale-110" />
+          </button>
+        </div>
+
+        {/* Trust Badges */}
+        <div className="flex items-center gap-3 mt-3 pt-3 border-t border-white/[0.04]">
+          <span className="flex items-center gap-1 text-[9px] font-medium text-[#475569]">
+            <Truck className="h-3 w-3" />
+            Free Delivery
+          </span>
+          <span className="flex items-center gap-1 text-[9px] font-medium text-[#475569]">
+            <RotateCcw className="h-3 w-3" />
+            14-Day Returns
+          </span>
+          <span className="flex items-center gap-1 text-[9px] font-medium text-[#475569]">
+            <ShieldCheck className="h-3 w-3" />
+            Warranty
+          </span>
+        </div>
+      </div>
+    </article>
   );
 }

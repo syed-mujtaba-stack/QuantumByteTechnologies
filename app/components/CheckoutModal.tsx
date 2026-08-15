@@ -89,7 +89,7 @@ export function CheckoutModal() {
       particleCount: 150,
       spread: 90,
       origin: { y: 0.5 },
-      colors: ['#ff003c', '#ffffff', '#ff4d73', '#00d4aa'],
+      colors: ['#3B82F6', '#ffffff', '#06B6D4', '#8B5CF6'],
       zIndex: 100,
     });
   };
@@ -112,17 +112,17 @@ export function CheckoutModal() {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in">
       <div
         onClick={() => step !== 'success' && closeCheckout()}
-        className="fixed inset-0 bg-[#030305]/90 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#05070D]/90 backdrop-blur-sm transition-opacity"
         aria-hidden="true"
       />
 
       <div
         data-lenis-prevent
-        className="relative z-10 w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl border border-[#232330] bg-[#0d0d12] shadow-2xl shadow-[#000000]/50 animate-scale-in"
+        className="relative z-10 w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl border border-white/[0.08] bg-[#0B0F18] shadow-2xl shadow-black/50 animate-scale-in"
       >
         <button
           onClick={() => step !== 'success' && closeCheckout()}
-          className="absolute right-4 top-4 z-10 btn btn-icon btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+          className="absolute right-4 top-4 z-10 btn btn-icon btn-ghost text-[#64748B] hover:text-white hover:bg-white/[0.05]"
           aria-label="Close checkout"
         >
           <X className="h-5 w-5" />
@@ -133,12 +133,12 @@ export function CheckoutModal() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#3B82F6]/[0.12] text-[#3B82F6]">
                   <Lock className="h-5.5 w-5.5" />
                 </div>
                 <div>
                   <h2 className="text-xl font-black text-white">Secure Checkout</h2>
-                  <p className="text-sm text-[#6b6b7a]">{cart.length} item{cart.length !== 1 ? 's' : ''} • {formatPKR(cartTotal)}</p>
+                  <p className="text-sm text-[#64748B]">{cart.length} item{cart.length !== 1 ? 's' : ''} • {formatPKR(cartTotal)}</p>
                 </div>
               </div>
             </div>
@@ -155,18 +155,18 @@ export function CheckoutModal() {
                       <span
                         className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ${
                           isActive || isCompleted
-                            ? 'bg-[#ff003c] text-white shadow-lg shadow-[#ff003c]/30'
-                            : 'bg-[#14141a] text-[#6b6b7a]'
+                            ? 'bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/25'
+                            : 'bg-white/[0.05] text-[#64748B]'
                         }`}
                       >
                         {isCompleted ? <CheckCircle2 className="h-4.5 w-4.5" /> : <Icon className="h-4.5 w-4.5" />}
                       </span>
-                      <span className={`hidden sm:block text-xs font-semibold ${isActive || isCompleted ? 'text-white' : 'text-[#6b6b7a]'}`}>
+                      <span className={`hidden sm:block text-xs font-semibold ${isActive || isCompleted ? 'text-white' : 'text-[#64748B]'}`}>
                         {s.label}
                       </span>
                     </div>
                     {index < steps.length - 1 && (
-                      <div className={`flex-1 h-1 max-w-xs mx-2 rounded-full transition-colors duration-300 ${isCompleted ? 'bg-[#ff003c]' : 'bg-[#232330]'}`} />
+                      <div className={`flex-1 h-1 max-w-xs mx-2 rounded-full transition-colors duration-300 ${isCompleted ? 'bg-[#3B82F6]' : 'bg-white/[0.06]'}`} />
                     )}
                   </React.Fragment>
                 );
@@ -255,32 +255,32 @@ export function CheckoutModal() {
               </div>
 
               {/* Order Summary */}
-              <div className="rounded-xl border border-[#232330] bg-[#030305] p-4 space-y-3">
+              <div className="rounded-xl border border-white/[0.06] bg-[#05070D] p-4 space-y-3">
                 <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                  <ShieldCheck className="h-4.5 w-4.5 text-[#ff003c]" />
+                  <ShieldCheck className="h-4.5 w-4.5 text-[#3B82F6]" />
                   Order Summary
                 </h4>
                 <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
                   {cart.map((item) => (
                     <div key={item.product.id} className="flex items-center justify-between gap-3 text-sm">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg bg-[#14141a]">
+                        <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg bg-white/[0.04]">
                           <img src={item.product.imageUrl} alt={item.product.name} className="h-full w-full object-cover" loading="lazy" />
                         </div>
                         <div className="min-w-0">
                           <p className="font-semibold text-white truncate">{item.product.name}</p>
-                          <p className="text-[11px] text-[#6b6b7a]">{item.product.brand} • Qty: {item.quantity}</p>
+                          <p className="text-[11px] text-[#64748B]">{item.product.brand} • Qty: {item.quantity}</p>
                         </div>
                       </div>
                       <span className="font-bold text-white whitespace-nowrap">{formatPKR(item.product.price * item.quantity)}</span>
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-between border-t border-[#1a1a24] pt-3 font-bold text-white">
+                <div className="flex justify-between border-t border-white/[0.06] pt-3 font-bold text-white">
                   <span>Subtotal ({cart.length} items)</span>
-                  <span className="text-[#ff003c]">{formatPKR(cartTotal)}</span>
+                  <span className="text-[#3B82F6]">{formatPKR(cartTotal)}</span>
                 </div>
-                <div className="flex items-center justify-between text-sm text-[#30d158] font-semibold p-3 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/30">
+                <div className="flex items-center justify-between text-sm text-[#10B981] font-semibold p-3 rounded-lg bg-[#10B981]/[0.08] border border-[#10B981]/25">
                   <span className="flex items-center gap-1.5">
                     <ShieldCheck className="h-4 w-4" />
                     Free Express Shipping
@@ -307,7 +307,7 @@ export function CheckoutModal() {
                 <button
                   type="button"
                   onClick={() => setStep('shipping')}
-                  className="btn btn-ghost btn-sm text-[#6b6b7a] hover:text-white"
+                  className="btn btn-ghost btn-sm text-[#64748B] hover:text-white"
                 >
                   <ArrowLeft className="h-4 w-4 mr-1" />
                   Back
@@ -320,43 +320,43 @@ export function CheckoutModal() {
                   onClick={() => setFormData({ ...formData, paymentMethod: 'cod' })}
                   className={`relative flex flex-col items-center justify-center gap-3 rounded-xl border p-5 text-sm font-bold transition-all duration-300 ${
                     formData.paymentMethod === 'cod'
-                      ? 'border-[#ff003c] bg-[#ff003c]/10 text-white shadow-lg shadow-[#ff003c]/10'
-                      : 'border-[#232330] bg-[#030305] text-[#9c9ca8] hover:border-[#ff003c]/40 hover:text-white hover:bg-[#08080c]'
+                      ? 'border-[#3B82F6] bg-[#3B82F6]/[0.08] text-white shadow-lg shadow-[#3B82F6]/10'
+                      : 'border-white/[0.06] bg-[#05070D] text-[#94A3B8] hover:border-[#3B82F6]/30 hover:text-white hover:bg-white/[0.03]'
                   }`}
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#3B82F6]/[0.12] text-[#3B82F6]">
                     <Truck className="h-6 w-6" />
                   </div>
                   <div className="text-center">
                     <p>Cash on Delivery</p>
-                    <span className="text-xs text-[#6b6b7a]">Pay at doorstep</span>
+                    <span className="text-xs text-[#64748B]">Pay at doorstep</span>
                   </div>
                   {formData.paymentMethod === 'cod' && (
-                    <div className="absolute inset-0 border-2 border-[#ff003c] rounded-xl pointer-events-none" />
+                    <div className="absolute inset-0 border-2 border-[#3B82F6] rounded-xl pointer-events-none" />
                   )}
                 </button>
 
-                <div className="relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-[#232330] bg-[#030305]/50 p-5 text-sm font-bold text-[#6b6b7a] opacity-60 cursor-not-allowed select-none">
-                  <span className="absolute right-2 top-2 rounded bg-[#ff003c] px-2 py-0.5 text-[10px] font-extrabold text-white uppercase tracking-wider">
+                <div className="relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-white/[0.06] bg-[#05070D]/50 p-5 text-sm font-bold text-[#64748B] opacity-60 cursor-not-allowed select-none">
+                  <span className="absolute right-2 top-2 rounded bg-[#3B82F6] px-2 py-0.5 text-[10px] font-extrabold text-white uppercase tracking-wider">
                     Coming Soon
                   </span>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#14141a] text-[#6b6b7a]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] text-[#64748B]">
                     <Wallet className="h-6 w-6" />
                   </div>
                   <div className="text-center">
                     <p>Easy Paisa</p>
-                    <span className="text-xs text-[#6b6b7a]">Mobile wallet</span>
+                    <span className="text-xs text-[#64748B]">Mobile wallet</span>
                   </div>
                 </div>
               </div>
 
               {formData.paymentMethod === 'cod' && (
-                <div className="rounded-xl border border-[#ff003c]/30 bg-[#ff003c]/5 p-4 animate-fade-in">
+                <div className="rounded-xl border border-[#3B82F6]/25 bg-[#3B82F6]/[0.05] p-4 animate-fade-in">
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#ff003c]/15 text-[#ff003c]">
+                    <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#3B82F6]/[0.12] text-[#3B82F6]">
                       <ShieldCheck className="h-4.5 w-4.5" />
                     </div>
-                    <div className="text-sm text-[#9c9ca8]">
+                    <div className="text-sm text-[#94A3B8]">
                       <p className="font-semibold text-white mb-1">How it works</p>
                       <p>Pay with cash upon package delivery at your doorstep. A standard verification call will be conducted before dispatch. Available nationwide across Pakistan.</p>
                     </div>
@@ -377,7 +377,7 @@ export function CheckoutModal() {
                 ) : (
                   <>
                     Confirm & Place Order
-                    <span className="text-[#ff003c] font-black">{formatPKR(cartTotal)}</span>
+                    <span className="text-white/80 font-black">{formatPKR(cartTotal)}</span>
                     <ArrowRight className="h-5 w-5" />
                   </>
                 )}
@@ -388,26 +388,26 @@ export function CheckoutModal() {
           {/* STEP 3: ORDER SUCCESS */}
           {step === 'success' && (
             <div className="text-center space-y-6 py-4 animate-fade-in">
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#ff003c]/15 text-[#ff003c] animate-bounce">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#10B981]/[0.12] text-[#10B981] animate-bounce">
                 <CheckCircle2 className="h-12 w-12" />
               </div>
 
               <div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white">Order Confirmed!</h3>
-                <p className="text-base text-[#9c9ca8] mt-2 max-w-sm mx-auto">
+                <p className="text-base text-[#94A3B8] mt-2 max-w-sm mx-auto">
                   Thank you for choosing QuantumByte Technologies. Your order has been placed successfully and a confirmation has been sent to your email.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-[#ff003c]/30 bg-[#030305] p-5 text-left space-y-3 text-sm">
-                <div className="flex items-center justify-between border-b border-[#1a1a24] pb-3 font-bold text-white">
+              <div className="rounded-xl border border-[#3B82F6]/25 bg-[#05070D] p-5 text-left space-y-3 text-sm">
+                <div className="flex items-center justify-between border-b border-white/[0.06] pb-3 font-bold text-white">
                   <span className="flex items-center gap-2">
-                    <ShieldCheck className="h-5 w-5 text-[#ff003c]" />
+                    <ShieldCheck className="h-5 w-5 text-[#3B82F6]" />
                     Order Reference ID
                   </span>
-                  <span className="text-[#ff003c] font-mono">{orderId}</span>
+                  <span className="text-[#3B82F6] font-mono">{orderId}</span>
                 </div>
-                <div className="grid grid-cols-2 gap-3 text-[#9c9ca8]">
+                <div className="grid grid-cols-2 gap-3 text-[#94A3B8]">
                   <div>
                     <p className="text-xs font-semibold text-white uppercase tracking-wider">Customer</p>
                     <p>{formData.fullName}</p>
@@ -430,11 +430,11 @@ export function CheckoutModal() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold text-white uppercase tracking-wider">Payment</p>
-                    <p className="uppercase text-[#ff003c] font-semibold">Cash on Delivery</p>
+                    <p className="uppercase text-[#3B82F6] font-semibold">Cash on Delivery</p>
                   </div>
                   <div>
                     <p className="text-xs font-semibold text-white uppercase tracking-wider">Total Paid</p>
-                    <p className="text-[#ff003c] font-black text-lg">{formatPKR(cartTotal)}</p>
+                    <p className="text-[#3B82F6] font-black text-lg">{formatPKR(cartTotal)}</p>
                   </div>
                 </div>
               </div>
@@ -456,9 +456,9 @@ export function CheckoutModal() {
                 </button>
               </div>
 
-              <p className="text-xs text-[#6b6b7a]">
+              <p className="text-xs text-[#64748B]">
                 A verification call will be made within 24 hours. For inquiries, contact us at
-                <a href="tel:+923254803957" className="text-[#ff003c] hover:underline ml-1">+92 325 4803957</a>
+                <a href="tel:+923254803957" className="text-[#3B82F6] hover:underline ml-1">+92 325 4803957</a>
               </p>
             </div>
           )}

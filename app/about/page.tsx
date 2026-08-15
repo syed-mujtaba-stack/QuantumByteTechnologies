@@ -43,32 +43,32 @@ const teamMembers = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#030305] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#05070D] text-white flex flex-col font-sans selection:bg-[#3B82F6] selection:text-white">
       <Navbar />
 
       <main className="flex-1 py-12 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <div className="mb-6 flex items-center gap-2 text-xs text-[#9c9ca8]">
+          <div className="mb-6 flex items-center gap-2 text-xs text-[#94A3B8]">
             <Link href="/" className="hover:text-white">Home</Link>
-            <ChevronRight className="h-3 w-3 text-[#ff003c]" />
+            <ChevronRight className="h-3 w-3 text-[#3B82F6]" />
             <span className="text-white font-bold">About Us</span>
           </div>
 
           {/* Hero Section */}
           <section className="mb-16">
-            <div className="rounded-2xl border border-[#1a1a24] bg-gradient-to-br from-[#08080c] via-[#030305] to-[#08080c] p-8 lg:p-14 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(#ff003c 1px, transparent 1px), linear-gradient(90deg, #ff003c 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
-              <div className="absolute -top-24 right-24 h-48 w-48 rounded-full bg-[#ff003c]/5 blur-3xl" />
+            <div className="rounded-2xl border border-[white/[0.06]] bg-gradient-to-br from-[#080B12] via-[#05070D] to-[#080B12] p-8 lg:p-14 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(#3B82F6 1px, transparent 1px), linear-gradient(90deg, #3B82F6 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
+              <div className="absolute -top-24 right-24 h-48 w-48 rounded-full bg-[#3B82F6]/5 blur-3xl" />
               <div className="relative z-10 max-w-3xl">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#ff003c]/30 bg-[#ff003c]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#ff003c] mb-4">
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#3B82F6] mb-4">
                   <Sparkles className="h-3.5 w-3.5" />
                   OFFICIAL COMPANY OVERVIEW
                 </span>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
-                  POWERING THE NEXT ERA OF <span className="text-[#ff003c]">TECH & IT SOLUTIONS</span>
+                  POWERING THE NEXT ERA OF <span className="text-[#3B82F6]">TECH & IT SOLUTIONS</span>
                 </h1>
-                <p className="mt-4 text-base sm:text-lg text-[#9c9ca8] max-w-2xl leading-relaxed">
+                <p className="mt-4 text-base sm:text-lg text-[#94A3B8] max-w-2xl leading-relaxed">
                   QuantumByte Technologies is Pakistan\'s premier high-performance hardware retailer and certified enterprise IT solutions provider. From custom hardline-cooled gaming rigs and AI workstations to enterprise networking, micro-soldering hardware repair, and full-stack software development — we engineer perfection at every layer.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
@@ -88,19 +88,19 @@ export default function AboutPage() {
           {/* Core Values */}
           <section className="mb-16" aria-labelledby="values-heading">
             <header className="text-center mb-10">
-              <h2 id="values-heading" className="text-3xl sm:text-4xl font-black text-white">OUR <span className="text-[#ff003c]">CORE VALUES</span></h2>
-              <p className="mt-2 text-base text-[#9c9ca8] max-w-2xl mx-auto">
+              <h2 id="values-heading" className="text-3xl sm:text-4xl font-black text-white">OUR <span className="text-[#3B82F6]">CORE VALUES</span></h2>
+              <p className="mt-2 text-base text-[#94A3B8] max-w-2xl mx-auto">
                 These principles guide every decision — from component sourcing to customer support.
               </p>
             </header>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
               {coreValues.map((value, idx) => (
                 <div key={idx} className="group text-center p-4 lg:p-0">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#0a0a10] border border-[#1a1a24] text-[#ff003c] mx-auto mb-3 lg:mx-auto group-hover:bg-[#ff003c] group-hover:text-white group-hover:border-[#ff003c] transition-colors duration-200">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[white/[0.04]] border border-[white/[0.06]] text-[#3B82F6] mx-auto mb-3 lg:mx-auto group-hover:bg-[#3B82F6] group-hover:text-white group-hover:border-[#3B82F6] transition-colors duration-200">
                     <value.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
                   <h3 className="text-sm font-semibold text-white mb-1">{value.title}</h3>
-                  <p className="text-[11px] text-[#6b6b7a] leading-relaxed">{value.desc}</p>
+                  <p className="text-[11px] text-[#64748B] leading-relaxed">{value.desc}</p>
                 </div>
               ))}
             </div>
@@ -109,8 +109,8 @@ export default function AboutPage() {
           {/* What We Do */}
           <section className="mb-16" aria-labelledby="services-heading">
             <header className="text-center mb-10">
-              <h2 id="services-heading" className="text-3xl sm:text-4xl font-black text-white">WHAT WE <span className="text-[#ff003c]">DO</span></h2>
-              <p className="mt-2 text-base text-[#9c9ca8] max-w-2xl mx-auto">
+              <h2 id="services-heading" className="text-3xl sm:text-4xl font-black text-white">WHAT WE <span className="text-[#3B82F6]">DO</span></h2>
+              <p className="mt-2 text-base text-[#94A3B8] max-w-2xl mx-auto">
                 End-to-end technology solutions — from a single GPU to enterprise infrastructure.
               </p>
             </header>
@@ -123,13 +123,13 @@ export default function AboutPage() {
                 { icon: Code, title: 'Software Development', desc: 'Next.js, React, Node.js, Sanity CMS, React Native, Flutter. SEO, 99+ Lighthouse. Enterprise SaaS.', link: '/contact' },
                 { icon: Zap, title: 'AI & HPC Workstations', desc: 'Dual-GPU render nodes, LLM training rigs, inferencing servers, NVIDIA DGX deployment.', link: '/contact' },
               ].map((service, idx) => (
-                <div key={idx} className="rounded-2xl border border-[#1a1a24] bg-[#08080c] p-6 space-y-4 group hover:border-[#ff003c]/30 transition-colors">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c] group-hover:bg-[#ff003c] group-hover:text-white transition-colors">
+                <div key={idx} className="rounded-2xl border border-[white/[0.06]] bg-[#080B12] p-6 space-y-4 group hover:border-[#3B82F6]/30 transition-colors">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#3B82F6]/10 text-[#3B82F6] group-hover:bg-[#3B82F6] group-hover:text-white transition-colors">
                     <service.icon className="h-5.5 w-5.5" aria-hidden="true" />
                   </div>
                   <h3 className="text-lg font-bold text-white">{service.title}</h3>
-                  <p className="text-sm text-[#9c9ca8] leading-relaxed">{service.desc}</p>
-                  <Link href={service.link} className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#ff003c] hover:underline mt-2">
+                  <p className="text-sm text-[#94A3B8] leading-relaxed">{service.desc}</p>
+                  <Link href={service.link} className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3B82F6] hover:underline mt-2">
                     Learn More <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -140,26 +140,26 @@ export default function AboutPage() {
           {/* Company Timeline */}
           <section className="mb-16" aria-labelledby="timeline-heading">
             <header className="text-center mb-10">
-              <h2 id="timeline-heading" className="text-3xl sm:text-4xl font-black text-white">OUR <span className="text-[#ff003c]">JOURNEY</span></h2>
-              <p className="mt-2 text-base text-[#9c9ca8] max-w-2xl mx-auto">
+              <h2 id="timeline-heading" className="text-3xl sm:text-4xl font-black text-white">OUR <span className="text-[#3B82F6]">JOURNEY</span></h2>
+              <p className="mt-2 text-base text-[#94A3B8] max-w-2xl mx-auto">
                 From a single shop in Madina Town to Pakistan\'s trusted technology partner.
               </p>
             </header>
             <div className="relative">
-              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#ff003c]/30 to-transparent" />
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#3B82F6]/30 to-transparent" />
               <div className="space-y-8">
                 {milestones.map((milestone, idx) => (
                   <div key={idx} className="relative pl-16 sm:pl-20">
-                    <div className="absolute left-6 sm:left-8 top-1 flex h-3 w-3 items-center justify-center rounded-full bg-[#030305] border-2 border-[#ff003c] z-10">
-                      <div className="h-1.5 w-1.5 rounded-full bg-[#ff003c]" />
+                    <div className="absolute left-6 sm:left-8 top-1 flex h-3 w-3 items-center justify-center rounded-full bg-[#05070D] border-2 border-[#3B82F6] z-10">
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
                     </div>
-                    <div className="bg-[#08080c] border border-[#1a1a24] rounded-xl p-5 sm:p-6">
+                    <div className="bg-[#080B12] border border-[white/[0.06]] rounded-xl p-5 sm:p-6">
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="text-sm font-black text-[#ff003c] uppercase tracking-wider">{milestone.year}</span>
-                        <span className="text-[10px] font-bold text-[#6b6b7a] uppercase tracking-wider">MILESTONE</span>
+                        <span className="text-sm font-black text-[#3B82F6] uppercase tracking-wider">{milestone.year}</span>
+                        <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider">MILESTONE</span>
                       </div>
                       <h3 className="text-lg font-bold text-white">{milestone.title}</h3>
-                      <p className="text-sm text-[#9c9ca8] mt-1">{milestone.desc}</p>
+                      <p className="text-sm text-[#94A3B8] mt-1">{milestone.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -170,24 +170,24 @@ export default function AboutPage() {
           {/* Leadership Team */}
           <section className="mb-16" aria-labelledby="team-heading">
             <header className="text-center mb-10">
-              <h2 id="team-heading" className="text-3xl sm:text-4xl font-black text-white">LEADERSHIP <span className="text-[#ff003c]">TEAM</span></h2>
-              <p className="mt-2 text-base text-[#9c9ca8] max-w-2xl mx-auto">
+              <h2 id="team-heading" className="text-3xl sm:text-4xl font-black text-white">LEADERSHIP <span className="text-[#3B82F6]">TEAM</span></h2>
+              <p className="mt-2 text-base text-[#94A3B8] max-w-2xl mx-auto">
                 Experienced engineers and operators who live and breathe technology.
               </p>
             </header>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {teamMembers.map((member, idx) => (
-                <div key={idx} className="rounded-2xl border border-[#1a1a24] bg-[#08080c] p-6 space-y-4">
+                <div key={idx} className="rounded-2xl border border-[white/[0.06]] bg-[#080B12] p-6 space-y-4">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff003c] to-[#990024] shrink-0">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[#3B82F6] to-[#990024] shrink-0">
                       <member.icon className="h-7 w-7 text-white" aria-hidden="true" />
                     </div>
                     <div>
                       <h3 className="text-lg font-black text-white">{member.name}</h3>
-                      <p className="text-sm text-[#ff003c] font-semibold">{member.role}</p>
+                      <p className="text-sm text-[#3B82F6] font-semibold">{member.role}</p>
                     </div>
                   </div>
-                  <p className="text-sm text-[#9c9ca8] leading-relaxed">{member.desc}</p>
+                  <p className="text-sm text-[#94A3B8] leading-relaxed">{member.desc}</p>
                 </div>
               ))}
             </div>
@@ -207,12 +207,12 @@ export default function AboutPage() {
                 { value: '12', label: 'Core Team Members', icon: Users },
                 { value: 'Nationwide', label: 'Shipping Coverage', icon: Truck },
               ].map((stat, idx) => (
-                <div key={idx} className="text-center p-6 rounded-2xl border border-[#1a1a24] bg-[#08080c] space-y-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c] mx-auto">
+                <div key={idx} className="text-center p-6 rounded-2xl border border-[white/[0.06]] bg-[#080B12] space-y-2">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#3B82F6]/10 text-[#3B82F6] mx-auto">
                     <stat.icon className="h-5.5 w-5.5" aria-hidden="true" />
                   </div>
                   <span className="text-3xl sm:text-4xl font-black text-white tabular-nums">{stat.value}</span>
-                  <p className="text-sm text-[#6b6b7a] font-medium uppercase tracking-wider">{stat.label}</p>
+                  <p className="text-sm text-[#64748B] font-medium uppercase tracking-wider">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -221,47 +221,47 @@ export default function AboutPage() {
           {/* Location & Contact */}
           <section className="mb-16" aria-labelledby="location-heading">
             <h2 id="location-heading" className="sr-only">Our Location</h2>
-            <div className="rounded-2xl border border-[#1a1a24] bg-[#08080c] p-6 lg:p-10">
+            <div className="rounded-2xl border border-[white/[0.06]] bg-[#080B12] p-6 lg:p-10">
               <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">VISIT OUR <span className="text-[#ff003c]">LAB & SHOWROOM</span></h3>
-                  <p className="text-base text-[#9c9ca8] leading-relaxed mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-4">VISIT OUR <span className="text-[#3B82F6]">LAB & SHOWROOM</span></h3>
+                  <p className="text-base text-[#94A3B8] leading-relaxed mb-6">
                     Experience hardware hands-on. See custom builds in progress. Meet our engineers. Get expert consultation face-to-face.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3B82F6]/10 text-[#3B82F6]">
                         <MapPin className="h-5 w-5" />
                       </div>
                       <div>
                         <p className="font-semibold text-white">Office 7, 2nd Floor, AZ Mall Platform</p>
-                        <p className="text-sm text-[#9c9ca8]">Back Side Al-Fateh Kohinoor, Madina Town, Faisalabad, Punjab</p>
+                        <p className="text-sm text-[#94A3B8]">Back Side Al-Fateh Kohinoor, Madina Town, Faisalabad, Punjab</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3B82F6]/10 text-[#3B82F6]">
                         <Clock className="h-5 w-5" />
                       </div>
                       <div>
                         <p className="font-semibold text-white">Showroom Hours</p>
-                        <p className="text-sm text-[#9c9ca8]">Mon–Sat: 10:00 AM – 8:00 PM PKT • Sun: Closed</p>
+                        <p className="text-sm text-[#94A3B8]">Mon–Sat: 10:00 AM – 8:00 PM PKT • Sun: Closed</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3B82F6]/10 text-[#3B82F6]">
                         <Headphones className="h-5 w-5" />
                       </div>
                       <div>
                         <p className="font-semibold text-white">WhatsApp / Call</p>
-                        <p className="text-sm text-[#9c9ca8]"><a href="tel:+923254803957" className="text-[#ff003c] hover:underline">+92 325 4803957</a></p>
+                        <p className="text-sm text-[#94A3B8]"><a href="tel:+923254803957" className="text-[#3B82F6] hover:underline">+92 325 4803957</a></p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="rounded-xl border border-[#1a1a24] bg-[#030305] p-8 text-center">
-                  <p className="text-sm text-[#6b6b7a] mb-2">CAN'T VISIT? WE COME TO YOU.</p>
+                <div className="rounded-xl border border-[white/[0.06]] bg-[#05070D] p-8 text-center">
+                  <p className="text-sm text-[#64748B] mb-2">CAN'T VISIT? WE COME TO YOU.</p>
                   <h4 className="text-lg font-bold text-white mb-3">On-Site Assessment Available</h4>
-                  <p className="text-sm text-[#9c9ca8] mb-4 max-w-sm mx-auto">
+                  <p className="text-sm text-[#94A3B8] mb-4 max-w-sm mx-auto">
                     For corporate clients in Faisalabad, Lahore, Islamabad: we visit your office for infrastructure audits, workstation deployment planning, and network design consultations.
                   </p>
                   <Link href="/contact" className="btn btn-primary inline-flex items-center gap-2">
@@ -276,8 +276,8 @@ export default function AboutPage() {
           {/* Certifications & Partnerships */}
           <section className="mb-16" aria-labelledby="partners-heading">
             <header className="text-center mb-10">
-              <h2 id="partners-heading" className="text-3xl sm:text-4xl font-black text-white">AUTHORIZED <span className="text-[#ff003c]">PARTNERSHIPS</span></h2>
-              <p className="mt-2 text-base text-[#9c9ca8] max-w-2xl mx-auto">
+              <h2 id="partners-heading" className="text-3xl sm:text-4xl font-black text-white">AUTHORIZED <span className="text-[#3B82F6]">PARTNERSHIPS</span></h2>
+              <p className="mt-2 text-base text-[#94A3B8] max-w-2xl mx-auto">
                 Direct relationships with the world\'s leading technology manufacturers.
               </p>
             </header>
@@ -287,7 +287,7 @@ export default function AboutPage() {
                 'G.Skill', 'Seasonic', 'Synology', 'Ubiquiti', 'Cisco', 'Microsoft',
                 'Anker', 'Belkin', 'LG', 'MSI', 'Gigabyte', 'EVGA',
               ].map((partner, idx) => (
-                <div key={idx} className="flex h-16 items-center justify-center rounded-xl border border-[#1a1a24] bg-[#08080c] text-white font-semibold text-sm uppercase tracking-wider hover:border-[#ff003c]/40 hover:bg-[#0a0a10] transition-colors">
+                <div key={idx} className="flex h-16 items-center justify-center rounded-xl border border-[white/[0.06]] bg-[#080B12] text-white font-semibold text-sm uppercase tracking-wider hover:border-[#3B82F6]/40 hover:bg-[white/[0.04]] transition-colors">
                   {partner}
                 </div>
               ))}
@@ -296,11 +296,11 @@ export default function AboutPage() {
 
           {/* Mission Statement */}
           <section className="mb-16" aria-labelledby="mission-heading">
-            <div className="rounded-2xl border border-[#ff003c]/30 bg-[#ff003c]/5 p-8 lg:p-12 text-center">
+            <div className="rounded-2xl border border-[#3B82F6]/30 bg-[#3B82F6]/5 p-8 lg:p-12 text-center">
               <h2 id="mission-heading" className="text-3xl sm:text-4xl font-black text-white mb-4">
-                OUR <span className="text-[#ff003c]">MISSION</span>
+                OUR <span className="text-[#3B82F6]">MISSION</span>
               </h2>
-              <p className="text-lg text-[#9c9ca8] max-w-3xl mx-auto leading-relaxed mb-6">
+              <p className="text-lg text-[#94A3B8] max-w-3xl mx-auto leading-relaxed mb-6">
                 To make genuine, high-performance technology accessible across Pakistan — backed by expert engineering, transparent pricing, and unwavering support. Whether you\'re a gamer building a dream rig, a creative professional needing an AI workstation, or an enterprise deploying 10GbE infrastructure: QuantumByte is your trusted partner.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">

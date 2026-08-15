@@ -25,7 +25,7 @@ export function ServiceBookingModal() {
       particleCount: 120,
       spread: 80,
       origin: { y: 0.5 },
-      colors: ['#ff003c', '#ffffff', '#00d4aa'],
+      colors: ['#3B82F6', '#ffffff', '#06B6D4'],
       zIndex: 100,
     });
   };
@@ -44,17 +44,17 @@ export function ServiceBookingModal() {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in">
       <div
         onClick={() => !submitted && closeBooking()}
-        className="fixed inset-0 bg-[#030305]/90 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#05070D]/90 backdrop-blur-sm transition-opacity"
         aria-hidden="true"
       />
 
       <div
         data-lenis-prevent
-        className="relative z-10 w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#232330] bg-[#0d0d12] shadow-2xl shadow-[#000000]/50 animate-scale-in"
+        className="relative z-10 w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/[0.08] bg-[#0B0F18] shadow-2xl shadow-black/50 animate-scale-in"
       >
         <button
           onClick={() => !submitted && closeBooking()}
-          className="absolute right-4 top-4 z-10 btn btn-icon btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+          className="absolute right-4 top-4 z-10 btn btn-icon btn-ghost text-[#64748B] hover:text-white hover:bg-white/[0.05]"
           aria-label="Close booking modal"
         >
           <X className="h-5 w-5" />
@@ -65,21 +65,21 @@ export function ServiceBookingModal() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#3B82F6]/[0.12] text-[#3B82F6]">
                     <Wrench className="h-6.5 w-6.5" />
                   </div>
                   <div>
                     <h2 className="text-xl font-black text-white">Book IT Service / Consultation</h2>
-                    <p className="text-sm text-[#9c9ca8]">Schedule a session with QuantumByte senior hardware & software engineers.</p>
+                    <p className="text-sm text-[#94A3B8]">Schedule a session with QuantumByte senior hardware & software engineers.</p>
                   </div>
                 </div>
-                <div className="rounded-xl border border-[#ff003c]/30 bg-[#ff003c]/5 p-4">
-                  <div className="flex items-center gap-2.5 text-sm font-semibold text-[#ff003c]">
+                <div className="rounded-xl border border-[#3B82F6]/25 bg-[#3B82F6]/[0.05] p-4">
+                  <div className="flex items-center gap-2.5 text-sm font-semibold text-[#3B82F6]">
                     <Sparkles className="h-4.5 w-4.5" />
                     {activeServiceBooking ? activeServiceBooking.title : 'Custom Gaming PC Assembly'}
                   </div>
                   {activeServiceBooking && (
-                    <p className="mt-1 text-sm text-[#9c9ca8] ml-7">{activeServiceBooking.subtitle}</p>
+                    <p className="mt-1 text-sm text-[#94A3B8] ml-7">{activeServiceBooking.subtitle}</p>
                   )}
                 </div>
               </div>
@@ -190,13 +190,13 @@ export function ServiceBookingModal() {
             </form>
           ) : (
             <div className="text-center space-y-6 py-4 animate-fade-in">
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#ff003c]/15 text-[#ff003c] animate-bounce">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#10B981]/[0.12] text-[#10B981] animate-bounce">
                 <CheckCircle2 className="h-12 w-12" />
               </div>
 
               <div>
                 <h3 className="text-2xl font-black text-white">Booking Request Received!</h3>
-                <p className="text-base text-[#9c9ca8] mt-2 max-w-sm mx-auto">
+                <p className="text-base text-[#94A3B8] mt-2 max-w-sm mx-auto">
                   Our lead technical team will contact you at{' '}
                   <span className="text-white font-semibold">{bookingForm.email}</span>{' '}
                   or{' '}
@@ -205,14 +205,14 @@ export function ServiceBookingModal() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-[#232330] bg-[#030305] p-4 text-left space-y-2 text-sm">
-                <div className="flex items-center gap-2 text-[#9c9ca8]">
-                  <ShieldCheck className="h-4.5 w-4.5 text-[#ff003c]" />
+              <div className="rounded-xl border border-white/[0.06] bg-[#05070D] p-4 text-left space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-[#94A3B8]">
+                  <ShieldCheck className="h-4.5 w-4.5 text-[#3B82F6]" />
                   <span className="font-semibold text-white">Service:</span>
                   <span>{bookingForm.serviceType}</span>
                 </div>
-                <div className="flex items-center gap-2 text-[#9c9ca8]">
-                  <Calendar className="h-4.5 w-4.5 text-[#ff003c]" />
+                <div className="flex items-center gap-2 text-[#94A3B8]">
+                  <Calendar className="h-4.5 w-4.5 text-[#3B82F6]" />
                   <span className="font-semibold text-white">Preferred Date:</span>
                   <span>{bookingForm.preferredDate || 'Not specified'}</span>
                 </div>
@@ -228,9 +228,9 @@ export function ServiceBookingModal() {
                 </button>
               </div>
 
-              <p className="text-xs text-[#6b6b7a]">
+              <p className="text-xs text-[#64748B]">
                 For urgent inquiries, call us at
-                <a href="tel:+923254803957" className="text-[#ff003c] hover:underline ml-1">+92 325 4803957</a>
+                <a href="tel:+923254803957" className="text-[#3B82F6] hover:underline ml-1">+92 325 4803957</a>
               </p>
             </div>
           )}

@@ -66,7 +66,7 @@ export default function CheckoutPage() {
       particleCount: 120,
       spread: 80,
       origin: { y: 0.6 },
-      colors: ['#ff003c', '#ffffff', '#ff4d73'],
+      colors: ['#3B82F6', '#ffffff', '#ff4d73'],
     });
 
     clearCart();
@@ -74,7 +74,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#3B82F6] selection:text-white">
       <Navbar />
 
       <main className="flex-1 py-10 lg:py-16">
@@ -82,15 +82,15 @@ export default function CheckoutPage() {
           {/* Breadcrumbs */}
           <div className="mb-6 flex items-center gap-2 text-xs text-[#a1a1aa]">
             <Link href="/" className="hover:text-white">Home</Link>
-            <ChevronRight className="h-3 w-3 text-[#ff003c]" />
+            <ChevronRight className="h-3 w-3 text-[#3B82F6]" />
             <Link href="/cart" className="hover:text-white">Cart</Link>
-            <ChevronRight className="h-3 w-3 text-[#ff003c]" />
+            <ChevronRight className="h-3 w-3 text-[#3B82F6]" />
             <span className="text-white font-bold">Secure Checkout</span>
           </div>
 
           <h1 className="text-3xl font-black text-white sm:text-4xl mb-8 flex items-center gap-3">
-            <Lock className="h-7 w-7 text-[#ff003c]" />
-            SECURE <span className="text-[#ff003c]">CHECKOUT</span>
+            <Lock className="h-7 w-7 text-[#3B82F6]" />
+            SECURE <span className="text-[#3B82F6]">CHECKOUT</span>
           </h1>
 
           <form onSubmit={handlePlaceOrder} className="grid gap-8 lg:grid-cols-12">
@@ -99,7 +99,7 @@ export default function CheckoutPage() {
               {/* Step 1: Shipping Address */}
               <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-4 glass-panel">
                 <h3 className="text-lg font-black text-white border-b border-[#1f1f2b] pb-3 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#ff003c] text-xs font-bold">1</span>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6] text-xs font-bold">1</span>
                   Delivery Information
                 </h3>
 
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="Alex Morgan"
-                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#3B82F6]"
                     />
                   </div>
                   <div>
@@ -125,7 +125,7 @@ export default function CheckoutPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="alex@example.com"
-                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#3B82F6]"
                     />
                   </div>
                   <div>
@@ -137,7 +137,7 @@ export default function CheckoutPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="+92 300 1234567"
-                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#3B82F6]"
                     />
                   </div>
                   <div>
@@ -149,7 +149,7 @@ export default function CheckoutPage() {
                       value={formData.city}
                       onChange={handleInputChange}
                       placeholder="Karachi, Lahore, Islamabad, London, NY..."
-                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                      className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#3B82F6]"
                     />
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function CheckoutPage() {
                     value={formData.address}
                     onChange={handleInputChange}
                     placeholder="House/Office #, Street, Block, Area"
-                    className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                    className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#3B82F6]"
                   />
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function CheckoutPage() {
               {/* Step 2: Payment Options */}
               <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-4 glass-panel">
                 <h3 className="text-lg font-black text-white border-b border-[#1f1f2b] pb-3 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#ff003c] text-xs font-bold">2</span>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6] text-xs font-bold">2</span>
                   Select Payment Method
                 </h3>
 
@@ -181,16 +181,16 @@ export default function CheckoutPage() {
                     onClick={() => setPaymentMethod('cod')}
                     className={`flex flex-col items-center justify-center rounded-xl border p-4 text-xs font-bold transition ${
                       paymentMethod === 'cod'
-                        ? 'border-[#ff003c] bg-[#ff003c]/15 text-white'
+                        ? 'border-[#3B82F6] bg-[#3B82F6]/15 text-white'
                         : 'border-[#22222e] bg-[#050505] text-[#a1a1aa]'
                     }`}
                   >
-                    <Truck className="h-6 w-6 text-[#ff003c] mb-1.5" />
+                    <Truck className="h-6 w-6 text-[#3B82F6] mb-1.5" />
                     Cash on Delivery
                   </button>
 
                   <div className="relative flex flex-col items-center justify-center rounded-xl border border-dashed border-[#22222e] bg-[#050505]/60 p-4 text-xs font-bold text-[#71717a] opacity-60 cursor-not-allowed select-none">
-                    <span className="absolute right-2 top-2 rounded bg-[#ff003c] px-1.5 py-0.5 text-[9px] font-extrabold text-white uppercase tracking-wider">
+                    <span className="absolute right-2 top-2 rounded bg-[#3B82F6] px-1.5 py-0.5 text-[9px] font-extrabold text-white uppercase tracking-wider">
                       Coming Soon
                     </span>
                     <Wallet className="h-6 w-6 text-[#71717a] mb-1.5" />
@@ -208,7 +208,7 @@ export default function CheckoutPage() {
 
             {/* Sidebar Summary */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="rounded-2xl border border-[#ff003c]/40 bg-[#0e0e12] p-6 space-y-4 glass-panel-red">
+              <div className="rounded-2xl border border-[#3B82F6]/40 bg-[#0e0e12] p-6 space-y-4 glass-panel-red">
                 <h3 className="text-lg font-black text-white border-b border-[#1f1f2b] pb-3">Order Overview</h3>
 
                 <div className="space-y-3 max-h-60 overflow-y-auto pr-1">
@@ -234,13 +234,13 @@ export default function CheckoutPage() {
                   </div>
                   <div className="flex justify-between border-t border-[#1f1f2b] pt-3 text-lg font-black text-white">
                     <span>Total Amount (COD)</span>
-                    <span className="text-[#ff003c]">{formatPKR(cartTotal)}</span>
+                    <span className="text-[#3B82F6]">{formatPKR(cartTotal)}</span>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25"
+                  className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#3B82F6]/25"
                 >
                   Place Order Now ({formatPKR(cartTotal)})
                 </button>

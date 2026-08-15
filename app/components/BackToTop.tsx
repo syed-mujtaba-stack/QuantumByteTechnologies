@@ -25,7 +25,7 @@ export function BackToTop() {
     <button
       onClick={goTop}
       aria-label="Back to top"
-      className={`fixed bottom-4 right-4 z-40 flex h-11 w-11 items-center justify-center rounded-xl border border-[#ff003c]/50 bg-[#0e0e12]/95 text-[#ff003c] shadow-xl shadow-[#ff003c]/20 backdrop-blur transition-all duration-300 hover:bg-[#ff003c] hover:text-white ${
+      className={`fixed bottom-4 right-4 z-40 flex h-11 w-11 items-center justify-center rounded-xl border border-[#3B82F6]/40 bg-[#0B0F18]/95 text-[#3B82F6] shadow-xl shadow-[#3B82F6]/15 backdrop-blur-xl transition-all duration-300 hover:bg-[#3B82F6] hover:text-white hover:shadow-[#3B82F6]/30 ${
         visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
       }`}
     >

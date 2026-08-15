@@ -5,8 +5,8 @@ import { formatPKR } from '@/sanity/lib/currency';
 export default function AdminAnalyticsPage() {
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-[#ff003c]/40 bg-gradient-to-r from-[#ff003c]/20 via-[#0e0e12] to-[#0e0e12] p-6 shadow-xl glass-panel-red">
-        <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+      <div className="rounded-2xl border border-[#3B82F6]/40 bg-gradient-to-r from-[#3B82F6]/20 via-[#0e0e12] to-[#0e0e12] p-6 shadow-xl glass-panel-red">
+        <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
           BUSINESS INTELLIGENCE
         </span>
         <h1 className="text-2xl font-black text-white mt-0.5">SALES & CONVERSION ANALYTICS</h1>

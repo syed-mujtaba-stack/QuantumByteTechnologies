@@ -13,22 +13,22 @@ export default function AdminCouponsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
         <div>
-          <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
             PROMOTIONAL CAMPAIGNS
           </span>
           <h1 className="text-2xl font-black text-white">COUPONS & PROMO CODES ({coupons.length})</h1>
         </div>
 
-        <button className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#ff003c]/25">
+        <button className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#3B82F6]/25">
           <Plus className="h-4 w-4" /> Create Promo Code
         </button>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {coupons.map((c, idx) => (
-          <div key={idx} className="rounded-2xl border border-[#ff003c]/30 bg-[#0e0e12] p-5 space-y-3 glass-panel-red text-xs">
+          <div key={idx} className="rounded-2xl border border-[#3B82F6]/30 bg-[#0e0e12] p-5 space-y-3 glass-panel-red text-xs">
             <div className="flex items-center justify-between">
-              <span className="font-mono font-black text-sm text-[#ff003c] bg-[#ff003c]/15 px-2.5 py-1 rounded">
+              <span className="font-mono font-black text-sm text-[#3B82F6] bg-[#3B82F6]/15 px-2.5 py-1 rounded">
                 {c.code}
               </span>
               <span className="text-[10px] text-[#22c55e] font-bold">● Active</span>

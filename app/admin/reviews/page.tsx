@@ -13,7 +13,7 @@ export default function AdminReviewsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
         <div>
-          <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
             FEEDBACK MODERATION
           </span>
           <h1 className="text-2xl font-black text-white">CUSTOMER REVIEWS & RATINGS ({reviews.length})</h1>
@@ -26,9 +26,9 @@ export default function AdminReviewsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <span className="font-extrabold text-white text-sm">{r.author}</span>
-                <span className="text-[#a1a1aa] text-[11px] block">Reviewed: <strong className="text-[#ff003c]">{r.product}</strong></span>
+                <span className="text-[#a1a1aa] text-[11px] block">Reviewed: <strong className="text-[#3B82F6]">{r.product}</strong></span>
               </div>
-              <div className="flex items-center gap-1 text-[#ffb800] font-bold">
+              <div className="flex items-center gap-1 text-[#F59E0B] font-bold">
                 <Star className="h-4 w-4 fill-current" />
                 <span>{r.rating}.0</span>
               </div>
@@ -38,13 +38,13 @@ export default function AdminReviewsPage() {
 
             <div className="flex items-center justify-between pt-2 border-t border-[#1f1f2b]">
               <span className={`inline-flex items-center gap-1 text-[11px] font-bold ${
-                r.status === 'Approved' ? 'text-[#22c55e]' : 'text-[#ffb800]'
+                r.status === 'Approved' ? 'text-[#22c55e]' : 'text-[#F59E0B]'
               }`}>
                 ● {r.status}
               </span>
 
               <div className="flex items-center gap-2">
-                <button className="rounded-lg border border-[#22222e] bg-[#050505] px-3 py-1.5 font-bold text-white hover:border-[#ff003c]">
+                <button className="rounded-lg border border-[#22222e] bg-[#050505] px-3 py-1.5 font-bold text-white hover:border-[#3B82F6]">
                   Approve Review
                 </button>
                 <button className="rounded-lg border border-[#22222e] bg-[#050505] px-3 py-1.5 font-bold text-[#ef4444] hover:bg-[#ef4444]/10">

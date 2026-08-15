@@ -13,19 +13,19 @@ export default async function AdminUsersPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
         <div>
-          <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
             STAFF & ROLES ACCESS
           </span>
           <h1 className="text-2xl font-black text-white">STAFF USERS MANAGEMENT ({users.length})</h1>
           <p className="text-xs text-[#a1a1aa] mt-0.5">
-            Setting a user's role to <span className="font-bold text-[#ff003c]">Super Admin</span> grants dashboard access. This can also be set in Sanity Studio.
+            Setting a user's role to <span className="font-bold text-[#3B82F6]">Super Admin</span> grants dashboard access. This can also be set in Sanity Studio.
           </p>
         </div>
 
         <Link
           href="/studio"
           target="_blank"
-          className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#ff003c]/25"
+          className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#3B82F6]/25"
         >
           <Plus className="h-4 w-4" /> Add User in Sanity Studio
         </Link>
@@ -41,7 +41,7 @@ export default async function AdminUsersPage() {
             <div key={usr._id} className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-5 space-y-3 glass-panel text-xs">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#ff003c] text-white font-extrabold text-sm">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#3B82F6] text-white font-extrabold text-sm">
                     {(usr.name || '?').substring(0, 2).toUpperCase()}
                   </div>
                   <div className="min-w-0">
@@ -58,7 +58,7 @@ export default async function AdminUsersPage() {
                 </span>
                 <span
                   className={`flex items-center gap-1 font-bold ${
-                    usr.role === 'super admin' ? 'text-[#ff003c]' : usr.role === 'staff' ? 'text-[#3b82f6]' : 'text-[#a1a1aa]'
+                    usr.role === 'super admin' ? 'text-[#3B82F6]' : usr.role === 'staff' ? 'text-[#3b82f6]' : 'text-[#a1a1aa]'
                   }`}
                 >
                   <Shield className="h-3.5 w-3.5" /> {usr.role === 'super admin' ? 'Super Admin' : usr.role === 'staff' ? 'Staff' : 'Customer'}

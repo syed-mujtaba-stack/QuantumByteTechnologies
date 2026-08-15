@@ -47,11 +47,11 @@ export function Preloader() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#030305]"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#05070D]"
       aria-hidden
     >
       <div className="qb-pre-inner flex flex-col items-center gap-5 lg:gap-7 px-4">
-        <div className="qb-pre-logo flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#990024] text-white shadow-2xl shadow-[#ff003c]/40"
+        <div className="qb-pre-logo flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] text-white shadow-2xl shadow-[#3B82F6]/30"
              style={{ 
                width: 'clamp(64px, 18vw, 80px)', 
                height: 'clamp(64px, 18vw, 80px)',
@@ -80,8 +80,8 @@ export function Preloader() {
           ))}
         </div>
 
-        <div className="h-[3px] w-full max-w-[280px] overflow-hidden rounded-full bg-[#16161f]">
-          <div className="qb-pre-bar h-full w-full origin-left scale-x-0 bg-[#ff003c] shadow-[0_0_10px_rgba(255,0,60,0.8)]" />
+        <div className="h-[3px] w-full max-w-[280px] overflow-hidden rounded-full bg-white/[0.06]">
+          <div className="qb-pre-bar h-full w-full origin-left scale-x-0 bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] shadow-[0_0_12px_rgba(59,130,246,0.6)]" />
         </div>
       </div>
     </div>

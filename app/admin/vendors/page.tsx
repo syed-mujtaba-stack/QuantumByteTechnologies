@@ -15,13 +15,13 @@ export default function AdminVendorsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
         <div>
-          <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
             GLOBAL SUPPLY CHAIN
           </span>
           <h1 className="text-2xl font-black text-white">HARDWARE VENDORS & DISTRIBUTORS ({vendors.length})</h1>
         </div>
 
-        <button className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#ff003c]/25">
+        <button className="red-gradient-btn flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#3B82F6]/25">
           <Plus className="h-4 w-4" /> Add Vendor Partner
         </button>
       </div>
@@ -30,7 +30,7 @@ export default function AdminVendorsPage() {
         {vendors.map((v, idx) => (
           <div key={idx} className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-5 space-y-3 glass-panel text-xs">
             <div className="flex items-center justify-between">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff003c] text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#3B82F6] text-white">
                 <Building2 className="h-5 w-5" />
               </div>
               <span className="flex items-center gap-1 rounded bg-[#22c55e]/15 px-2 py-0.5 text-[10px] font-bold text-[#22c55e]">

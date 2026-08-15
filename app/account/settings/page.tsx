@@ -53,7 +53,7 @@ export default function AccountSettingsPage() {
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-6 glass-panel">
         <div className="border-b border-[#1f1f2b] pb-4">
           <h2 className="text-xl font-black text-white flex items-center gap-2">
-            <Lock className="h-5 w-5 text-[#ff003c]" />
+            <Lock className="h-5 w-5 text-[#3B82F6]" />
             SECURITY & PASSWORD
           </h2>
           <p className="text-xs text-[#a1a1aa] mt-0.5">Update your password and manage account authorization.</p>
@@ -80,7 +80,7 @@ export default function AccountSettingsPage() {
               value={passwords.current}
               onChange={(e) => setPasswords({ ...passwords, current: e.target.value })}
               placeholder="••••••••••••"
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-2.5 px-4 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-2.5 px-4 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -92,7 +92,7 @@ export default function AccountSettingsPage() {
               value={passwords.newPass}
               onChange={(e) => setPasswords({ ...passwords, newPass: e.target.value })}
               placeholder="••••••••••••"
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-2.5 px-4 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-2.5 px-4 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
@@ -104,14 +104,14 @@ export default function AccountSettingsPage() {
               value={passwords.confirmPass}
               onChange={(e) => setPasswords({ ...passwords, confirmPass: e.target.value })}
               placeholder="••••••••••••"
-              className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-2.5 px-4 text-xs text-white outline-none focus:border-[#ff003c]"
+              className="w-full rounded-xl border border-[#22222e] bg-[#050505] py-2.5 px-4 text-xs text-white outline-none focus:border-[#3B82F6]"
             />
           </div>
 
           <button
             type="submit"
             disabled={saving}
-            className="red-gradient-btn flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#ff003c]/20 disabled:opacity-60"
+            className="red-gradient-btn flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#3B82F6]/20 disabled:opacity-60"
           >
             {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
             {saving ? 'Updating...' : 'Update Password'}
@@ -123,7 +123,7 @@ export default function AccountSettingsPage() {
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-4 glass-panel">
         <div className="border-b border-[#1f1f2b] pb-4">
           <h2 className="text-xl font-black text-white flex items-center gap-2">
-            <Bell className="h-5 w-5 text-[#ff003c]" />
+            <Bell className="h-5 w-5 text-[#3B82F6]" />
             NOTIFICATION PREFERENCES
           </h2>
         </div>
@@ -138,7 +138,7 @@ export default function AccountSettingsPage() {
               type="checkbox"
               checked={notifications.emailDeals}
               onChange={(e) => setNotifications({ ...notifications, emailDeals: e.target.checked })}
-              className="h-4 w-4 accent-[#ff003c] cursor-pointer"
+              className="h-4 w-4 accent-[#3B82F6] cursor-pointer"
             />
           </label>
 
@@ -151,7 +151,7 @@ export default function AccountSettingsPage() {
               type="checkbox"
               checked={notifications.orderSMS}
               onChange={(e) => setNotifications({ ...notifications, orderSMS: e.target.checked })}
-              className="h-4 w-4 accent-[#ff003c] cursor-pointer"
+              className="h-4 w-4 accent-[#3B82F6] cursor-pointer"
             />
           </label>
         </div>

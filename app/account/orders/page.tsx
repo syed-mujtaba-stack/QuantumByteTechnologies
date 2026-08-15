@@ -27,19 +27,19 @@ export default function AccountOrdersPage() {
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 space-y-4 glass-panel">
         <div className="border-b border-[#1f1f2b] pb-4">
           <h2 className="text-xl font-black text-white flex items-center gap-2">
-            <Package className="h-5 w-5 text-[#ff003c]" /> ORDER HISTORY
+            <Package className="h-5 w-5 text-[#3B82F6]" /> ORDER HISTORY
           </h2>
           <p className="text-xs text-[#a1a1aa] mt-0.5">All hardware orders placed from your QuantumByte account.</p>
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <Loader2 className="h-8 w-8 animate-spin text-[#ff003c]" />
+            <Loader2 className="h-8 w-8 animate-spin text-[#3B82F6]" />
           </div>
         ) : orders.length === 0 ? (
           <div className="py-12 text-center text-xs text-[#a1a1aa]">
             You haven&apos;t placed any orders yet.
-            <Link href="/shop" className="block mt-2 font-bold text-[#ff003c] hover:underline">
+            <Link href="/shop" className="block mt-2 font-bold text-[#3B82F6] hover:underline">
               Start Shopping
             </Link>
           </div>
@@ -55,7 +55,7 @@ export default function AccountOrdersPage() {
                         ? 'bg-[#22c55e]/15 text-[#22c55e]'
                         : order.status === 'Shipped'
                         ? 'bg-[#3b82f6]/15 text-[#3b82f6]'
-                        : 'bg-[#ff003c]/15 text-[#ff003c]'
+                        : 'bg-[#3B82F6]/15 text-[#3B82F6]'
                     }`}>
                       {order.status}
                     </span>
@@ -72,9 +72,9 @@ export default function AccountOrdersPage() {
                   <span className="font-black text-white text-sm">{formatPKR(order.totalAmount)}</span>
                   <Link
                     href={`/account/orders/${order.orderId}`}
-                    className="flex items-center gap-1 rounded-lg border border-[#22222e] bg-[#050505] px-3 py-1.5 text-xs font-bold text-white hover:border-[#ff003c]"
+                    className="flex items-center gap-1 rounded-lg border border-[#22222e] bg-[#050505] px-3 py-1.5 text-xs font-bold text-white hover:border-[#3B82F6]"
                   >
-                    Details <ArrowRight className="h-3 w-3 text-[#ff003c]" />
+                    Details <ArrowRight className="h-3 w-3 text-[#3B82F6]" />
                   </Link>
                 </div>
               </div>

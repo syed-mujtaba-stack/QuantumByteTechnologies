@@ -32,7 +32,7 @@ export default function CustomerOrderDetailPage({ params }: { params: Promise<{ 
   if (loading) {
     return (
       <div className="flex items-center justify-center py-24">
-        <Loader2 className="h-8 w-8 animate-spin text-[#ff003c]" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#3B82F6]" />
       </div>
     );
   }
@@ -42,9 +42,9 @@ export default function CustomerOrderDetailPage({ params }: { params: Promise<{ 
       <div className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-10 text-center space-y-4 glass-panel">
         <h2 className="text-lg font-black text-white">ORDER NOT FOUND</h2>
         <p className="text-xs text-[#a1a1aa]">
-          We couldn&apos;t find order <span className="font-mono text-[#ff003c]">{orderId}</span> in your account.
+          We couldn&apos;t find order <span className="font-mono text-[#3B82F6]">{orderId}</span> in your account.
         </p>
-        <Link href="/account/orders" className="text-xs font-bold text-[#ff003c] hover:underline">
+        <Link href="/account/orders" className="text-xs font-bold text-[#3B82F6] hover:underline">
           Back to Orders
         </Link>
       </div>
@@ -60,10 +60,10 @@ export default function CustomerOrderDetailPage({ params }: { params: Promise<{ 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1f1f2b] pb-4">
           <div>
             <Link href="/account/orders" className="text-xs text-[#a1a1aa] hover:text-white flex items-center gap-1 mb-2">
-              <ArrowLeft className="h-3.5 w-3.5 text-[#ff003c]" /> Back to Orders List
+              <ArrowLeft className="h-3.5 w-3.5 text-[#3B82F6]" /> Back to Orders List
             </Link>
             <h2 className="text-xl font-black text-white flex items-center gap-2">
-              ORDER SUMMARY — <span className="text-[#ff003c] font-mono">{order.orderId}</span>
+              ORDER SUMMARY — <span className="text-[#3B82F6] font-mono">{order.orderId}</span>
             </h2>
             <p className="text-xs text-[#a1a1aa] mt-0.5">
               Placed on {new Date(order.createdAt).toLocaleDateString()} • {order.paymentMethod}
@@ -72,15 +72,15 @@ export default function CustomerOrderDetailPage({ params }: { params: Promise<{ 
 
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-2 rounded-xl border border-[#22222e] bg-[#050505] px-4 py-2 text-xs font-bold text-white hover:border-[#ff003c]"
+            className="flex items-center gap-2 rounded-xl border border-[#22222e] bg-[#050505] px-4 py-2 text-xs font-bold text-white hover:border-[#3B82F6]"
           >
-            <Printer className="h-4 w-4 text-[#ff003c]" /> Print Receipt
+            <Printer className="h-4 w-4 text-[#3B82F6]" /> Print Receipt
           </button>
         </div>
 
         {/* Tracking Timeline */}
-        <div className="rounded-xl border border-[#ff003c]/30 bg-[#ff003c]/10 p-5 space-y-3">
-          <h4 className="text-xs font-extrabold text-[#ff003c] uppercase tracking-wider flex items-center gap-2">
+        <div className="rounded-xl border border-[#3B82F6]/30 bg-[#3B82F6]/10 p-5 space-y-3">
+          <h4 className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-wider flex items-center gap-2">
             <Truck className="h-4 w-4" /> Tracking Status — {order.status}
           </h4>
 
@@ -89,7 +89,7 @@ export default function CustomerOrderDetailPage({ params }: { params: Promise<{ 
               const reached = idx <= currentStatusIdx;
               return (
                 <div key={status} className="space-y-1">
-                  <div className={`h-2 rounded-full ${reached ? 'bg-[#ff003c]' : 'bg-[#22222e]'} ${reached && status === order.status ? 'animate-pulse' : ''}`} />
+                  <div className={`h-2 rounded-full ${reached ? 'bg-[#3B82F6]' : 'bg-[#22222e]'} ${reached && status === order.status ? 'animate-pulse' : ''}`} />
                   <span className={reached ? 'font-bold text-white' : 'text-[#71717a]'}>{status}</span>
                 </div>
               );
@@ -112,7 +112,7 @@ export default function CustomerOrderDetailPage({ params }: { params: Promise<{ 
             {order.items.map((item, idx) => (
               <div key={`${item.productId}-${idx}`} className="rounded-xl border border-[#22222e] bg-[#050505] p-4 flex items-center justify-between text-xs">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#16161f] text-[#ff003c]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#16161f] text-[#3B82F6]">
                     <Package className="h-5 w-5" />
                   </div>
                   <div>
@@ -138,7 +138,7 @@ export default function CustomerOrderDetailPage({ params }: { params: Promise<{ 
 
         {/* Guarantee Note */}
         <div className="flex items-center gap-2 rounded-xl border border-[#22222e] bg-[#050505] p-4 text-xs text-[#a1a1aa]">
-          <ShieldCheck className="h-5 w-5 text-[#ff003c] flex-shrink-0" />
+          <ShieldCheck className="h-5 w-5 text-[#3B82F6] flex-shrink-0" />
           <span>Covered under QuantumByte 1-Year Hardware Guarantee with 24/7 priority support access.</span>
         </div>
       </div>

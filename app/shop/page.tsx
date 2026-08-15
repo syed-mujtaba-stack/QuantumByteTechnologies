@@ -22,26 +22,26 @@ export default async function ShopPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#05070D] text-white flex flex-col font-sans selection:bg-[#3B82F6] selection:text-white">
       <Navbar />
 
       <main className="flex-1">
-        {/* Shop Page Banner Header */}
-        <div className="border-b border-[#22222e] bg-[#08080d] py-12 cyber-grid-bg">
+        {/* Shop Banner */}
+        <div className="border-b border-white/[0.06] bg-[#080B12] py-12 cyber-grid-bg">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-2">
-            <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+            <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
               OFFICIAL HARDWARE STORE
             </span>
             <h1 className="text-3xl font-black text-white sm:text-5xl">
-              SHOP ALL <span className="text-[#ff003c] glow-red-text">TECH INVENTORY</span>
+              SHOP ALL <span className="text-[#3B82F6]">TECH INVENTORY</span>
             </h1>
-            <p className="text-xs sm:text-sm text-[#a1a1aa] max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-[#94A3B8] max-w-xl mx-auto">
               Explore 100% genuine computers, laptops, mobiles, chargers, GPUs, and replacement parts with official manufacturer warranty.
             </p>
           </div>
         </div>
 
-        {/* Catalog Filter & Grid */}
+        {/* Catalog */}
         <CatalogClient products={products} itServices={itServices} />
       </main>
 

@@ -27,7 +27,7 @@ export default async function AdminCategoriesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#22222e] bg-[#0e0e12] p-6 glass-panel">
         <div>
-          <span className="text-xs font-extrabold text-[#ff003c] uppercase tracking-widest">
+          <span className="text-xs font-extrabold text-[#3B82F6] uppercase tracking-widest">
             TAXONOMY CONTROL
           </span>
           <h1 className="text-2xl font-black text-white">CATEGORY DEPARTMENTS ({categories.length})</h1>
@@ -51,7 +51,7 @@ export default async function AdminCategoriesPage() {
           return (
             <div key={cat._id} className="rounded-2xl border border-[#22222e] bg-[#0e0e12] p-5 space-y-3 glass-panel">
               <div className="flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff003c] text-white">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#3B82F6] text-white">
                   <Icon className="h-5 w-5" />
                 </div>
                 <DeleteCategoryButton id={cat._id} />
@@ -64,7 +64,7 @@ export default async function AdminCategoriesPage() {
 
               <div className="flex items-center justify-between border-t border-[#1f1f2b] pt-3 text-xs">
                 <span className="text-[#a1a1aa]">Product Count</span>
-                <span className="font-black text-[#ff003c]">{count}</span>
+                <span className="font-black text-[#3B82F6]">{count}</span>
               </div>
             </div>
           );

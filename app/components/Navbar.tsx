@@ -85,258 +85,386 @@ export function Navbar() {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-50 w-full overflow-visible transition-all duration-300 ${
-        scrolled ? 'bg-[#030305]/95 backdrop-blur-xl border-b border-[#232330] shadow-xl shadow-[#000000]/50' : 'bg-transparent border-b border-transparent'
+      className={`sticky top-0 z-50 w-full transition-all duration-500 ease-out ${
+        scrolled
+          ? 'bg-[#05070D]/80 backdrop-blur-2xl border-b border-white/[0.06] shadow-[0_1px_32px_rgba(0,0,0,0.4)]'
+          : 'bg-[#05070D]/50 backdrop-blur-xl border-b border-white/[0.03]'
       }`}
     >
-      <div className="hidden lg:block border-b border-[#1a1a24] bg-[#050505]/80 backdrop-blur-sm px-4 py-2">
-        <div className="mx-auto max-w-7xl flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-2 text-xs font-bold text-white">
-              <ShieldCheck className="h-3.5 w-3.5 text-[#ff003c]" />
-              Official QuantumByte 100% Genuine Tech Guarantee
-            </span>
-            <span className="hidden sm:block w-px h-5 bg-[#232330]" />
-            <span className="text-xs text-[#6b6b7a]">Express Delivery & 24/7 Technical Support</span>
-          </div>
+      {/* ── Top Announcement Strip ─────────────────────────────────────────── */}
+      {/* Desktop */}
+      <div className="hidden lg:block border-b border-white/[0.04] bg-white/[0.01]">
+        <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-9">
           <div className="flex items-center gap-6">
-            <Link href="/deals" className="flex items-center gap-1.5 text-xs font-bold text-[#ff003c] hover:underline transition-colors">
-              <Flame className="h-3.5 w-3.5" /> Flash Deals
+            <span className="flex items-center gap-2 text-[11px] font-semibold tracking-wide text-[#94A3B8]">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/10">
+                <ShieldCheck className="h-3 w-3 text-[#3B82F6]" />
+              </span>
+              <span className="text-white/90">QuantumByte</span>
+              <span className="text-[#64748B]">·</span>
+              100% Genuine Tech Guarantee
+            </span>
+            <span className="hidden xl:block w-px h-3.5 bg-white/[0.08]" />
+            <span className="hidden xl:block text-[11px] text-[#64748B] tracking-wide">
+              Express Delivery &amp; 24/7 Technical Support
+            </span>
+          </div>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/deals"
+              className="group flex items-center gap-1.5 text-[11px] font-bold tracking-wide text-[#3B82F6] hover:text-[#60A5FA] transition-colors duration-200"
+            >
+              <Flame className="h-3 w-3 transition-transform group-hover:scale-110" />
+              Flash Deals
             </Link>
-            <Link href="/about" className="text-xs text-[#6b6b7a] hover:text-white transition-colors">About</Link>
-            <Link href="/contact" className="text-xs text-[#6b6b7a] hover:text-white transition-colors">Contact</Link>
-            <Link href="/admin" className="flex items-center gap-1 text-xs text-[#6b6b7a] hover:text-[#ff003c] transition-colors">
-              <LayoutDashboard className="h-3.5 w-3.5" /> Admin Portal
+            <Link href="/about" className="text-[11px] font-medium tracking-wide text-[#64748B] hover:text-white/80 transition-colors duration-200">
+              About
+            </Link>
+            <Link href="/contact" className="text-[11px] font-medium tracking-wide text-[#64748B] hover:text-white/80 transition-colors duration-200">
+              Contact
+            </Link>
+            <Link
+              href="/admin"
+              className="flex items-center gap-1.5 text-[11px] font-medium tracking-wide text-[#64748B] hover:text-[#3B82F6] transition-colors duration-200"
+            >
+              <LayoutDashboard className="h-3 w-3" />
+              Admin
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="lg:hidden border-b border-[#1a1a24] bg-[#050505]/80 backdrop-blur-sm px-4 py-2">
-        <div className="mx-auto max-w-7xl flex items-center justify-between gap-4 flex-wrap">
-          <span className="flex items-center gap-1.5 text-xs font-bold text-white">
-            <ShieldCheck className="h-3.5 w-3.5 text-[#ff003c]" />
-            100% Genuine Guarantee
+      {/* Mobile */}
+      <div className="lg:hidden border-b border-white/[0.04] bg-white/[0.01]">
+        <div className="mx-auto max-w-7xl px-4 flex items-center justify-between h-9">
+          <span className="flex items-center gap-1.5 text-[10px] font-bold tracking-wide text-white/80">
+            <ShieldCheck className="h-3 w-3 text-[#3B82F6]" />
+            100% Genuine
           </span>
           <div className="flex items-center gap-3">
-            <Link href="/deals" className="flex items-center gap-1 text-xs font-bold text-[#ff003c] hover:underline transition-colors whitespace-nowrap">
-              <Flame className="h-3.5 w-3.5" /> Deals
+            <Link
+              href="/deals"
+              className="flex items-center gap-1 text-[10px] font-bold tracking-wide text-[#3B82F6] transition-colors"
+            >
+              <Flame className="h-3 w-3" />
+              Deals
             </Link>
-            <Link href="/contact" className="text-xs text-[#6b6b7a] hover:text-white transition-colors whitespace-nowrap">Contact</Link>
+            <Link href="/contact" className="text-[10px] font-medium tracking-wide text-[#64748B] hover:text-white/80 transition-colors">
+              Contact
+            </Link>
           </div>
         </div>
       </div>
 
+      {/* ── Main Navigation ────────────────────────────────────────────────── */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-18">
-          <Link href="/" className="group flex items-center gap-3 flex-shrink-0 min-w-0" aria-label="QuantumByte Technologies Home">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff003c] to-[#990024] p-2 shrink-0 shadow-lg shadow-[#ff003c]/20 group-hover:scale-105 transition-transform duration-300">
-              <Cpu className="h-6 w-6 text-white" />
-              <div className="absolute -inset-0.5 rounded-xl bg-[#ff003c] opacity-30 blur group-hover:opacity-60 transition-opacity duration-300" />
+        <div className="flex items-center justify-between h-14 lg:h-16 gap-4 lg:gap-8">
+
+          {/* ── Logo ──────────────────────────────────────────────────── */}
+          <Link
+            href="/"
+            className="group flex items-center gap-2.5 flex-shrink-0 min-w-0"
+            aria-label="QuantumByte Technologies Home"
+          >
+            <div className="relative flex h-9 w-9 items-center justify-center rounded-[10px] bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] shrink-0 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.35)]">
+              <Cpu className="h-5 w-5 text-white" />
             </div>
-            <div className="hidden sm:block flex flex-col min-w-0">
-              <span className="text-lg font-black tracking-tight text-white truncate">
-                QUANTUM<span className="text-[#ff003c]">BYTE</span>
+            <div className="hidden sm:flex flex-col min-w-0 leading-none">
+              <span className="text-[17px] font-black tracking-[-0.03em] text-white">
+                QUANTUM<span className="text-[#3B82F6]">BYTE</span>
               </span>
-              <span className="text-[9px] font-bold tracking-widest text-[#6b6b7a] uppercase truncate">Technologies</span>
+              <span className="text-[8px] font-bold tracking-[0.25em] text-[#475569] uppercase mt-0.5">
+                Technologies
+              </span>
             </div>
           </Link>
 
-          <div className="hidden lg:flex lg:flex-1 lg:max-w-2xl mx-8">
-            <form action="/search" method="GET" className="relative w-full">
-              <Search className="absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6b6b7a]" aria-hidden="true" />
+          {/* ── Search (Desktop) ──────────────────────────────────────── */}
+          <div className="hidden lg:flex lg:flex-1 lg:max-w-xl">
+            <form action="/search" method="GET" className="relative w-full group">
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#475569] transition-colors duration-200 group-focus-within:text-[#3B82F6]" aria-hidden="true" />
               <input
                 type="text"
                 name="q"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search PCs, MacBooks, iPhones, GPUs, Chargers..."
-                className="w-full h-11 rounded-xl border border-[#232330] bg-[#08080c] py-2.5 pl-12 pr-4 text-sm text-white placeholder-[#6b6b7a] outline-none transition-all duration-200 focus:border-[#ff003c] focus:ring-2 focus:ring-[#ff003c]/20 focus:bg-[#0d0d12]"
+                placeholder="Search products, brands, categories..."
+                className="w-full h-10 rounded-xl border border-white/[0.07] bg-white/[0.03] pl-11 pr-4 text-[13px] font-medium text-white placeholder-[#475569] outline-none transition-all duration-300 focus:border-[#3B82F6]/40 focus:bg-white/[0.05] focus:shadow-[0_0_0_3px_rgba(59,130,246,0.08)]"
               />
             </form>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-1">
-            <Link href="/shop" className="px-4 py-2.5 text-sm font-semibold text-white/80 hover:text-white transition-colors rounded-lg hover:bg-[#08080c]">
+          {/* ── Navigation Links (Desktop) ────────────────────────────── */}
+          <nav className="hidden lg:flex items-center gap-0.5">
+            <Link
+              href="/shop"
+              className="relative px-3.5 py-2 text-[13px] font-semibold text-white/65 hover:text-white tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/[0.04]"
+            >
               Shop
             </Link>
 
+            {/* Categories Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowCategoryMenu(!showCategoryMenu)}
-                className="flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold text-white/80 hover:text-white transition-colors rounded-lg hover:bg-[#08080c]"
+                className="relative flex items-center gap-1 px-3.5 py-2 text-[13px] font-semibold text-white/65 hover:text-white tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/[0.04]"
               >
                 Categories
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${showCategoryMenu ? 'rotate-180 text-[#ff003c]' : 'text-[#6b6b7a]'}`} />
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-all duration-200 ${
+                    showCategoryMenu ? 'rotate-180 text-[#3B82F6]' : 'text-[#475569]'
+                  }`}
+                />
               </button>
 
               {showCategoryMenu && (
-                <div className="absolute left-0 top-full mt-2 w-full sm:max-w-[22rem] max-w-[calc(100vw-2rem)] rounded-xl border border-[#232330] bg-[#0d0d12] py-2 shadow-2xl shadow-[#000000]/50 animate-slide-down z-50">
-                  {categoriesList.map((cat) => {
-                    const Icon = cat.icon;
-                    const isActive = selectedCategory === cat.id;
-                    return (
-                      <Link
-                        key={cat.id}
-                        href={cat.href}
-                        onClick={() => handleCategorySelect(cat.id)}
-                        className={`flex w-full items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-200 touch-target-sm ${
-                          isActive
-                            ? 'bg-[#ff003c]/15 text-[#ff003c] font-bold'
-                            : 'text-white/80 hover:bg-[#14141a] hover:text-white'
-                        }`}
-                      >
-                        <Icon className={`h-4.5 w-4.5 ${isActive ? 'text-[#ff003c]' : 'text-[#6b6b7a]'}`} />
-                        {cat.label}
-                      </Link>
-                    );
-                  })}
-                </div>
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setShowCategoryMenu(false)}
+                  />
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[26rem] rounded-2xl border border-white/[0.07] bg-[#0B0F18] py-2 shadow-[0_16px_64px_rgba(0,0,0,0.5)] animate-slide-down z-50">
+                    {/* Top accent line */}
+                    <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/30 to-transparent" />
+
+                    <div className="px-3 py-2 mb-1">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#475569]">
+                        Browse by Category
+                      </span>
+                    </div>
+                    {categoriesList.map((cat) => {
+                      const Icon = cat.icon;
+                      const isActive = selectedCategory === cat.id;
+                      return (
+                        <Link
+                          key={cat.id}
+                          href={cat.href}
+                          onClick={() => handleCategorySelect(cat.id)}
+                          className={`mx-2 flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 touch-target-sm ${
+                            isActive
+                              ? 'bg-[#3B82F6]/10 text-[#3B82F6]'
+                              : 'text-white/60 hover:bg-white/[0.04] hover:text-white'
+                          }`}
+                        >
+                          <span className={`flex h-7 w-7 items-center justify-center rounded-lg transition-colors duration-200 ${
+                            isActive ? 'bg-[#3B82F6]/15' : 'bg-white/[0.04]'
+                          }`}>
+                            <Icon className={`h-3.5 w-3.5 ${isActive ? 'text-[#3B82F6]' : 'text-[#475569]'}`} />
+                          </span>
+                          {cat.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </>
               )}
             </div>
 
-            <Link href="/deals" className="px-4 py-2.5 text-sm font-semibold text-[#ff003c] hover:text-[#ff3366] transition-colors rounded-lg hover:bg-[#ff003c]/10">
+            <Link
+              href="/deals"
+              className="px-3.5 py-2 text-[13px] font-bold tracking-wide text-[#3B82F6] hover:text-[#60A5FA] transition-colors duration-200 rounded-lg hover:bg-[#3B82F6]/[0.06]"
+            >
               Deals
             </Link>
-            <Link href="/new-arrivals" className="px-4 py-2.5 text-sm font-semibold text-white/80 hover:text-white transition-colors rounded-lg hover:bg-[#08080c]">
-              New
+            <Link
+              href="/new-arrivals"
+              className="px-3.5 py-2 text-[13px] font-semibold text-white/65 hover:text-white tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/[0.04]"
+            >
+              New Arrivals
             </Link>
-            <Link href="/best-sellers" className="px-4 py-2.5 text-sm font-semibold text-white/80 hover:text-white transition-colors rounded-lg hover:bg-[#08080c]">
+            <Link
+              href="/best-sellers"
+              className="px-3.5 py-2 text-[13px] font-semibold text-white/65 hover:text-white tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/[0.04]"
+            >
               Best Sellers
             </Link>
           </nav>
 
-          <div className="flex items-center gap-2">
+          {/* ── Right Actions ─────────────────────────────────────────── */}
+          <div className="flex items-center gap-1.5 lg:gap-2">
+            {/* Compare */}
             <Link
               href="/compare"
-              className="relative btn btn-icon btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#08080c] transition-all"
+              className="relative flex h-9 w-9 items-center justify-center rounded-xl text-[#475569] hover:text-white hover:bg-white/[0.04] transition-all duration-200"
               title="Compare Products"
               aria-label="Compare Products"
             >
-              <Scale className="h-5 w-5" />
+              <Scale className="h-[18px] w-[18px]" />
               {compareList.length > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#ff003c] text-[10px] font-extrabold text-white animate-scale-in">
+                <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#3B82F6] px-1 text-[9px] font-extrabold text-white animate-scale-in">
                   {compareList.length}
                 </span>
               )}
             </Link>
 
+            {/* Wishlist */}
             <Link
               href="/wishlist"
-              className="relative btn btn-icon btn-ghost text-[#ff003c] hover:bg-[#ff003c]/10 transition-all"
+              className="relative flex h-9 w-9 items-center justify-center rounded-xl text-[#3B82F6] hover:bg-[#3B82F6]/[0.08] transition-all duration-200"
               title="Wishlist"
               aria-label="Wishlist"
             >
-              <Heart className="h-5 w-5 fill-current" />
+              <Heart className="h-[18px] w-[18px] fill-current" />
               {wishlist.length > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#ff003c] text-[10px] font-extrabold text-white animate-scale-in">
+                <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#3B82F6] px-1 text-[9px] font-extrabold text-white animate-scale-in">
                   {wishlist.length}
                 </span>
               )}
             </Link>
 
+            {/* Divider */}
+            <div className="hidden lg:block w-px h-5 bg-white/[0.06] mx-1" />
+
+            {/* Account */}
             <Link
               href={user ? '/account/dashboard' : '/account/login'}
-              className="btn btn-ghost flex h-11 items-center gap-2.5 px-3 lg:px-4 text-sm font-bold text-white/80 hover:text-white hover:bg-[#08080c] transition-all rounded-xl touch-target"
+              className="hidden sm:flex items-center gap-2 px-3 h-9 rounded-xl text-[13px] font-semibold text-white/60 hover:text-white hover:bg-white/[0.04] transition-all duration-200"
               title={user ? `Signed in as ${user.name}` : 'Sign in / Register'}
             >
               {user ? (
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#ff003c] to-[#990024] text-[11px] font-black text-white shrink-0">
+                <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] text-[9px] font-black text-white shrink-0">
                   {userInitials}
                 </span>
               ) : (
-                <User className="h-5 w-5 text-[#6b6b7a] shrink-0" />
+                <User className="h-[18px] w-[18px] text-[#475569] shrink-0" />
               )}
-              <span className="hidden sm:inline truncate">{user ? 'Account' : 'Sign In'}</span>
+              <span className="hidden lg:inline">{user ? 'Account' : 'Sign In'}</span>
             </Link>
 
+            {/* Cart */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative btn btn-icon btn-primary group shrink-0 touch-target"
+              className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#3B82F6] to-[#2563EB] text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:scale-[1.03] active:scale-[0.97] shrink-0 touch-target"
               aria-label={`Shopping Cart ${cartCount > 0 ? `with ${cartCount} items` : 'empty'}`}
             >
-              <ShoppingBag className="h-5.5 w-5.5 transition-transform group-hover:scale-110" />
+              <ShoppingBag className="h-[18px] w-[18px]" />
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1.5 text-[10px] font-extrabold text-[#ff003c] shadow-md shadow-[#ff003c]/50 animate-pulse">
+                <span className="absolute -top-1 -right-1 flex h-4.5 min-w-[18px] items-center justify-center rounded-full bg-white px-1 text-[9px] font-extrabold text-[#3B82F6] shadow-md animate-scale-in">
                   {cartCount > 99 ? '99+' : cartCount}
                 </span>
               )}
             </button>
 
+            {/* Mobile Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="btn btn-icon btn-ghost lg:hidden text-white/80 hover:text-white hover:bg-[#08080c] touch-target"
+              className="flex lg:hidden h-9 w-9 items-center justify-center rounded-xl text-white/60 hover:text-white hover:bg-white/[0.04] transition-all duration-200 touch-target"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="h-6 w-6 text-[#ff003c]" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5 text-[#3B82F6]" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
+      {/* ── Mobile Menu Drawer ────────────────────────────────────────────── */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-[#1a1a24] bg-[#030305] px-4 py-4 animate-slide-down shadow-xl shadow-[#000000]/50 safe-area-inset">
-          <div className="mb-4 relative">
-            <Search className="absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6b6b7a]" aria-hidden="true" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..."
-              className="w-full h-12 rounded-xl border border-[#232330] bg-[#08080c] py-2.5 pl-11 pr-4 text-base text-white placeholder-[#6b6b7a] outline-none focus:border-[#ff003c] focus:ring-2 focus:ring-[#ff003c]/20 touch-target"
-            />
-          </div>
+        <div className="lg:hidden border-t border-white/[0.05] bg-[#05070D]/98 backdrop-blur-2xl animate-slide-down shadow-[0_16px_64px_rgba(0,0,0,0.5)] safe-area-inset">
+          <div className="px-4 pt-4 pb-6 space-y-5">
 
-          <div className="space-y-1">
-            <span className="block px-3 py-2 text-[10px] font-extrabold uppercase tracking-widest text-[#ff003c]">Categories</span>
-            {categoriesList.map((cat) => {
-              const Icon = cat.icon;
-              const isActive = selectedCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => handleMobileCategorySelect(cat.id)}
-                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-all duration-200 touch-target ${
-                    isActive
-                      ? 'bg-[#ff003c]/15 text-[#ff003c] font-bold'
-                      : 'text-white/80 hover:bg-[#08080c] hover:text-white'
-                  }`}
-                >
-                  <Icon className={`h-5 w-5 ${isActive ? 'text-[#ff003c]' : 'text-[#6b6b7a]'}`} />
-                  {cat.label}
-                </button>
-              );
-            })}
+            {/* Mobile Search */}
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#475569]" aria-hidden="true" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search products..."
+                className="w-full h-12 rounded-2xl border border-white/[0.07] bg-white/[0.03] pl-11 pr-4 text-[15px] font-medium text-white placeholder-[#475569] outline-none transition-all duration-200 focus:border-[#3B82F6]/40 focus:bg-white/[0.05] touch-target"
+              />
+            </div>
 
-            <div className="pt-3 mt-3 border-t border-[#1a1a24] space-y-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openBooking();
-                }}
-                className="btn btn-primary w-full py-4 touch-target"
-              >
-                <Wrench className="h-5 w-5" />
-                Book Custom PC Build / IT Repair
-              </button>
+            {/* Categories */}
+            <div>
+              <span className="block px-1 mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#475569]">
+                Categories
+              </span>
+              <div className="space-y-0.5">
+                {categoriesList.map((cat) => {
+                  const Icon = cat.icon;
+                  const isActive = selectedCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => handleMobileCategorySelect(cat.id)}
+                      className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-[14px] font-medium transition-all duration-200 touch-target ${
+                        isActive
+                          ? 'bg-[#3B82F6]/10 text-[#3B82F6]'
+                          : 'text-white/60 hover:bg-white/[0.04] hover:text-white'
+                      }`}
+                    >
+                      <span className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
+                        isActive ? 'bg-[#3B82F6]/15' : 'bg-white/[0.04]'
+                      }`}>
+                        <Icon className={`h-4 w-4 ${isActive ? 'text-[#3B82F6]' : 'text-[#475569]'}`} />
+                      </span>
+                      {cat.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
+            {/* Divider */}
+            <div className="h-px bg-white/[0.05]" />
+
+            {/* Quick Links */}
+            <div className="grid grid-cols-2 gap-2">
               <Link
                 href="/deals"
-                className="btn btn-secondary w-full py-4 justify-center touch-target"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-xl border border-[#3B82F6]/20 bg-[#3B82F6]/[0.06] px-4 py-3 text-[13px] font-bold text-[#3B82F6] transition-all duration-200 active:scale-[0.97]"
               >
-                <Flame className="h-5 w-5" />
-                View Flash Deals
+                <Flame className="h-4 w-4" />
+                Flash Deals
               </Link>
-
               <Link
                 href="/new-arrivals"
-                className="btn btn-outline w-full py-4 justify-center touch-target"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-4 py-3 text-[13px] font-semibold text-white/70 transition-all duration-200 active:scale-[0.97]"
               >
-                <Sparkles className="h-5 w-5" />
+                <Sparkles className="h-4 w-4" />
                 New Arrivals
               </Link>
             </div>
+
+            {/* CTA */}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openBooking();
+              }}
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#3B82F6] to-[#2563EB] px-6 py-3.5 text-[14px] font-bold text-white transition-all duration-300 hover:shadow-[0_0_24px_rgba(59,130,246,0.3)] active:scale-[0.98] touch-target"
+            >
+              <Wrench className="h-4.5 w-4.5" />
+              Book IT Service / PC Build
+            </button>
+
+            {/* Account (Mobile) */}
+            <Link
+              href={user ? '/account/dashboard' : '/account/login'}
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 transition-all duration-200 active:scale-[0.98]"
+            >
+              {user ? (
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] text-[10px] font-black text-white shrink-0">
+                  {userInitials}
+                </span>
+              ) : (
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.04] text-[#475569] shrink-0">
+                  <User className="h-4 w-4" />
+                </div>
+              )}
+              <div className="min-w-0">
+                <p className="text-[13px] font-bold text-white truncate">{user ? user.name : 'Sign In / Register'}</p>
+                <p className="text-[11px] text-[#475569]">{user ? 'View your account' : 'Access your orders & wishlist'}</p>
+              </div>
+            </Link>
           </div>
         </div>
       )}

@@ -165,35 +165,35 @@ export default function FAQPage() {
   const [openIdx, setOpenIdx] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#030305] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#05070D] text-white flex flex-col font-sans selection:bg-[#3B82F6] selection:text-white">
       <Navbar />
 
       <main className="flex-1 py-10 lg:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <div className="mb-6 flex items-center gap-2 text-xs text-[#9c9ca8]">
+          <div className="mb-6 flex items-center gap-2 text-xs text-[#94A3B8]">
             <Link href="/" className="hover:text-white">Home</Link>
-            <ChevronRight className="h-3 w-3 text-[#ff003c]" />
+            <ChevronRight className="h-3 w-3 text-[#3B82F6]" />
             <span className="text-white font-bold">Frequently Asked Questions</span>
           </div>
 
           <div className="text-center space-y-3 mb-10">
-            <span className="inline-flex items-center justify-center gap-1.5 rounded-full border border-[#ff003c]/30 bg-[#ff003c]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#ff003c]">
+            <span className="inline-flex items-center justify-center gap-1.5 rounded-full border border-[#3B82F6]/30 bg-[#3B82F6]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#3B82F6]">
               <HelpCircle className="h-4 w-4" /> KNOWLEDGE BASE & HELPDESK
             </span>
             <h1 className="text-3xl sm:text-4xl font-black text-white">
-              FREQUENTLY ASKED <span className="text-[#ff003c]">QUESTIONS</span>
+              FREQUENTLY ASKED <span className="text-[#3B82F6]">QUESTIONS</span>
             </h1>
-            <p className="text-sm text-[#9c9ca8] max-w-2xl mx-auto">
+            <p className="text-sm text-[#94A3B8] max-w-2xl mx-auto">
               Everything you need to know about our products, custom PC assembly, IT services, warranties, shipping, and payments. Can't find your answer?
-              <Link href="/contact" className="text-[#ff003c] hover:underline ml-1">Contact our support team</Link>
+              <Link href="/contact" className="text-[#3B82F6] hover:underline ml-1">Contact our support team</Link>
             </p>
           </div>
 
           <div className="space-y-6">
             {faqs.map((section, sectionIdx) => (
               <div key={section.category} className="space-y-4">
-                <h2 className="text-lg font-bold text-white flex items-center gap-2 pb-2 border-b border-[#1a1a24]">
+                <h2 className="text-lg font-bold text-white flex items-center gap-2 pb-2 border-b border-[white/[0.06]]">
                   {section.category}
                 </h2>
                 <div className="space-y-3">
@@ -203,17 +203,17 @@ export default function FAQPage() {
                     return (
                       <div
                         key={uid}
-                        className="rounded-2xl border border-[#1a1a24] bg-[#08080c] overflow-hidden transition"
+                        className="rounded-2xl border border-[white/[0.06]] bg-[#080B12] overflow-hidden transition"
                       >
                         <button
                           onClick={() => setOpenIdx(isOpen ? null : uid)}
-                          className="w-full flex items-center justify-between p-5 text-left text-sm font-semibold text-white hover:text-[#ff003c] transition"
+                          className="w-full flex items-center justify-between p-5 text-left text-sm font-semibold text-white hover:text-[#3B82F6] transition"
                         >
                           <span className="pr-4">{faq.q}</span>
-                          <ChevronDown className={`h-4.5 w-4.5 flex-shrink-0 text-[#ff003c] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                          <ChevronDown className={`h-4.5 w-4.5 flex-shrink-0 text-[#3B82F6] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                         </button>
                         {isOpen && (
-                          <div className="p-5 pt-0 text-sm text-[#9c9ca8] leading-relaxed border-t border-[#1a1a24] bg-[#030305]/50">
+                          <div className="p-5 pt-0 text-sm text-[#94A3B8] leading-relaxed border-t border-[white/[0.06]] bg-[#05070D]/50">
                             {faq.a}
                           </div>
                         )}
@@ -226,9 +226,9 @@ export default function FAQPage() {
           </div>
 
           {/* Contact CTA */}
-          <div className="mt-12 rounded-2xl border border-[#ff003c]/30 bg-[#ff003c]/5 p-8 text-center">
+          <div className="mt-12 rounded-2xl border border-[#3B82F6]/30 bg-[#3B82F6]/5 p-8 text-center">
             <h3 className="text-xl font-bold text-white mb-2">Still Need Help?</h3>
-            <p className="text-sm text-[#9c9ca8] mb-4 max-w-lg mx-auto">
+            <p className="text-sm text-[#94A3B8] mb-4 max-w-lg mx-auto">
               Our senior technical team is available Mon–Sat, 10AM–8PM PKT. We typically respond within 2 hours.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
