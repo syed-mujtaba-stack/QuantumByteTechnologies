@@ -61,24 +61,25 @@ export function StatsCounter({ productsCount }: { productsCount: number }) {
   return (
     <section
       ref={sectionRef}
-      className="border-y border-[#1a1a24] bg-[#030305] py-14 lg:py-18"
+      className="border-y border-[#1a1a24] bg-[#030305] py-10 lg:py-16"
       aria-labelledby="stats-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 id="stats-heading" className="sr-only">Company Statistics</h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        {/* Mobile/Tablet: 2x2 grid, Desktop: 4 columns */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center lg:text-left">
-              <div className="flex items-baseline justify-center lg:justify-start gap-1.5 mb-2">
+            <div key={stat.label} className="text-center">
+              <div className="flex items-baseline justify-center gap-1.5 mb-2">
                 <span
                   data-counter
                   data-target={stat.value}
-                  className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tabular-nums"
+                  className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tabular-nums"
                 >
                   0
                 </span>
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#ff003c] tabular-nums">
+                <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#ff003c] tabular-nums">
                   {stat.suffix}
                 </span>
               </div>
@@ -89,4 +90,10 @@ export function StatsCounter({ productsCount }: { productsCount: number }) {
       </div>
     </section>
   );
+}
+
+interface StatItem {
+  value: number;
+  suffix: string;
+  label: string;
 }

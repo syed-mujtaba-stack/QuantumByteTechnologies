@@ -78,13 +78,15 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#030305]/95 via-[#030305]/60 to-[#030305]/95" />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,rgba(255,0,60,0.08)_0%,transparent_70%)]" />
 
-      <div className="relative z-10 w-full px-6 lg:px-8 py-20 lg:py-28">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+          {/* Mobile-first vertical stack: Content first, then visual */}
+          <div className="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Content Column - Full width on mobile, 7/12 on desktop */}
+            <div className="lg:col-span-7 space-y-8 text-center lg:text-left order-1 lg:order-1">
               <GSAPFadeIn direction="down" delay={0.1}>
-                <div className="inline-flex items-center gap-3 rounded-full border border-[#ff003c]/30 bg-[#030305]/80 px-5 py-2 text-xs font-bold uppercase tracking-widest backdrop-blur-xl">
-                  <Sparkles className="h-4 w-4 text-[#ff003c] animate-pulse" />
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-[#ff003c]/30 bg-[#030305]/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur-xl">
+                  <Sparkles className="h-3.5 w-3.5 text-[#ff003c] animate-pulse" />
                   <span>QUANTUMBYTE TECHNOLOGIES</span>
                   <span className="w-1 h-1 rounded-full bg-[#ff003c]" />
                   <span className="text-[#9c9ca8]">Official Hardware & IT Hub</span>
@@ -92,7 +94,7 @@ export function Hero() {
               </GSAPFadeIn>
 
               <GSAPFadeIn direction="up" delay={0.2}>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.05] text-white">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-[1.05] text-white text-balance">
                   NEXT-GEN <span className="bg-gradient-to-r from-white via-white to-[#ff003c] bg-clip-text text-transparent">COMPUTERS</span> & ENTERPRISE
                   <br />
                   <span className="relative inline-block text-[#ff003c]">IT SERVICES</span>
@@ -100,16 +102,16 @@ export function Hero() {
               </GSAPFadeIn>
 
               <GSAPFadeIn direction="up" delay={0.3}>
-                <p className="max-w-xl text-lg sm:text-xl lg:text-lg text-[#9c9ca8] leading-relaxed mx-auto lg:mx-0">
+                <p className="max-w-xl text-base sm:text-lg lg:text-base text-[#9c9ca8] leading-relaxed mx-auto lg:mx-0">
                   Your premier source for high-performance Gaming PCs, MacBooks, Smartphones, GaN Chargers, Genuine Component Parts, and full-scale Enterprise IT Solutions.
                 </p>
               </GSAPFadeIn>
 
               <GSAPFadeIn direction="up" delay={0.4}>
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
                   <button
                     onClick={handleExploreStore}
-                    className="group btn btn-primary btn-lg w-full sm:w-auto"
+                    className="group btn btn-primary btn-lg w-full sm:w-auto touch-target"
                   >
                     <span>Explore Catalog</span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -117,7 +119,7 @@ export function Hero() {
 
                   <button
                     onClick={() => openBooking()}
-                    className="btn btn-secondary btn-lg w-full sm:w-auto"
+                    className="btn btn-secondary btn-lg w-full sm:w-auto touch-target"
                   >
                     <Wrench className="h-4 w-4 text-[#ff003c]" />
                     <span>Book IT Consultation</span>
@@ -126,17 +128,18 @@ export function Hero() {
               </GSAPFadeIn>
 
               <GSAPFadeIn direction="up" delay={0.5}>
-                <div className="pt-4 grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {/* Mobile: 2 cols, Tablet: 3 cols, Desktop: 6 cols */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
                   {features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-[#08080c]/60 border border-[#232330] hover:border-[#ff003c]/30 transition-all duration-300 group">
-                      <div className="flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-xl bg-[#ff003c]/10">
-                        <feature.icon className={`h-5 w-5 ${feature.color}`} />
+                    <div key={index} className="flex items-start gap-2.5 p-3 rounded-xl bg-[#08080c]/60 border border-[#232330] hover:border-[#ff003c]/30 transition-all duration-300 group min-w-0">
+                      <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff003c]/10">
+                        <feature.icon className={`h-4.5 w-4.5 ${feature.color}`} />
                       </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-white group-hover:text-[#ff003c] transition-colors">
+                      <div className="min-w-0">
+                        <h4 className="text-sm font-bold text-white group-hover:text-[#ff003c] transition-colors truncate">
                           {feature.label}
                         </h4>
-                        <p className="text-[11px] text-[#6b6b7a] mt-0.5">{feature.desc}</p>
+                        <p className="text-[10px] text-[#6b6b7a] mt-0.5 truncate">{feature.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -144,20 +147,40 @@ export function Hero() {
               </GSAPFadeIn>
             </div>
 
-            <div className="hidden lg:block lg:col-span-5 relative">
+            {/* Visual Column - Hidden on mobile, shown on lg+ */}
+            <div className="hidden lg:block lg:col-span-5 relative order-2 lg:order-2">
               <GSAPFadeIn direction="right" delay={0.6} duration={1.2}>
                 <div className="relative aspect-[4/3] max-w-md mx-auto">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#ff003c]/20 via-transparent to-[#03b3c3]/20 rounded-3xl blur-3xl opacity-50" />
                   <div className="relative h-full rounded-3xl bg-gradient-to-br from-[#08080c] to-[#0d0d12] border border-[#232330] p-1">
                     <div className="h-full rounded-2xl bg-[#030305] border border-[#1a1a24] flex items-center justify-center">
-                      <div className="text-center p-8">
-                        <Cpu className="h-24 w-24 mx-auto mb-6 text-[#ff003c]/50 animate-pulse" />
+                      <div className="text-center p-6 sm:p-8">
+                        <Cpu className="h-20 w-20 sm:h-24 sm:w-24 mx-auto mb-4 sm:mb-6 text-[#ff003c]/50 animate-pulse" />
                         <p className="text-[#6b6b7a] font-medium">HYPERSPEED ENGINE ACTIVE</p>
                         <p className="text-[11px] text-[#3a3a4a] mt-2">WebGL Particle Simulation</p>
                       </div>
                     </div>
                   </div>
-                  <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#03b3c3] opacity-20 blur-2xl" />
+                  <div className="absolute -bottom-6 -right-6 w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#03b3c3] opacity-20 blur-2xl" />
+                </div>
+              </GSAPFadeIn>
+            </div>
+
+            {/* Mobile Visual - Shown only on mobile/sm */}
+            <div className="lg:hidden order-2">
+              <GSAPFadeIn direction="up" delay={0.6} duration={1.2}>
+                <div className="relative aspect-[4/3] max-w-md mx-auto mt-8">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#ff003c]/20 via-transparent to-[#03b3c3]/20 rounded-3xl blur-3xl opacity-50" />
+                  <div className="relative h-full rounded-3xl bg-gradient-to-br from-[#08080c] to-[#0d0d12] border border-[#232330] p-1">
+                    <div className="h-full rounded-2xl bg-[#030305] border border-[#1a1a24] flex items-center justify-center">
+                      <div className="text-center p-6">
+                        <Cpu className="h-16 w-16 mx-auto mb-4 text-[#ff003c]/50 animate-pulse" />
+                        <p className="text-[#6b6b7a] font-medium">HYPERSPEED ENGINE ACTIVE</p>
+                        <p className="text-[11px] text-[#3a3a4a] mt-2">WebGL Particle Simulation</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#03b3c3] opacity-20 blur-2xl" />
                 </div>
               </GSAPFadeIn>
             </div>

@@ -727,6 +727,187 @@
     ring-offset: 2px;
     ring-offset-color: var(--background);
   }
+
+  .container-qb {
+    container-type: inline-size;
+    container-name: qb;
+  }
+
+  @container qb (max-width: 640px) {
+    .qb\:grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .qb\:flex-col {
+      flex-direction: column;
+    }
+    .qb\:text-sm {
+      font-size: 0.875rem;
+    }
+    .qb\:text-base {
+      font-size: 1rem;
+    }
+    .qb\:px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .qb\:gap-4 {
+      gap: 1rem;
+    }
+  }
+
+  @container qb (min-width: 641px) and (max-width: 1024px) {
+    .qb\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .qb\:gap-6 {
+      gap: 1.5rem;
+    }
+  }
+
+  @container qb (min-width: 1025px) {
+    .qb\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .qb\:grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .qb\:gap-8 {
+      gap: 2rem;
+    }
+  }
+
+  .text-fluid-xs {
+    font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  }
+
+  .text-fluid-sm {
+    font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  }
+
+  .text-fluid-base {
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  }
+
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  }
+
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(1.875rem, 1.65rem + 1.125vw, 2.5rem);
+  }
+
+  .text-fluid-4xl {
+    font-size: clamp(2.25rem, 1.95rem + 1.5vw, 3rem);
+  }
+
+  .text-fluid-5xl {
+    font-size: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  }
+
+  .space-fluid-y-4 > * + * {
+    margin-top: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+  }
+
+  .space-fluid-y-6 > * + * {
+    margin-top: clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem);
+  }
+
+  .space-fluid-y-8 > * + * {
+    margin-top: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+  }
+
+  .gap-fluid-4 {
+    gap: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+  }
+
+  .gap-fluid-6 {
+    gap: clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem);
+  }
+
+  .gap-fluid-8 {
+    gap: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+  }
+
+  .p-fluid-4 {
+    padding: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+  }
+
+  .p-fluid-6 {
+    padding: clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem);
+  }
+
+  .p-fluid-8 {
+    padding: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+  }
+
+  .px-fluid-4 {
+    padding-left: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+    padding-right: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+  }
+
+  .px-fluid-6 {
+    padding-left: clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem);
+    padding-right: clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem);
+  }
+
+  .py-fluid-4 {
+    padding-top: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+    padding-bottom: clamp(1rem, 0.875rem + 0.625vw, 1.5rem);
+  }
+
+  .py-fluid-6 {
+    padding-top: clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem);
+    padding-bottom: clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem);
+  }
+
+  .py-fluid-8 {
+    padding-top: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+    padding-bottom: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+  }
+
+  .rounded-fluid-xl {
+    border-radius: clamp(1rem, 0.875rem + 0.625vw, 1.25rem);
+  }
+
+  .rounded-fluid-2xl {
+    border-radius: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);
+  }
+
+  .w-fluid-full {
+    width: 100%;
+  }
+
+  .max-w-fluid-screen {
+    max-width: 100vw;
+  }
+
+  .overflow-x-hidden {
+    overflow-x: hidden;
+  }
+
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .touch-target-sm {
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  .safe-area-inset {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 @media (max-width: 768px) {
@@ -753,5 +934,99 @@
 
   .section {
     padding: 48px 0;
+  }
+}
+
+/* Global mobile-friendly styles */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Ensure all images are responsive */
+img, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Touch target minimum sizes */
+button, a, input, select, textarea, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (max-width: 480px) {
+  button, a, input, select, textarea, [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Prevent text overflow */
+p, span, h1, h2, h3, h4, h5, h6, li, td, th, label {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Ensure form inputs don't cause horizontal scroll */
+input, textarea, select {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile-first responsive tables */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead { display: none; }
+  tr { margin-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  td { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 0.5rem 0;
+    text-align: right;
+  }
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--foreground-muted);
+  }
+}
+
+/* Ensure modals/drawers don't exceed viewport */
+[class*="fixed"][class*="inset-0"], [class*="fixed"][class*="max-h-"] {
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+/* Prevent horizontal scroll from long words/urls */
+pre, code {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  .safe-area-top { padding-top: max(1rem, env(safe-area-inset-top)); }
+  .safe-area-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .safe-area-left { padding-left: max(1rem, env(safe-area-inset-left)); }
+  .safe-area-right { padding-right: max(1rem, env(safe-area-inset-right)); }
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+  .group-hover\:scale-105:hover,
+  .group-hover\:scale-110:hover,
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover,
+  .hover\:-translate-y-1:hover {
+    transform: none;
   }
 }

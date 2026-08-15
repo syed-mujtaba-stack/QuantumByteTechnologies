@@ -48,7 +48,7 @@ export function ProductCard({ product }: { product: Product }) {
                 addToWishlist(product);
               }}
               aria-label={wished ? 'Remove from wishlist' : 'Add to wishlist'}
-              className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-300 ${
+              className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-300 touch-target ${
                 wished
                   ? 'bg-[#ff003c] text-white shadow-lg shadow-[#ff003c]/40'
                   : 'bg-[#08080c]/90 text-white/80 hover:bg-[#ff003c] hover:text-white hover:shadow-lg hover:shadow-[#ff003c]/30 backdrop-blur-sm'
@@ -67,7 +67,7 @@ export function ProductCard({ product }: { product: Product }) {
               alt={product.name}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="object-contain bg-[#030305] transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"
             />
 
@@ -78,7 +78,7 @@ export function ProductCard({ product }: { product: Product }) {
                   e.stopPropagation();
                   addToCart(product);
                 }}
-                className="btn btn-primary w-full sm:w-auto flex-1"
+                className="btn btn-primary w-full sm:w-auto flex-1 touch-target"
               >
                 <ShoppingBag className="h-4.5 w-4.5" />
                 <span>Add to Cart</span>
@@ -89,7 +89,7 @@ export function ProductCard({ product }: { product: Product }) {
                   e.stopPropagation();
                   openProductDetail(product);
                 }}
-                className="btn btn-secondary w-full sm:w-auto flex-1"
+                className="btn btn-secondary w-full sm:w-auto flex-1 touch-target"
               >
                 <Eye className="h-4.5 w-4.5" />
                 <span>Quick View</span>
@@ -98,7 +98,7 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col p-5 space-y-4">
+        <div className="flex flex-1 flex-col p-4 sm:p-5 space-y-4">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#ff003c]">
@@ -113,7 +113,7 @@ export function ProductCard({ product }: { product: Product }) {
 
             <h3
               onClick={() => openProductDetail(product)}
-              className="text-base font-bold text-white leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-[#ff003c] cursor-pointer"
+              className="text-base sm:text-lg font-bold text-white leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-[#ff003c] cursor-pointer"
             >
               {product.name}
             </h3>
@@ -122,13 +122,13 @@ export function ProductCard({ product }: { product: Product }) {
               {product.specs?.slice(0, 3).map((spec, idx) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-0.5 text-[10px] text-[#6b6b7a] bg-[#08080c] border border-[#1a1a24] rounded-full hover:border-[#ff003c]/30 hover:text-white transition-all"
+                  className="px-2.5 py-0.5 text-[10px] text-[#6b6b7a] bg-[#08080c] border border-[#1a1a24] rounded-full hover:border-[#ff003c]/30 hover:text-white transition-all whitespace-nowrap"
                 >
                   {spec}
                 </span>
               ))}
               {product.specs && product.specs.length > 3 && (
-                <span className="px-2.5 py-0.5 text-[10px] text-[#6b6b7a] bg-[#08080c] border border-[#1a1a24] rounded-full">
+                <span className="px-2.5 py-0.5 text-[10px] text-[#6b6b7a] bg-[#08080c] border border-[#1a1a24] rounded-full whitespace-nowrap">
                   +{product.specs.length - 3} more
                 </span>
               )}
@@ -138,7 +138,7 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="mt-auto pt-4 border-t border-[#1a1a24]">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-baseline gap-2">
-                <span className="text-xl font-black text-white">{formatPKR(product.price)}</span>
+                <span className="text-xl sm:text-2xl font-black text-white">{formatPKR(product.price)}</span>
                 {product.discountPrice && (
                   <span className="text-sm text-[#6b6b7a] line-through">{formatPKR(product.discountPrice)}</span>
                 )}
@@ -151,13 +151,13 @@ export function ProductCard({ product }: { product: Product }) {
 
             <button
               onClick={() => addToCart(product)}
-              className="group btn btn-primary w-full justify-center gap-2"
+              className="group btn btn-primary w-full justify-center gap-2 touch-target"
             >
               <ShoppingBag className="h-4.5 w-4.5 transition-transform group-hover:scale-110" />
               <span>Add to Cart</span>
             </button>
 
-            <div className="flex items-center justify-center gap-4 pt-3 text-[10px] text-[#6b6b7a]">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 text-[10px] text-[#6b6b7a]">
               <span className="flex items-center gap-1">
                 <Truck className="h-3.5 w-3.5" />
                 Free Shipping

@@ -180,7 +180,7 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
               ) : (
                 <>
                   <div
-                    className={`grid gap-6 ${viewMode === 'list' ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'}`}
+                    className={`grid gap-4 sm:gap-6 ${viewMode === 'list' ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4'}`}
                     role="list"
                     aria-label="Product catalog"
                   >
@@ -269,7 +269,7 @@ function ProductMarquee({ products }: { products: Product[] }) {
 
       <div className="qb-marquee-track">
         {items.map((product, idx) => (
-          <div key={`${product.id}-${idx}`} className="w-[280px] sm:w-[300px] shrink-0 pr-6">
+          <div key={`${product.id}-${idx}`} className="w-[260px] sm:w-[280px] lg:w-[300px] shrink-0 pr-4">
             <ProductCard product={product} />
           </div>
         ))}

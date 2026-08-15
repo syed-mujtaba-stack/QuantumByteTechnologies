@@ -47,27 +47,40 @@ export function Preloader() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#050505]"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#030305]"
       aria-hidden
     >
-      <div className="qb-pre-inner flex flex-col items-center gap-6">
-        <div className="qb-pre-logo flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#990024] text-white shadow-2xl shadow-[#ff003c]/40">
-          <Cpu className="h-10 w-10" />
+      <div className="qb-pre-inner flex flex-col items-center gap-5 lg:gap-7 px-4">
+        <div className="qb-pre-logo flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#990024] text-white shadow-2xl shadow-[#ff003c]/40"
+             style={{ 
+               width: 'clamp(64px, 18vw, 80px)', 
+               height: 'clamp(64px, 18vw, 80px)',
+               minWidth: '64px',
+               minHeight: '64px',
+             }}>
+          <Cpu className="h-8 w-8 lg:h-10 lg:w-10" style={{ 
+            width: 'clamp(32px, 9vw, 40px)', 
+            height: 'clamp(32px, 9vw, 40px)',
+          }} />
         </div>
 
-        <div className="flex overflow-hidden">
+        <div className="flex overflow-hidden flex-wrap justify-center">
           {WORD.split('').map((letter, i) => (
             <span
               key={i}
-              className="qb-pre-word inline-block text-2xl font-black tracking-[0.18em] text-white"
-              style={{ opacity: 0 }}
+              className="qb-pre-word inline-block font-black tracking-[0.12em] text-white"
+              style={{ 
+                fontSize: 'clamp(1rem, 3.5vw, 1.75rem)',
+                opacity: 0,
+                whiteSpace: 'nowrap',
+              }}
             >
               {letter}
             </span>
           ))}
         </div>
 
-        <div className="h-[3px] w-48 overflow-hidden rounded-full bg-[#16161f]">
+        <div className="h-[3px] w-full max-w-[280px] overflow-hidden rounded-full bg-[#16161f]">
           <div className="qb-pre-bar h-full w-full origin-left scale-x-0 bg-[#ff003c] shadow-[0_0_10px_rgba(255,0,60,0.8)]" />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/app/context/CartContext";
@@ -26,6 +26,12 @@ export const metadata: Metadata = {
   keywords: ["QuantumByte Technologies", "Computers", "Laptops", "Mobiles", "Chargers", "PC Parts", "IT Services", "Custom PC Build", "Hardware Repair"],
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -36,7 +42,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full dark antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#050505] text-white">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#030305] text-white">
         <Preloader />
         <SmoothScroll />
         <ScrollProgress />

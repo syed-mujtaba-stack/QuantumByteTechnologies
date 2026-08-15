@@ -1,7 +1,7 @@
 'use client';
 
 import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect, SMAAPreset } from 'postprocessing';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 import './Hyperspeed.css';
@@ -356,7 +356,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }: HyperspeedProps)
       camera: THREE.PerspectiveCamera;
       scene: THREE.Scene;
       fogUniforms: any;
-      clock: THREE.Clock;
+      clock: any;
       assets: any;
       disposed = false;
       road: any;
@@ -386,12 +386,24 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }: HyperspeedProps)
 
         this.renderer = new THREE.WebGLRenderer({
           antialias: false,
-          alpha: true
+          alpha: true,
+          powerPreference: 'high-performance',
         });
         this.renderer.setSize(initW, initH, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
+
+        this.renderer.domElement.addEventListener('webglcontextlost', (event) => {
+          event.preventDefault();
+          console.warn('[Hyperspeed] WebGL context lost, will attempt to restore');
+        });
+        this.renderer.domElement.addEventListener('webglcontextrestored', () => {
+          console.log('[Hyperspeed] WebGL context restored');
+          if (this.hasValidSize) {
+            this.onWindowResize();
+          }
+        });
 
         this.camera = new THREE.PerspectiveCamera(options.fov, initW / initH, 0.1, 10000);
         this.camera.position.z = -5;
@@ -408,6 +420,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }: HyperspeedProps)
           fogFar: { value: fog.far }
         };
         this.clock = new THREE.Clock();
+        this.clock.start();
         this.assets = {};
         this.disposed = false;
 
@@ -555,7 +568,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }: HyperspeedProps)
         this.speedUp += lerp(this.speedUp, this.speedUpTarget, lerpPercentage, 0.00001);
         this.timeOffset += this.speedUp * delta;
 
-        let time = this.clock.elapsedTime + this.timeOffset;
+        let time = this.clock.getElapsedTime() + this.timeOffset;
 
         this.rightCarLights.update(time);
         this.leftCarLights.update(time);

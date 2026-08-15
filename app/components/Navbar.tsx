@@ -85,7 +85,7 @@ export function Navbar() {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full overflow-visible transition-all duration-300 ${
         scrolled ? 'bg-[#030305]/95 backdrop-blur-xl border-b border-[#232330] shadow-xl shadow-[#000000]/50' : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -112,18 +112,33 @@ export function Navbar() {
         </div>
       </div>
 
+      <div className="lg:hidden border-b border-[#1a1a24] bg-[#050505]/80 backdrop-blur-sm px-4 py-2">
+        <div className="mx-auto max-w-7xl flex items-center justify-between gap-4 flex-wrap">
+          <span className="flex items-center gap-1.5 text-xs font-bold text-white">
+            <ShieldCheck className="h-3.5 w-3.5 text-[#ff003c]" />
+            100% Genuine Guarantee
+          </span>
+          <div className="flex items-center gap-3">
+            <Link href="/deals" className="flex items-center gap-1 text-xs font-bold text-[#ff003c] hover:underline transition-colors whitespace-nowrap">
+              <Flame className="h-3.5 w-3.5" /> Deals
+            </Link>
+            <Link href="/contact" className="text-xs text-[#6b6b7a] hover:text-white transition-colors whitespace-nowrap">Contact</Link>
+          </div>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-18">
-          <Link href="/" className="group flex items-center gap-3 flex-shrink-0" aria-label="QuantumByte Technologies Home">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff003c] to-[#990024] p-2 shadow-lg shadow-[#ff003c]/20 group-hover:scale-105 transition-transform duration-300">
+          <Link href="/" className="group flex items-center gap-3 flex-shrink-0 min-w-0" aria-label="QuantumByte Technologies Home">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff003c] to-[#990024] p-2 shrink-0 shadow-lg shadow-[#ff003c]/20 group-hover:scale-105 transition-transform duration-300">
               <Cpu className="h-6 w-6 text-white" />
               <div className="absolute -inset-0.5 rounded-xl bg-[#ff003c] opacity-30 blur group-hover:opacity-60 transition-opacity duration-300" />
             </div>
-            <div className="hidden sm:block flex flex-col">
-              <span className="text-lg font-black tracking-tight text-white">
+            <div className="hidden sm:block flex flex-col min-w-0">
+              <span className="text-lg font-black tracking-tight text-white truncate">
                 QUANTUM<span className="text-[#ff003c]">BYTE</span>
               </span>
-              <span className="text-[9px] font-bold tracking-widest text-[#6b6b7a] uppercase">Technologies</span>
+              <span className="text-[9px] font-bold tracking-widest text-[#6b6b7a] uppercase truncate">Technologies</span>
             </div>
           </Link>
 
@@ -156,7 +171,7 @@ export function Navbar() {
               </button>
 
               {showCategoryMenu && (
-                <div className="absolute left-0 top-full mt-2 w-56 rounded-xl border border-[#232330] bg-[#0d0d12] py-2 shadow-2xl shadow-[#000000]/50 animate-slide-down">
+                <div className="absolute left-0 top-full mt-2 w-full sm:max-w-[22rem] max-w-[calc(100vw-2rem)] rounded-xl border border-[#232330] bg-[#0d0d12] py-2 shadow-2xl shadow-[#000000]/50 animate-slide-down z-50">
                   {categoriesList.map((cat) => {
                     const Icon = cat.icon;
                     const isActive = selectedCategory === cat.id;
@@ -165,13 +180,13 @@ export function Navbar() {
                         key={cat.id}
                         href={cat.href}
                         onClick={() => handleCategorySelect(cat.id)}
-                        className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
+                        className={`flex w-full items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-200 touch-target-sm ${
                           isActive
                             ? 'bg-[#ff003c]/15 text-[#ff003c] font-bold'
                             : 'text-white/80 hover:bg-[#14141a] hover:text-white'
                         }`}
                       >
-                        <Icon className={`h-4 w-4 ${isActive ? 'text-[#ff003c]' : 'text-[#6b6b7a]'}`} />
+                        <Icon className={`h-4.5 w-4.5 ${isActive ? 'text-[#ff003c]' : 'text-[#6b6b7a]'}`} />
                         {cat.label}
                       </Link>
                     );
@@ -222,22 +237,22 @@ export function Navbar() {
 
             <Link
               href={user ? '/account/dashboard' : '/account/login'}
-              className="btn btn-ghost flex h-11 items-center gap-2.5 px-3 lg:px-4 text-sm font-bold text-white/80 hover:text-white hover:bg-[#08080c] transition-all rounded-xl"
+              className="btn btn-ghost flex h-11 items-center gap-2.5 px-3 lg:px-4 text-sm font-bold text-white/80 hover:text-white hover:bg-[#08080c] transition-all rounded-xl touch-target"
               title={user ? `Signed in as ${user.name}` : 'Sign in / Register'}
             >
               {user ? (
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#ff003c] to-[#990024] text-[11px] font-black text-white">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#ff003c] to-[#990024] text-[11px] font-black text-white shrink-0">
                   {userInitials}
                 </span>
               ) : (
-                <User className="h-5 w-5 text-[#6b6b7a]" />
+                <User className="h-5 w-5 text-[#6b6b7a] shrink-0" />
               )}
-              <span className="hidden sm:inline">{user ? 'Account' : 'Sign In'}</span>
+              <span className="hidden sm:inline truncate">{user ? 'Account' : 'Sign In'}</span>
             </Link>
 
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative btn btn-icon btn-primary group"
+              className="relative btn btn-icon btn-primary group shrink-0 touch-target"
               aria-label={`Shopping Cart ${cartCount > 0 ? `with ${cartCount} items` : 'empty'}`}
             >
               <ShoppingBag className="h-5.5 w-5.5 transition-transform group-hover:scale-110" />
@@ -250,7 +265,7 @@ export function Navbar() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="btn btn-icon btn-ghost lg:hidden text-white/80 hover:text-white hover:bg-[#08080c]"
+              className="btn btn-icon btn-ghost lg:hidden text-white/80 hover:text-white hover:bg-[#08080c] touch-target"
               aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -261,7 +276,7 @@ export function Navbar() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-[#1a1a24] bg-[#030305] px-4 py-4 animate-slide-down shadow-xl shadow-[#000000]/50">
+        <div className="lg:hidden border-t border-[#1a1a24] bg-[#030305] px-4 py-4 animate-slide-down shadow-xl shadow-[#000000]/50 safe-area-inset">
           <div className="mb-4 relative">
             <Search className="absolute left-3.5 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6b6b7a]" aria-hidden="true" />
             <input
@@ -269,7 +284,7 @@ export function Navbar() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search products..."
-              className="w-full h-11 rounded-xl border border-[#232330] bg-[#08080c] py-2.5 pl-11 pr-4 text-sm text-white placeholder-[#6b6b7a] outline-none focus:border-[#ff003c] focus:ring-2 focus:ring-[#ff003c]/20"
+              className="w-full h-12 rounded-xl border border-[#232330] bg-[#08080c] py-2.5 pl-11 pr-4 text-base text-white placeholder-[#6b6b7a] outline-none focus:border-[#ff003c] focus:ring-2 focus:ring-[#ff003c]/20 touch-target"
             />
           </div>
 
@@ -282,13 +297,13 @@ export function Navbar() {
                 <button
                   key={cat.id}
                   onClick={() => handleMobileCategorySelect(cat.id)}
-                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-all duration-200 touch-target ${
                     isActive
                       ? 'bg-[#ff003c]/15 text-[#ff003c] font-bold'
                       : 'text-white/80 hover:bg-[#08080c] hover:text-white'
                   }`}
                 >
-                  <Icon className={`h-4.5 w-4.5 ${isActive ? 'text-[#ff003c]' : 'text-[#6b6b7a]'}`} />
+                  <Icon className={`h-5 w-5 ${isActive ? 'text-[#ff003c]' : 'text-[#6b6b7a]'}`} />
                   {cat.label}
                 </button>
               );
@@ -300,25 +315,25 @@ export function Navbar() {
                   setMobileMenuOpen(false);
                   openBooking();
                 }}
-                className="btn btn-primary w-full py-3"
+                className="btn btn-primary w-full py-4 touch-target"
               >
-                <Wrench className="h-4.5 w-4.5" />
+                <Wrench className="h-5 w-5" />
                 Book Custom PC Build / IT Repair
               </button>
 
               <Link
                 href="/deals"
-                className="btn btn-secondary w-full py-3 justify-center"
+                className="btn btn-secondary w-full py-4 justify-center touch-target"
               >
-                <Flame className="h-4.5 w-4.5" />
+                <Flame className="h-5 w-5" />
                 View Flash Deals
               </Link>
 
               <Link
                 href="/new-arrivals"
-                className="btn btn-outline w-full py-3 justify-center"
+                className="btn btn-outline w-full py-4 justify-center touch-target"
               >
-                <Sparkles className="h-4.5 w-4.5" />
+                <Sparkles className="h-5 w-5" />
                 New Arrivals
               </Link>
             </div>
