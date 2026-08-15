@@ -6,7 +6,6 @@ import { CheckoutModal } from '@/app/components/CheckoutModal';
 import { ServiceBookingModal } from '@/app/components/ServiceBookingModal';
 import { TechFeaturesBanner } from '@/app/components/TechFeaturesBanner';
 import { StatsCounter } from '@/app/components/StatsCounter';
-import { FullPageDots } from '@/app/components/FullPageDots';
 import { Footer } from '@/app/components/Footer';
 import { CatalogClient } from '@/app/components/CatalogClient';
 import { fetchProducts, fetchITServices } from '@/sanity/lib/fetch';
@@ -22,10 +21,8 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
+    <div className="min-h-screen bg-[#030305] text-white flex flex-col font-sans selection:bg-[#ff003c] selection:text-white">
       <Navbar />
-      <FullPageDots />
-
       <main className="flex-1">
         {/* Hero Banner */}
         <Hero />

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Cpu, ShieldCheck, Mail, Send, MapPin, Phone, Truck, Wallet } from 'lucide-react';
+import { Cpu, ShieldCheck, Mail, Send, MapPin, Phone, Truck, Wallet, Headphones, RotateCcw } from 'lucide-react';
 
 const SocialIcons = {
   Twitter: () => (
@@ -32,7 +32,64 @@ const SocialIcons = {
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   ),
+  Youtube: () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  ),
 };
+
+const footerLinks = {
+  shop: [
+    { label: 'All Products', href: '/shop' },
+    { label: 'New Arrivals', href: '/new-arrivals' },
+    { label: 'Best Sellers', href: '/best-sellers' },
+    { label: 'Flash Deals', href: '/deals' },
+    { label: 'Compare Products', href: '/compare' },
+    { label: 'My Wishlist', href: '/wishlist' },
+  ],
+  categories: [
+    { label: 'Gaming Desktops', href: '/categories/computers' },
+    { label: 'Gaming Laptops', href: '/categories/laptops' },
+    { label: 'Smartphones', href: '/categories/mobiles' },
+    { label: 'Chargers & Docks', href: '/categories/chargers' },
+    { label: 'PC Components', href: '/categories/parts' },
+    { label: 'Monitors & Displays', href: '/categories/monitors' },
+    { label: 'Gaming Accessories', href: '/categories/accessories' },
+    { label: 'Networking & Storage', href: '/categories/networking' },
+    { label: 'All Categories', href: '/categories' },
+  ],
+  company: [
+    { label: 'About Us', href: '/about' },
+    { label: 'Contact Us', href: '/contact' },
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Press & Media', href: '/press' },
+  ],
+  support: [
+    { label: 'Shipping Policy', href: '/shipping-policy' },
+    { label: 'Refund & Returns', href: '/refund-policy' },
+    { label: 'Warranty Info', href: '/warranty' },
+    { label: 'Repair Services', href: '/repair' },
+    { label: 'Track Order', href: '/track-order' },
+    { label: 'Contact Support', href: '/contact' },
+  ],
+  legal: [
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms & Conditions', href: '/terms' },
+    { label: 'Cookie Policy', href: '/cookies' },
+    { label: 'Accessibility', href: '/accessibility' },
+  ],
+};
+
+const socialLinks = [
+  { Icon: SocialIcons.WhatsApp, href: 'https://wa.me/923254803957', label: 'WhatsApp', color: 'hover:text-green-500' },
+  { Icon: SocialIcons.Twitter, href: '#', label: 'X / Twitter', color: 'hover:text-sky-400' },
+  { Icon: SocialIcons.Instagram, href: '#', label: 'Instagram', color: 'hover:text-pink-500' },
+  { Icon: SocialIcons.Youtube, href: '#', label: 'YouTube', color: 'hover:text-red-500' },
+  { Icon: SocialIcons.Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-600' },
+  { Icon: SocialIcons.Github, href: '#', label: 'GitHub', color: 'hover:text-white' },
+];
 
 export function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -48,169 +105,222 @@ export function Footer() {
   };
 
   return (
-    <footer id="site-footer" className="qb-page-section relative border-t border-[#1a1a26] bg-[#040407] text-[#a1a1aa] pt-16 pb-8">
+    <footer id="site-footer" className="relative border-t border-[#1a1a26] bg-[#030305] text-[#9c9ca8] pt-16 pb-8">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#ff003c]/50 to-transparent" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-6">
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(255,0,60,0.06)_0%,transparent_70%)]" />
 
-          {/* Brand Col */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff003c] to-[#990024] p-2 text-white shadow-lg shadow-[#ff003c]/30">
-                <Cpu className="h-6 w-6" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
+        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="lg:col-span-2 space-y-6">
+            <Link href="/" className="flex items-center gap-3" aria-label="QuantumByte Technologies Home">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#ff003c] to-[#990024] p-2.5 text-white shadow-lg shadow-[#ff003c]/30">
+                <Cpu className="h-6.5 w-6.5" />
               </div>
               <span className="text-xl font-black tracking-tight text-white">
                 QUANTUM<span className="text-[#ff003c]">BYTE</span>
               </span>
             </Link>
-            <p className="text-xs leading-relaxed max-w-sm text-[#a1a1aa]">
+            <p className="text-sm leading-relaxed max-w-sm text-[#9c9ca8]">
               QuantumByte Technologies — your high-performance hardware retailer and certified enterprise IT solution provider. Custom gaming rigs, laptops, mobiles, chargers, genuine parts, and micro-electronics repair.
             </p>
-            <div className="flex items-center gap-3 text-xs text-white pt-1">
-              <ShieldCheck className="h-4 w-4 text-[#ff003c]" />
-              <span>Official Registered Tech Brand &amp; Retailer</span>
+            <div className="flex items-center gap-2.5 text-sm font-medium text-white">
+              <ShieldCheck className="h-4.5 w-4.5 text-[#ff003c]" />
+              <span>Official Registered Tech Brand & Retailer</span>
             </div>
 
-            <div className="space-y-2.5 pt-1 text-xs">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#ff003c]" />
-                <span>Office No 7, 2nd Floor, AZ Mall<br />Platform, Back Side Al-Fateh Kohinoor,<br />Madina Town, Faisalabad, Punjab, Pakistan</span>
+            <div className="space-y-3 pt-2 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
+                  <MapPin className="h-4.5 w-4.5" />
+                </div>
+                <address className="not-italic text-[#9c9ca8] leading-relaxed">
+                  Office 7, 2nd Floor, AZ Mall Platform<br />
+                  Back Side Al-Fateh Kohinoor<br />
+                  Madina Town, Faisalabad, Punjab, Pakistan
+                </address>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 shrink-0 text-[#ff003c]" />
-                <a href="tel:+923254803957" className="hover:text-[#ff003c] transition-colors">+92 325 4803957 (WhatsApp)</a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 shrink-0 text-[#ff003c]" />
-                <a href="mailto:support@quantumbyte.tech" className="hover:text-[#ff003c] transition-colors">support@quantumbyte.tech</a>
-              </div>
+              <a href="tel:+923254803957" className="flex items-center gap-3 text-[#9c9ca8] hover:text-[#ff003c] transition-colors">
+                <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#08080c] text-[#ff003c] border border-[#232330]">
+                  <Phone className="h-4.5 w-4.5" />
+                </div>
+                <span>+92 325 4803957 (WhatsApp)</span>
+              </a>
+              <a href="mailto:support@quantumbyte.tech" className="flex items-center gap-3 text-[#9c9ca8] hover:text-[#ff003c] transition-colors">
+                <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#08080c] text-[#ff003c] border border-[#232330]">
+                  <Mail className="h-4.5 w-4.5" />
+                </div>
+                <span>support@quantumbyte.tech</span>
+              </a>
             </div>
 
-            <div className="flex items-center gap-3 pt-1">
-              {(
-                [
-                  { Icon: SocialIcons.WhatsApp, href: 'https://wa.me/923254803957', label: 'WhatsApp' },
-                  { Icon: SocialIcons.Twitter, href: '#', label: 'X / Twitter' },
-                  { Icon: SocialIcons.Instagram, href: '#', label: 'Instagram' },
-                  { Icon: SocialIcons.Linkedin, href: '#', label: 'LinkedIn' },
-                  { Icon: SocialIcons.Github, href: '#', label: 'GitHub' },
-                ] as { Icon: () => React.ReactElement; href: string; label: string }[]
-              ).map(({ Icon, href, label }) => (
-                <a key={label} href={href} aria-label={label}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#22222e] bg-[#0e0e12] text-[#71717a] hover:border-[#ff003c]/60 hover:text-[#ff003c] transition-all duration-200">
+            <div className="flex items-center gap-3 pt-2">
+              {socialLinks.map(({ Icon, href, label, color }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex h-10 w-10 items-center justify-center rounded-xl border border-[#232330] bg-[#08080c] text-[#6b6b7a] transition-all duration-300 ${color}`}
+                >
                   <Icon />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Shop Links */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Shop</h4>
-            <ul className="space-y-2 text-xs">
-              {[
-                { label: 'All Products', href: '/shop' },
-                { label: 'New Arrivals', href: '/new-arrivals' },
-                { label: 'Best Sellers', href: '/best-sellers' },
-                { label: 'Deals & Offers', href: '/deals' },
-                { label: 'Compare Products', href: '/compare' },
-                { label: 'My Wishlist', href: '/wishlist' },
-              ].map(({ label, href }) => (
-                <li key={href}><Link href={href} className="hover:text-[#ff003c] transition-colors">{label}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Categories</h4>
-            <ul className="space-y-2 text-xs">
-              {[
-                { label: 'Gaming Desktops', href: '/categories/computers' },
-                { label: 'Gaming Laptops', href: '/categories/laptops' },
-                { label: 'Smartphones', href: '/categories/mobiles' },
-                { label: 'Chargers & Docks', href: '/categories/chargers' },
-                { label: 'PC Components', href: '/categories/parts' },
-                { label: 'All Categories', href: '/categories' },
-              ].map(({ label, href }) => (
-                <li key={href}><Link href={href} className="hover:text-[#ff003c] transition-colors">{label}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
-            <ul className="space-y-2 text-xs">
-              {[
-                { label: 'About Us', href: '/about' },
-                { label: 'Contact Us', href: '/contact' },
-                { label: 'FAQ', href: '/faq' },
-                { label: 'Privacy Policy', href: '/privacy-policy' },
-                { label: 'Terms & Conditions', href: '/terms' },
-                { label: 'Refund Policy', href: '/refund-policy' },
-                { label: 'Shipping Policy', href: '/shipping-policy' },
-              ].map(({ label, href }) => (
-                <li key={href}><Link href={href} className="hover:text-[#ff003c] transition-colors">{label}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter + Account */}
           <div className="space-y-4">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Stay Updated</h4>
-            <p className="text-xs">Subscribe for hardware drops, price alerts &amp; tech news.</p>
-            <p className="text-[11px] text-[#71717a]">Support Hours: Mon–Sat, 10AM–8PM PKT</p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#71717a]" />
-                <input type="email" required value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  placeholder="Enter your email..."
-                  className="w-full rounded-xl border border-[#22222e] bg-[#0e0e12] py-2 pl-9 pr-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c] transition-colors"
-                />
-              </div>
-              <button type="submit"
-                className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-2 text-xs font-extrabold text-white">
-                <Send className="h-3.5 w-3.5" />
-                {subscribed ? '✓ Subscribed!' : 'Subscribe'}
-              </button>
-            </form>
-            <div className="pt-2 space-y-2">
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Account</h4>
-              <ul className="space-y-2 text-xs">
-                {[
-                  { label: 'My Dashboard', href: '/account' },
-                  { label: 'My Orders', href: '/account/orders' },
-                  { label: 'My Wishlist', href: '/account/wishlist' },
-                  { label: 'Login / Register', href: '/account/login' },
-                ].map(({ label, href }) => (
-                  <li key={href}><Link href={href} className="hover:text-[#ff003c] transition-colors">{label}</Link></li>
-                ))}
-              </ul>
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Shop</h4>
+            <ul className="space-y-3 text-sm" role="list">
+              {footerLinks.shop.map(({ label, href }) => (
+                <li key={href}>
+                  <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Categories</h4>
+            <ul className="space-y-3 text-sm" role="list">
+              {footerLinks.categories.map(({ label, href }) => (
+                <li key={href}>
+                  <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+            <ul className="space-y-3 text-sm" role="list">
+              {footerLinks.company.map(({ label, href }) => (
+                <li key={href}>
+                  <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-4 lg:col-span-2">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Support</h4>
+            <ul className="space-y-3 text-sm" role="list">
+              {footerLinks.support.map(({ label, href }) => (
+                <li key={href}>
+                  <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="pt-6 border-t border-[#1a1a24]">
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">Stay Updated</h4>
+              <p className="text-sm text-[#9c9ca8] mb-4">Subscribe for hardware drops, price alerts & tech news.</p>
+              <p className="text-xs text-[#6b6b7a] mb-4">Support Hours: Mon–Sat, 10AM–8PM PKT</p>
+              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-[#6b6b7a]" aria-hidden="true" />
+                  <input
+                    type="email"
+                    required
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder="Enter your email..."
+                    className="w-full h-11 rounded-xl border border-[#232330] bg-[#08080c] pl-11 pr-12 text-sm text-white placeholder-[#6b6b7a] outline-none transition-all focus:border-[#ff003c] focus:ring-2 focus:ring-[#ff003c]/20 focus:bg-[#0d0d12]"
+                    aria-label="Email address for newsletter"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary w-full justify-center gap-2"
+                  disabled={subscribed}
+                >
+                  <Send className="h-4.5 w-4.5" />
+                  {subscribed ? '��� Subscribed!' : 'Subscribe'}
+                </button>
+              </form>
             </div>
           </div>
         </div>
 
-        {/* Bottom Row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-[#1f1f2b] pt-8 text-xs gap-4">
-          <p>© {new Date().getFullYear()} QuantumByte Technologies. All Rights Reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-[#71717a]">
-            <Link href="/privacy-policy" className="hover:text-[#ff003c] transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-[#ff003c] transition-colors">Terms</Link>
-            <Link href="/refund-policy" className="hover:text-[#ff003c] transition-colors">Refunds</Link>
-            <Link href="/shipping-policy" className="hover:text-[#ff003c] transition-colors">Shipping</Link>
+        <div className="pt-8 border-t border-[#1a1a24]">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <p className="text-sm text-[#6b6b7a] text-center lg:text-left">
+              © {new Date().getFullYear()} QuantumByte Technologies. All Rights Reserved.
+            </p>
+
+            <nav className="flex flex-wrap items-center justify-center gap-6 text-sm" aria-label="Legal links">
+              {footerLinks.legal.map(({ label, href }) => (
+                <Link key={href} href={href} className="text-[#6b6b7a] hover:text-[#ff003c] transition-colors">
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex items-center justify-center gap-4 flex-wrap text-xs font-medium text-white">
+              <span className="flex items-center gap-1.5 rounded-lg bg-[#08080c] border border-[#232330] px-3 py-1.5">
+                <Truck className="h-4 w-4 text-[#30d158]" />
+                Cash on Delivery
+              </span>
+              <span className="flex items-center gap-1.5 rounded-lg bg-[#08080c] border border-dashed border-[#232330] px-3 py-1.5 opacity-70">
+                <Wallet className="h-4 w-4 text-[#ff003c]" />
+                EasyPaisa · Coming Soon
+              </span>
+              <span className="flex items-center gap-1.5 rounded-lg bg-[#08080c] border border-[#232330] px-3 py-1.5">
+                <ShieldCheck className="h-4 w-4 text-[#ff003c]" />
+                14-Day Returns
+              </span>
+            </div>
           </div>
-          <div className="flex items-center gap-3 text-white text-[11px] font-semibold">
-            <span className="flex items-center gap-1 rounded bg-[#0e0e12] border border-[#22222e] px-2 py-1">
-              <Truck className="h-3.5 w-3.5 text-[#22c55e]" /> Cash on Delivery
-            </span>
-            <span className="flex items-center gap-1 rounded bg-[#0e0e12] border border-dashed border-[#22222e] px-2 py-1 opacity-70">
-              <Wallet className="h-3.5 w-3.5 text-[#ff003c]" /> EasyPaisa · Coming Soon
-            </span>
+
+          <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-3 p-4 rounded-xl bg-[#08080c] border border-[#232330] hover:border-[#ff003c]/30 transition-colors">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c] shrink-0">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="font-semibold text-white">100% Genuine Products</p>
+                <p className="text-xs text-[#6b6b7a]">Official manufacturer warranty</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-center lg:justify-start gap-3 p-4 rounded-xl bg-[#08080c] border border-[#232330] hover:border-[#ff003c]/30 transition-colors">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#00d4aa]/10 text-[#00d4aa] shrink-0">
+                <Truck className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="font-semibold text-white">Free Express Shipping</p>
+                <p className="text-xs text-[#6b6b7a]">On orders over Rs. 15,000</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-center lg:justify-start gap-3 p-4 rounded-xl bg-[#08080c] border border-[#232330] hover:border-[#ff003c]/30 transition-colors">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#f5a623]/10 text-[#f5a623] shrink-0">
+                <RotateCcw className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="font-semibold text-white">Easy Returns</p>
+                <p className="text-xs text-[#6b6b7a]">14-day hassle-free policy</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-center lg:justify-start gap-3 p-4 rounded-xl bg-[#08080c] border border-[#232330] hover:border-[#ff003c]/30 transition-colors">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#03b3c3]/10 text-[#03b3c3] shrink-0">
+                <Headphones className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="font-semibold text-white">Expert Support</p>
+                <p className="text-xs text-[#6b6b7a]">Mon-Sat 10AM-8PM PKT</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+

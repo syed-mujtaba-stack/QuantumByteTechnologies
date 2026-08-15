@@ -1238,6 +1238,19 @@ discountPrice: 799,
 // ─────────────────────────────────────────────────────────
 // IT SERVICES DATA
 // ─────────────────────────────────────────────────────────
+const siteSettings = [
+  {
+    _type: 'siteSettings',
+    storeName: 'QuantumByte Technologies',
+    supportEmail: 'support@quantumbyte.tech',
+    supportPhone: '+92 300 1234567',
+    address: 'QuantumByte Technologies\nMadina Town, Faisalabad\nPunjab, Pakistan',
+    announcement: '���� New arrival: RTX 4090 & Custom PC Builds now available!',
+    announcementEnabled: true,
+    freeShippingThreshold: 50,
+  },
+]
+
 const itServices = [
   {
     _type: 'itService',
@@ -1330,17 +1343,19 @@ async function seedDocuments(docs, label) {
 }
 
 async function main() {
-  console.log('\n🚀 QuantumByte Technologies — Sanity Seed Script')
+  console.log('\n���� QuantumByte Technologies — Sanity Seed Script')
   console.log(`   Project: ${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}`)
   console.log(`   Dataset: ${process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'}\n`)
 
   await deleteExisting('product')
   await deleteExisting('itService')
+  await deleteExisting('siteSettings')
 
+  await seedDocuments(siteSettings, 'site settings')
   await seedDocuments(products, 'products')
   await seedDocuments(itServices, 'IT services')
 
-  console.log(`\n✅ Seeding complete! ${products.length} products + ${itServices.length} IT services added to Sanity.`)
+  console.log(`\n��� Seeding complete! ${siteSettings.length} site settings + ${products.length} products + ${itServices.length} IT services added to Sanity.`)
   console.log('   Visit your Sanity Studio at http://localhost:3000/studio to verify.\n')
 }
 

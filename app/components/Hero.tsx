@@ -3,11 +3,9 @@
 import React from 'react';
 import { useCart } from '@/app/context/CartContext';
 import { GSAPFadeIn } from './GSAPWrapper';
-import { WaveDivider } from './WaveDivider';
 import Hyperspeed from './Hyperspeed';
-import { ShieldCheck, Cpu, ArrowRight, Wrench, Sparkles, Star } from 'lucide-react';
+import { ShieldCheck, Cpu, ArrowRight, Wrench, Sparkles, Star, Zap, Truck, Headphones } from 'lucide-react';
 
-// Memoized so the WebGL scene isn't recreated on re-renders.
 const HYPERSPEED_OPTIONS = {
   distortion: 'turbulentDistortion',
   length: 400,
@@ -44,6 +42,15 @@ const HYPERSPEED_OPTIONS = {
   }
 };
 
+const features = [
+  { icon: ShieldCheck, label: '100% Genuine', desc: 'Official Warranty', color: 'text-[#ff003c]' },
+  { icon: Cpu, label: 'Custom PCs', desc: 'Overclocked & Tested', color: 'text-[#ff003c]' },
+  { icon: Star, label: '4.9/5 Rating', desc: '5,000+ Happy Clients', color: 'text-[#ffb800]' },
+  { icon: Zap, label: 'GaN Chargers', desc: 'Fast & Compact', color: 'text-[#00d4aa]' },
+  { icon: Truck, label: 'Express Delivery', desc: 'Nationwide Shipping', color: 'text-[#00d4aa]' },
+  { icon: Headphones, label: '24/7 Support', desc: 'Expert Tech Help', color: 'text-[#ff003c]' },
+];
+
 export function Hero() {
   const { openBooking, setSelectedCategory } = useCart();
 
@@ -62,109 +69,101 @@ export function Hero() {
   return (
     <section
       id="hero-section"
-      className="qb-page-section relative overflow-hidden border-b border-[#22222e] bg-[#050505]"
+      className="relative overflow-hidden border-b border-[#232330] bg-[#030305] min-h-[90vh] flex items-center"
     >
-      {/* Hyperspeed — full-bleed animated background */}
       <div className="absolute inset-0 z-0">
         <Hyperspeed effectOptions={HYPERSPEED_OPTIONS} />
       </div>
 
-      {/* Readability scrim over the animation */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#050505]/85 via-[#050505]/40 to-[#050505]/85" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#030305]/95 via-[#030305]/60 to-[#030305]/95" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,rgba(255,0,60,0.08)_0%,transparent_70%)]" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          {/* Left Column: Heading & CTAs */}
-          <div className="lg:col-span-8 space-y-6 text-center lg:text-left">
-            {/* Top Badge */}
-            <GSAPFadeIn direction="down" delay={0.1}>
-              <div className="inline-flex items-center gap-2.5 rounded-full border border-[#ff003c]/40 bg-[#050505]/70 px-4 py-1.5 text-xs font-extrabold text-white backdrop-blur-md shadow-lg shadow-[#ff003c]/10">
-                <Sparkles className="h-3.5 w-3.5 text-[#ff003c] animate-spin" />
-                <span>QUANTUMBYTE TECHNOLOGIES</span>
-                <span className="h-1 w-1 rounded-full bg-[#ff003c]" />
-                <span className="text-[#a1a1aa] uppercase tracking-wider font-semibold">Official Hardware &amp; IT Hub</span>
-              </div>
-            </GSAPFadeIn>
-
-            {/* Main Headline */}
-            <GSAPFadeIn direction="up" delay={0.2}>
-              <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
-                NEXT-GEN <span className="bg-gradient-to-r from-white via-white to-[#ff003c] bg-clip-text text-transparent">COMPUTERS</span> &amp; ENTERPRISE{' '}
-                <span className="relative inline-block text-[#ff003c] glow-red-text">
-                  IT SERVICES
-                </span>
-              </h1>
-            </GSAPFadeIn>
-
-            {/* Subtitle */}
-            <GSAPFadeIn direction="up" delay={0.3}>
-              <p className="max-w-2xl text-base text-[#c9c9d1] sm:text-lg lg:text-xl font-normal leading-relaxed mx-auto lg:mx-0">
-                Your premier source for high-performance Gaming PCs, MacBooks, Smartphones, GaN Chargers, Genuine Component Parts, and full-scale Enterprise IT Solutions.
-              </p>
-            </GSAPFadeIn>
-
-            {/* Buttons */}
-            <GSAPFadeIn direction="up" delay={0.4}>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                <button
-                  onClick={handleExploreStore}
-                  className="group red-gradient-btn flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-[#ff003c]/25"
-                >
-                  Shop Products &amp; Parts
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </button>
-
-                <button
-                  onClick={() => openBooking()}
-                  className="flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl border border-[#22222e] bg-[#0e0e12]/80 px-7 py-4 text-sm font-bold text-white transition hover:border-[#ff003c] hover:bg-[#16161f]"
-                >
-                  <Wrench className="h-4 w-4 text-[#ff003c]" />
-                  Book IT Consultation
-                </button>
-              </div>
-            </GSAPFadeIn>
-
-            {/* Trust Badges */}
-            <GSAPFadeIn direction="up" delay={0.5}>
-              <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-left">
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
-                    <ShieldCheck className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">100% Genuine</h4>
-                    <p className="text-[10px] text-[#a1a1aa]">Official Warranty</p>
-                  </div>
+      <div className="relative z-10 w-full px-6 lg:px-8 py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+              <GSAPFadeIn direction="down" delay={0.1}>
+                <div className="inline-flex items-center gap-3 rounded-full border border-[#ff003c]/30 bg-[#030305]/80 px-5 py-2 text-xs font-bold uppercase tracking-widest backdrop-blur-xl">
+                  <Sparkles className="h-4 w-4 text-[#ff003c] animate-pulse" />
+                  <span>QUANTUMBYTE TECHNOLOGIES</span>
+                  <span className="w-1 h-1 rounded-full bg-[#ff003c]" />
+                  <span className="text-[#9c9ca8]">Official Hardware & IT Hub</span>
                 </div>
+              </GSAPFadeIn>
 
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
-                    <Cpu className="h-4 w-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">Custom PCs</h4>
-                    <p className="text-[10px] text-[#a1a1aa]">Overclocked &amp; Tested</p>
-                  </div>
-                </div>
+              <GSAPFadeIn direction="up" delay={0.2}>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.05] text-white">
+                  NEXT-GEN <span className="bg-gradient-to-r from-white via-white to-[#ff003c] bg-clip-text text-transparent">COMPUTERS</span> & ENTERPRISE
+                  <br />
+                  <span className="relative inline-block text-[#ff003c]">IT SERVICES</span>
+                </h1>
+              </GSAPFadeIn>
 
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c]">
-                    <Star className="h-4 w-4 text-[#ffb800]" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-white">4.9/5 Rating</h4>
-                    <p className="text-[10px] text-[#a1a1aa]">5,000+ Happy Clients</p>
-                  </div>
+              <GSAPFadeIn direction="up" delay={0.3}>
+                <p className="max-w-xl text-lg sm:text-xl lg:text-lg text-[#9c9ca8] leading-relaxed mx-auto lg:mx-0">
+                  Your premier source for high-performance Gaming PCs, MacBooks, Smartphones, GaN Chargers, Genuine Component Parts, and full-scale Enterprise IT Solutions.
+                </p>
+              </GSAPFadeIn>
+
+              <GSAPFadeIn direction="up" delay={0.4}>
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                  <button
+                    onClick={handleExploreStore}
+                    className="group btn btn-primary btn-lg w-full sm:w-auto"
+                  >
+                    <span>Explore Catalog</span>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+
+                  <button
+                    onClick={() => openBooking()}
+                    className="btn btn-secondary btn-lg w-full sm:w-auto"
+                  >
+                    <Wrench className="h-4 w-4 text-[#ff003c]" />
+                    <span>Book IT Consultation</span>
+                  </button>
                 </div>
-              </div>
-            </GSAPFadeIn>
+              </GSAPFadeIn>
+
+              <GSAPFadeIn direction="up" delay={0.5}>
+                <div className="pt-4 grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-[#08080c]/60 border border-[#232330] hover:border-[#ff003c]/30 transition-all duration-300 group">
+                      <div className="flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-xl bg-[#ff003c]/10">
+                        <feature.icon className={`h-5 w-5 ${feature.color}`} />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-white group-hover:text-[#ff003c] transition-colors">
+                          {feature.label}
+                        </h4>
+                        <p className="text-[11px] text-[#6b6b7a] mt-0.5">{feature.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </GSAPFadeIn>
+            </div>
+
+            <div className="hidden lg:block lg:col-span-5 relative">
+              <GSAPFadeIn direction="right" delay={0.6} duration={1.2}>
+                <div className="relative aspect-[4/3] max-w-md mx-auto">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#ff003c]/20 via-transparent to-[#03b3c3]/20 rounded-3xl blur-3xl opacity-50" />
+                  <div className="relative h-full rounded-3xl bg-gradient-to-br from-[#08080c] to-[#0d0d12] border border-[#232330] p-1">
+                    <div className="h-full rounded-2xl bg-[#030305] border border-[#1a1a24] flex items-center justify-center">
+                      <div className="text-center p-8">
+                        <Cpu className="h-24 w-24 mx-auto mb-6 text-[#ff003c]/50 animate-pulse" />
+                        <p className="text-[#6b6b7a] font-medium">HYPERSPEED ENGINE ACTIVE</p>
+                        <p className="text-[11px] text-[#3a3a4a] mt-2">WebGL Particle Simulation</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-2xl bg-gradient-to-br from-[#ff003c] to-[#03b3c3] opacity-20 blur-2xl" />
+                </div>
+              </GSAPFadeIn>
+            </div>
           </div>
-
-          {/* Right Column: Hyperspeed visual spans the full section; the grid stays balanced for CTA readability */}
-          <div className="hidden lg:col-span-4 lg:block" />
         </div>
       </div>
-      <WaveDivider fill="#060913" />
     </section>
   );
 }

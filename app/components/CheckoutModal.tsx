@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '@/app/context/CartContext';
 import { useAuth } from '@/app/context/AuthContext';
 import { formatPKR } from '@/sanity/lib/currency';
@@ -12,7 +12,12 @@ import {
   CheckCircle2,
   Lock,
   Printer,
-  Wallet
+  Wallet,
+  ShieldCheck,
+  CreditCard,
+  ArrowLeft,
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 
 export function CheckoutModal() {
@@ -29,6 +34,7 @@ export function CheckoutModal() {
     paymentMethod: 'cod',
   });
   const [orderId, setOrderId] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isCheckoutOpen) return null;
 
@@ -38,7 +44,7 @@ export function CheckoutModal() {
 
   const handleShippingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.email || !formData.phone || !formData.address) {
+    if (!formData.fullName || !formData.email || !formData.phone || !formData.address || !formData.city) {
       alert('Please fill in all required shipping fields');
       return;
     }
@@ -47,9 +53,10 @@ export function CheckoutModal() {
 
   const handlePaymentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const generatedId = `QB-${Math.floor(100000 + Math.random() * 900000)}`;
     setOrderId(generatedId);
-    clearCart();
 
     const result = await createOrder({
       orderId: generatedId,
@@ -69,286 +76,393 @@ export function CheckoutModal() {
       })),
     });
 
+    setIsSubmitting(false);
+
     if (!result.ok) {
       console.error('[CheckoutModal] Order not saved to Sanity:', result.error);
     }
 
+    clearCart();
     setStep('success');
 
-    // Trigger confetti animation
     confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ['#ff003c', '#ffffff', '#ff4d73'],
+      particleCount: 150,
+      spread: 90,
+      origin: { y: 0.5 },
+      colors: ['#ff003c', '#ffffff', '#ff4d73', '#00d4aa'],
+      zIndex: 100,
     });
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && step !== 'success') closeCheckout();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [step, closeCheckout]);
+
+  const steps = [
+    { key: 'shipping', label: 'Shipping', icon: Truck },
+    { key: 'payment', label: 'Payment', icon: CreditCard },
+    { key: 'success', label: 'Confirm', icon: CheckCircle2 },
+  ];
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-      {/* Dark Overlay */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in">
       <div
-        onClick={closeCheckout}
-        className="fixed inset-0 bg-[#050505]/85 backdrop-blur-md transition-opacity"
+        onClick={() => step !== 'success' && closeCheckout()}
+        className="fixed inset-0 bg-[#030305]/90 backdrop-blur-sm transition-opacity"
+        aria-hidden="true"
       />
 
-      {/* Modal Container */}
-      <div data-lenis-prevent className="relative z-10 w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl border border-[#ff003c]/40 bg-[#0e0e12] p-6 shadow-2xl shadow-[#ff003c]/20 glass-panel-red">
-        {/* Close Button */}
+      <div
+        data-lenis-prevent
+        className="relative z-10 w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl border border-[#232330] bg-[#0d0d12] shadow-2xl shadow-[#000000]/50 animate-scale-in"
+      >
         <button
-          onClick={closeCheckout}
-          className="absolute right-4 top-4 rounded-full bg-[#16161f] p-2 text-[#a1a1aa] transition hover:bg-[#ff003c] hover:text-white"
+          onClick={() => step !== 'success' && closeCheckout()}
+          className="absolute right-4 top-4 z-10 btn btn-icon btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+          aria-label="Close checkout"
         >
           <X className="h-5 w-5" />
         </button>
 
-        {/* Modal Header */}
-        <div className="border-b border-[#1f1f2b] pb-4 mb-6">
-          <div className="flex items-center gap-2">
-            <Lock className="h-5 w-5 text-[#ff003c]" />
-            <h2 className="text-xl font-black text-white">QuantumByte Checkout</h2>
-          </div>
+        <div className="p-6 sm:p-8">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                  <Lock className="h-5.5 w-5.5" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-black text-white">Secure Checkout</h2>
+                  <p className="text-sm text-[#6b6b7a]">{cart.length} item{cart.length !== 1 ? 's' : ''} • {formatPKR(cartTotal)}</p>
+                </div>
+              </div>
+            </div>
 
-          {/* Stepper Progress */}
-          <div className="mt-4 flex items-center justify-between">
-            <div
-              className={`flex items-center gap-2 text-xs font-bold ${
-                step === 'shipping' ? 'text-[#ff003c]' : 'text-white'
-              }`}
-            >
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#ff003c] text-white">
-                1
-              </span>
-              Shipping
-            </div>
-            <div className="h-0.5 flex-1 bg-[#22222e] mx-4" />
-            <div
-              className={`flex items-center gap-2 text-xs font-bold ${
-                step === 'payment' ? 'text-[#ff003c]' : 'text-[#71717a]'
-              }`}
-            >
-              <span
-                className={`flex h-6 w-6 items-center justify-center rounded-full ${
-                  step === 'payment' || step === 'success'
-                    ? 'bg-[#ff003c] text-white'
-                    : 'bg-[#16161f] text-[#71717a]'
-                }`}
-              >
-                2
-              </span>
-              Payment
-            </div>
-            <div className="h-0.5 flex-1 bg-[#22222e] mx-4" />
-            <div
-              className={`flex items-center gap-2 text-xs font-bold ${
-                step === 'success' ? 'text-[#ff003c]' : 'text-[#71717a]'
-              }`}
-            >
-              <span
-                className={`flex h-6 w-6 items-center justify-center rounded-full ${
-                  step === 'success' ? 'bg-[#ff003c] text-white' : 'bg-[#16161f] text-[#71717a]'
-                }`}
-              >
-                3
-              </span>
-              Confirmation
+            {/* Stepper */}
+            <div className="flex items-center">
+              {steps.map((s, index) => {
+                const isActive = step === s.key;
+                const isCompleted = (step === 'payment' && s.key === 'shipping') || (step === 'success' && s.key !== 'success');
+                const Icon = s.icon;
+                return (
+                  <React.Fragment key={s.key}>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ${
+                          isActive || isCompleted
+                            ? 'bg-[#ff003c] text-white shadow-lg shadow-[#ff003c]/30'
+                            : 'bg-[#14141a] text-[#6b6b7a]'
+                        }`}
+                      >
+                        {isCompleted ? <CheckCircle2 className="h-4.5 w-4.5" /> : <Icon className="h-4.5 w-4.5" />}
+                      </span>
+                      <span className={`hidden sm:block text-xs font-semibold ${isActive || isCompleted ? 'text-white' : 'text-[#6b6b7a]'}`}>
+                        {s.label}
+                      </span>
+                    </div>
+                    {index < steps.length - 1 && (
+                      <div className={`flex-1 h-1 max-w-xs mx-2 rounded-full transition-colors duration-300 ${isCompleted ? 'bg-[#ff003c]' : 'bg-[#232330]'}`} />
+                    )}
+                  </React.Fragment>
+                );
+              })}
             </div>
           </div>
-        </div>
 
-        {/* STEP 1: SHIPPING */}
-        {step === 'shipping' && (
-          <form onSubmit={handleShippingSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* STEP 1: SHIPPING */}
+          {step === 'shipping' && (
+            <form onSubmit={handleShippingSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="fullName" className="label">Full Name *</label>
+                  <input
+                    id="fullName"
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="John Doe"
+                    className="input"
+                    autoComplete="name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="label">Email Address *</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="john@example.com"
+                    className="input"
+                    autoComplete="email"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="label">Phone Number *</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="+92 300 1234567"
+                    className="input"
+                    autoComplete="tel"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="city" className="label">City / Region *</label>
+                  <input
+                    id="city"
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Karachi, Lahore, Islamabad..."
+                    className="input"
+                    autoComplete="address-level2"
+                  />
+                </div>
+              </div>
+
               <div>
-                <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Full Name *</label>
+                <label htmlFor="address" className="label">Complete Delivery Address *</label>
                 <input
+                  id="address"
                   type="text"
-                  name="fullName"
-                  value={formData.fullName}
+                  name="address"
+                  value={formData.address}
                   onChange={handleInputChange}
                   required
-                  placeholder="John Doe"
-                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                  placeholder="House / Office #, Street, Block, Area"
+                  className="input"
+                  autoComplete="street-address"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Email Address *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="john@example.com"
-                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
-                />
+              {/* Order Summary */}
+              <div className="rounded-xl border border-[#232330] bg-[#030305] p-4 space-y-3">
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                  <ShieldCheck className="h-4.5 w-4.5 text-[#ff003c]" />
+                  Order Summary
+                </h4>
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  {cart.map((item) => (
+                    <div key={item.product.id} className="flex items-center justify-between gap-3 text-sm">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg bg-[#14141a]">
+                          <img src={item.product.imageUrl} alt={item.product.name} className="h-full w-full object-cover" loading="lazy" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-white truncate">{item.product.name}</p>
+                          <p className="text-[11px] text-[#6b6b7a]">{item.product.brand} • Qty: {item.quantity}</p>
+                        </div>
+                      </div>
+                      <span className="font-bold text-white whitespace-nowrap">{formatPKR(item.product.price * item.quantity)}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex justify-between border-t border-[#1a1a24] pt-3 font-bold text-white">
+                  <span>Subtotal ({cart.length} items)</span>
+                  <span className="text-[#ff003c]">{formatPKR(cartTotal)}</span>
+                </div>
+                <div className="flex items-center justify-between text-sm text-[#30d158] font-semibold p-3 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/30">
+                  <span className="flex items-center gap-1.5">
+                    <ShieldCheck className="h-4 w-4" />
+                    Free Express Shipping
+                  </span>
+                  <span>FREE</span>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Phone Number *</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="+92 300 1234567"
-                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#a1a1aa] mb-1">City / Region *</label>
-                <input
-                  type="text"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Karachi, Lahore, Islamabad, London, NY..."
-                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Complete Delivery Address *</label>
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                required
-                placeholder="House / Office #, Street, Block, Area"
-                className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
-              />
-            </div>
-
-            {/* Order Summary Mini */}
-            <div className="rounded-xl border border-[#22222e] bg-[#050505] p-4 text-xs space-y-2">
-              <div className="flex justify-between font-bold text-white">
-                <span>Total Items ({cart.length})</span>
-                <span className="text-[#ff003c]">{formatPKR(cartTotal)}</span>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25"
-            >
-              Continue to Payment →
-            </button>
-          </form>
-        )}
-
-        {/* STEP 2: PAYMENT */}
-        {step === 'payment' && (
-          <form onSubmit={handlePaymentSubmit} className="space-y-4">
-            <label className="block text-xs font-bold text-[#a1a1aa] mb-2">Select Payment Method</label>
-
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, paymentMethod: 'cod' })}
-                className={`flex flex-col items-center justify-center rounded-xl border p-4 text-xs font-bold transition ${
-                  formData.paymentMethod === 'cod'
-                    ? 'border-[#ff003c] bg-[#ff003c]/15 text-white'
-                    : 'border-[#22222e] bg-[#050505] text-[#a1a1aa]'
-                }`}
-              >
-                <Truck className="h-5 w-5 text-[#ff003c] mb-1" />
-                Cash on Delivery
-              </button>
-
-              <div className="relative flex flex-col items-center justify-center rounded-xl border border-dashed border-[#22222e] bg-[#050505]/60 p-4 text-xs font-bold text-[#71717a] opacity-60 cursor-not-allowed select-none">
-                <span className="absolute right-2 top-2 rounded bg-[#ff003c] px-1.5 py-0.5 text-[9px] font-extrabold text-white uppercase tracking-wider">
-                  Coming Soon
-                </span>
-                <Wallet className="h-5 w-5 text-[#71717a] mb-1" />
-                Easy Paisa
-              </div>
-            </div>
-
-            {formData.paymentMethod === 'cod' && (
-              <div className="rounded-xl border border-[#22222e] bg-[#050505] p-4 text-xs text-[#a1a1aa]">
-                Pay with cash upon package delivery at your doorstep. A standard verification call will be conducted before dispatch.
-              </div>
-            )}
-
-            <div className="flex gap-3 pt-2">
-              <button
-                type="button"
-                onClick={() => setStep('shipping')}
-                className="w-1/3 rounded-xl border border-[#22222e] bg-[#16161f] py-3 text-xs font-bold text-white hover:bg-[#22222e]"
-              >
-                ← Back
-              </button>
               <button
                 type="submit"
-                className="red-gradient-btn flex-1 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25"
+                className="btn btn-primary btn-lg w-full justify-center gap-2"
               >
-                Confirm & Place Order ({formatPKR(cartTotal)})
+                Continue to Payment
+                <ArrowRight className="h-5 w-5" />
               </button>
-            </div>
-          </form>
-        )}
+            </form>
+          )}
 
-        {/* STEP 3: ORDER SUCCESS RECEIPT */}
-        {step === 'success' && (
-          <div className="text-center space-y-5 py-4">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#ff003c]/20 text-[#ff003c] animate-bounce">
-              <CheckCircle2 className="h-10 w-10" />
-            </div>
+          {/* STEP 2: PAYMENT */}
+          {step === 'payment' && (
+            <form onSubmit={handlePaymentSubmit} className="space-y-6">
+              <div className="flex items-center justify-between">
+                <label className="label mb-0">Select Payment Method</label>
+                <button
+                  type="button"
+                  onClick={() => setStep('shipping')}
+                  className="btn btn-ghost btn-sm text-[#6b6b7a] hover:text-white"
+                >
+                  <ArrowLeft className="h-4 w-4 mr-1" />
+                  Back
+                </button>
+              </div>
 
-            <div>
-              <h3 className="text-2xl font-black text-white">Order Confirmed!</h3>
-              <p className="text-xs text-[#a1a1aa] mt-1">
-                Thank you for choosing QuantumByte Technologies. Your order receipt has been generated.
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, paymentMethod: 'cod' })}
+                  className={`relative flex flex-col items-center justify-center gap-3 rounded-xl border p-5 text-sm font-bold transition-all duration-300 ${
+                    formData.paymentMethod === 'cod'
+                      ? 'border-[#ff003c] bg-[#ff003c]/10 text-white shadow-lg shadow-[#ff003c]/10'
+                      : 'border-[#232330] bg-[#030305] text-[#9c9ca8] hover:border-[#ff003c]/40 hover:text-white hover:bg-[#08080c]'
+                  }`}
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                    <Truck className="h-6 w-6" />
+                  </div>
+                  <div className="text-center">
+                    <p>Cash on Delivery</p>
+                    <span className="text-xs text-[#6b6b7a]">Pay at doorstep</span>
+                  </div>
+                  {formData.paymentMethod === 'cod' && (
+                    <div className="absolute inset-0 border-2 border-[#ff003c] rounded-xl pointer-events-none" />
+                  )}
+                </button>
+
+                <div className="relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-[#232330] bg-[#030305]/50 p-5 text-sm font-bold text-[#6b6b7a] opacity-60 cursor-not-allowed select-none">
+                  <span className="absolute right-2 top-2 rounded bg-[#ff003c] px-2 py-0.5 text-[10px] font-extrabold text-white uppercase tracking-wider">
+                    Coming Soon
+                  </span>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#14141a] text-[#6b6b7a]">
+                    <Wallet className="h-6 w-6" />
+                  </div>
+                  <div className="text-center">
+                    <p>Easy Paisa</p>
+                    <span className="text-xs text-[#6b6b7a]">Mobile wallet</span>
+                  </div>
+                </div>
+              </div>
+
+              {formData.paymentMethod === 'cod' && (
+                <div className="rounded-xl border border-[#ff003c]/30 bg-[#ff003c]/5 p-4 animate-fade-in">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-[#ff003c]/15 text-[#ff003c]">
+                      <ShieldCheck className="h-4.5 w-4.5" />
+                    </div>
+                    <div className="text-sm text-[#9c9ca8]">
+                      <p className="font-semibold text-white mb-1">How it works</p>
+                      <p>Pay with cash upon package delivery at your doorstep. A standard verification call will be conducted before dispatch. Available nationwide across Pakistan.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn btn-primary btn-lg w-full justify-center gap-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    Confirm & Place Order
+                    <span className="text-[#ff003c] font-black">{formatPKR(cartTotal)}</span>
+                    <ArrowRight className="h-5 w-5" />
+                  </>
+                )}
+              </button>
+            </form>
+          )}
+
+          {/* STEP 3: ORDER SUCCESS */}
+          {step === 'success' && (
+            <div className="text-center space-y-6 py-4 animate-fade-in">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#ff003c]/15 text-[#ff003c] animate-bounce">
+                <CheckCircle2 className="h-12 w-12" />
+              </div>
+
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white">Order Confirmed!</h3>
+                <p className="text-base text-[#9c9ca8] mt-2 max-w-sm mx-auto">
+                  Thank you for choosing QuantumByte Technologies. Your order has been placed successfully and a confirmation has been sent to your email.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-[#ff003c]/30 bg-[#030305] p-5 text-left space-y-3 text-sm">
+                <div className="flex items-center justify-between border-b border-[#1a1a24] pb-3 font-bold text-white">
+                  <span className="flex items-center gap-2">
+                    <ShieldCheck className="h-5 w-5 text-[#ff003c]" />
+                    Order Reference ID
+                  </span>
+                  <span className="text-[#ff003c] font-mono">{orderId}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-3 text-[#9c9ca8]">
+                  <div>
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Customer</p>
+                    <p>{formData.fullName}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Email</p>
+                    <p>{formData.email}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Phone</p>
+                    <p>{formData.phone}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">City</p>
+                    <p>{formData.city}</p>
+                  </div>
+                  <div className="col-span-2">
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Delivery Address</p>
+                    <p>{formData.address}, {formData.city}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Payment</p>
+                    <p className="uppercase text-[#ff003c] font-semibold">Cash on Delivery</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white uppercase tracking-wider">Total Paid</p>
+                    <p className="text-[#ff003c] font-black text-lg">{formatPKR(cartTotal)}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => window.print()}
+                  className="btn btn-secondary w-full sm:w-auto justify-center gap-2"
+                >
+                  <Printer className="h-4.5 w-4.5" />
+                  Print Receipt
+                </button>
+                <button
+                  onClick={closeCheckout}
+                  className="btn btn-primary btn-lg w-full sm:w-auto justify-center gap-2"
+                >
+                  Back to Store
+                  <Sparkles className="h-4.5 w-4.5" />
+                </button>
+              </div>
+
+              <p className="text-xs text-[#6b6b7a]">
+                A verification call will be made within 24 hours. For inquiries, contact us at
+                <a href="tel:+923254803957" className="text-[#ff003c] hover:underline ml-1">+92 325 4803957</a>
               </p>
             </div>
-
-            <div className="rounded-xl border border-[#ff003c]/40 bg-[#050505] p-4 text-left space-y-2 text-xs text-white">
-              <div className="flex justify-between border-b border-[#1f1f2b] pb-2 font-bold">
-                <span>Order Reference ID:</span>
-                <span className="text-[#ff003c]">{orderId}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#a1a1aa]">Customer:</span>
-                <span>{formData.fullName} ({formData.email})</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#a1a1aa]">Delivery Address:</span>
-                <span>{formData.address}, {formData.city}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#a1a1aa]">Payment Method:</span>
-                <span className="uppercase">Cash on Delivery</span>
-              </div>
-              <div className="flex justify-between pt-2 border-t border-[#1f1f2b] font-black text-sm">
-                <span>Total Amount (COD):</span>
-                <span className="text-[#ff003c]">{formatPKR(cartTotal)}</span>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => window.print()}
-                className="flex items-center justify-center gap-2 rounded-xl border border-[#22222e] bg-[#16161f] px-4 py-3 text-xs font-bold text-white hover:border-[#ff003c]"
-              >
-                <Printer className="h-4 w-4" />
-                Print Receipt
-              </button>
-              <button
-                onClick={closeCheckout}
-                className="red-gradient-btn flex-1 rounded-xl py-3 text-xs font-extrabold text-white"
-              >
-                Back to Store
-              </button>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,6 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { WaveDivider } from './WaveDivider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,7 +44,7 @@ export function StatsCounter({ productsCount }: { productsCount: number }) {
           onEnter: () => {
             gsap.to(state, {
               val: target,
-              duration: 1.8,
+              duration: 1.4,
               ease: 'power2.out',
               onUpdate: () => {
                 el.textContent = Math.round(state.val).toLocaleString();
@@ -62,28 +61,32 @@ export function StatsCounter({ productsCount }: { productsCount: number }) {
   return (
     <section
       ref={sectionRef}
-      id="stats-section"
-      className="qb-page-section relative overflow-hidden border-b border-[#3a2a10] bg-[#100a04] py-16"
+      className="border-y border-[#1a1a24] bg-[#030305] py-14 lg:py-18"
+      aria-labelledby="stats-heading"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f59e0b]/40 to-transparent" />
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[600px] -translate-x-1/2 rounded-full bg-[#f59e0b]/8 blur-[140px]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{ backgroundImage: 'linear-gradient(#f59e0b 1px, transparent 1px), linear-gradient(90deg, #f59e0b 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 id="stats-heading" className="sr-only">Company Statistics</h2>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {stats.map((stat) => (
-            <div key={stat.label} className="space-y-1">
-              <span className="text-3xl sm:text-4xl font-black text-[#f59e0b]">
-                <span data-counter data-target={stat.value}>0</span>
-                <span>{stat.suffix}</span>
-              </span>
-              <p className="text-xs text-[#a1a1aa] font-semibold uppercase tracking-wider">{stat.label}</p>
+            <div key={stat.label} className="text-center lg:text-left">
+              <div className="flex items-baseline justify-center lg:justify-start gap-1.5 mb-2">
+                <span
+                  data-counter
+                  data-target={stat.value}
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tabular-nums"
+                >
+                  0
+                </span>
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#ff003c] tabular-nums">
+                  {stat.suffix}
+                </span>
+              </div>
+              <p className="text-sm text-[#6b6b7a] font-medium uppercase tracking-wider">{stat.label}</p>
             </div>
           ))}
         </div>
       </div>
-      <WaveDivider fill="#040407" />
     </section>
   );
 }

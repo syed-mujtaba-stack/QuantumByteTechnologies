@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '@/app/context/CartContext';
 import confetti from 'canvas-confetti';
-import { X, Wrench, CheckCircle2, Calendar, Clock, Send } from 'lucide-react';
+import { X, Wrench, CheckCircle2, Calendar, Send, ShieldCheck, ArrowLeft, Sparkles } from 'lucide-react';
 
 export function ServiceBookingModal() {
   const { isBookingOpen, closeBooking, activeServiceBooking } = useCart();
@@ -13,100 +13,129 @@ export function ServiceBookingModal() {
     name: '',
     email: '',
     phone: '',
-    serviceType: activeServiceBooking ? activeServiceBooking.title : 'Custom Gaming PC Assembly',
+    serviceType: activeServiceBooking ? activeServiceBooking.title : 'Custom Gaming & Workstation PC Assembly',
     preferredDate: '',
     notes: '',
   });
-
-  if (!isBookingOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
     confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#ff003c', '#ffffff'],
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.5 },
+      colors: ['#ff003c', '#ffffff', '#00d4aa'],
+      zIndex: 100,
     });
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !submitted) closeBooking();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [submitted, closeBooking]);
+
+  if (!isBookingOpen) return null;
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-      {/* Dark Overlay */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in">
       <div
-        onClick={closeBooking}
-        className="fixed inset-0 bg-[#050505]/85 backdrop-blur-md transition-opacity"
+        onClick={() => !submitted && closeBooking()}
+        className="fixed inset-0 bg-[#030305]/90 backdrop-blur-sm transition-opacity"
+        aria-hidden="true"
       />
 
-      {/* Modal Container */}
-      <div className="relative z-10 w-full max-w-xl rounded-2xl border border-[#ff003c]/40 bg-[#0e0e12] p-6 shadow-2xl shadow-[#ff003c]/20 glass-panel-red">
-        {/* Close Button */}
+      <div
+        data-lenis-prevent
+        className="relative z-10 w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#232330] bg-[#0d0d12] shadow-2xl shadow-[#000000]/50 animate-scale-in"
+      >
         <button
-          onClick={closeBooking}
-          className="absolute right-4 top-4 rounded-full bg-[#16161f] p-2 text-[#a1a1aa] transition hover:bg-[#ff003c] hover:text-white"
+          onClick={() => !submitted && closeBooking()}
+          className="absolute right-4 top-4 z-10 btn btn-icon btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+          aria-label="Close booking modal"
         >
           <X className="h-5 w-5" />
         </button>
 
-        {!submitted ? (
-          <div>
-            <div className="flex items-center gap-2 border-b border-[#1f1f2b] pb-4 mb-6">
-              <Wrench className="h-5 w-5 text-[#ff003c]" />
-              <div>
-                <h2 className="text-xl font-black text-white">Book IT Service / Consultation</h2>
-                <p className="text-xs text-[#a1a1aa]">
-                  Schedule a session with QuantumByte senior hardware & software engineers.
-                </p>
+        <div className="p-6 sm:p-8">
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ff003c]/15 text-[#ff003c]">
+                    <Wrench className="h-6.5 w-6.5" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-black text-white">Book IT Service / Consultation</h2>
+                    <p className="text-sm text-[#9c9ca8]">Schedule a session with QuantumByte senior hardware & software engineers.</p>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-[#ff003c]/30 bg-[#ff003c]/5 p-4">
+                  <div className="flex items-center gap-2.5 text-sm font-semibold text-[#ff003c]">
+                    <Sparkles className="h-4.5 w-4.5" />
+                    {activeServiceBooking ? activeServiceBooking.title : 'Custom Gaming PC Assembly'}
+                  </div>
+                  {activeServiceBooking && (
+                    <p className="mt-1 text-sm text-[#9c9ca8] ml-7">{activeServiceBooking.subtitle}</p>
+                  )}
+                </div>
               </div>
-            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Your Full Name *</label>
+                  <label htmlFor="booking-name" className="label">Your Full Name *</label>
                   <input
+                    id="booking-name"
                     type="text"
                     required
                     value={bookingForm.name}
                     onChange={(e) => setBookingForm({ ...bookingForm, name: e.target.value })}
                     placeholder="Alex Morgan"
-                    className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                    className="input"
+                    autoComplete="name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Email Address *</label>
+                  <label htmlFor="booking-email" className="label">Email Address *</label>
                   <input
+                    id="booking-email"
                     type="email"
                     required
                     value={bookingForm.email}
                     onChange={(e) => setBookingForm({ ...bookingForm, email: e.target.value })}
                     placeholder="alex@company.com"
-                    className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                    className="input"
+                    autoComplete="email"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Phone Number *</label>
+                  <label htmlFor="booking-phone" className="label">Phone Number *</label>
                   <input
+                    id="booking-phone"
                     type="tel"
                     required
                     value={bookingForm.phone}
                     onChange={(e) => setBookingForm({ ...bookingForm, phone: e.target.value })}
                     placeholder="+92 300 1234567"
-                    className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                    className="input"
+                    autoComplete="tel"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Service Type *</label>
+                  <label htmlFor="booking-service" className="label">Service Type *</label>
                   <select
+                    id="booking-service"
                     value={bookingForm.serviceType}
                     onChange={(e) => setBookingForm({ ...bookingForm, serviceType: e.target.value })}
-                    className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+                    className="input appearance-none"
                   >
                     <option>Custom Gaming & Workstation PC Assembly</option>
                     <option>Hardware Diagnostics & Micro-soldering Repair</option>
@@ -118,57 +147,94 @@ export function ServiceBookingModal() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Preferred Consultation Date</label>
+                <label htmlFor="booking-date" className="label">Preferred Consultation Date</label>
                 <input
+                  id="booking-date"
                   type="date"
                   value={bookingForm.preferredDate}
                   onChange={(e) => setBookingForm({ ...bookingForm, preferredDate: e.target.value })}
-                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white outline-none focus:border-[#ff003c]"
+                  className="input"
+                  min={new Date().toISOString().split('T')[0]}
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#a1a1aa] mb-1">Requirement Notes / Specs</label>
+                <label htmlFor="booking-notes" className="label">Requirement Notes / Specs</label>
                 <textarea
-                  rows={3}
+                  id="booking-notes"
+                  rows={4}
                   value={bookingForm.notes}
                   onChange={(e) => setBookingForm({ ...bookingForm, notes: e.target.value })}
                   placeholder="Describe your PC build budget, laptop repair issue, or networking project details..."
-                  className="w-full rounded-xl border border-[#22222e] bg-[#050505] p-3 text-xs text-white placeholder-[#71717a] outline-none focus:border-[#ff003c]"
+                  className="input resize-none"
                 />
               </div>
 
-              <button
-                type="submit"
-                className="red-gradient-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-xs font-extrabold text-white shadow-xl shadow-[#ff003c]/25"
-              >
-                <Send className="h-4 w-4" />
-                Submit Service Request
-              </button>
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => closeBooking()}
+                  className="btn btn-secondary flex-1 justify-center gap-2"
+                >
+                  <ArrowLeft className="h-4.5 w-4.5" />
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-lg flex-1 justify-center gap-2"
+                >
+                  <Send className="h-5 w-5" />
+                  Submit Service Request
+                </button>
+              </div>
             </form>
-          </div>
-        ) : (
-          <div className="text-center space-y-4 py-6">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#ff003c]/20 text-[#ff003c]">
-              <CheckCircle2 className="h-10 w-10 animate-bounce" />
+          ) : (
+            <div className="text-center space-y-6 py-4 animate-fade-in">
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#ff003c]/15 text-[#ff003c] animate-bounce">
+                <CheckCircle2 className="h-12 w-12" />
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-white">Booking Request Received!</h3>
+                <p className="text-base text-[#9c9ca8] mt-2 max-w-sm mx-auto">
+                  Our lead technical team will contact you at{' '}
+                  <span className="text-white font-semibold">{bookingForm.email}</span>{' '}
+                  or{' '}
+                  <span className="text-white font-semibold">{bookingForm.phone}</span>{' '}
+                  within 2 business hours.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-[#232330] bg-[#030305] p-4 text-left space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-[#9c9ca8]">
+                  <ShieldCheck className="h-4.5 w-4.5 text-[#ff003c]" />
+                  <span className="font-semibold text-white">Service:</span>
+                  <span>{bookingForm.serviceType}</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#9c9ca8]">
+                  <Calendar className="h-4.5 w-4.5 text-[#ff003c]" />
+                  <span className="font-semibold text-white">Preferred Date:</span>
+                  <span>{bookingForm.preferredDate || 'Not specified'}</span>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => { setSubmitted(false); closeBooking(); }}
+                  className="btn btn-primary btn-lg flex-1 justify-center gap-2"
+                >
+                  <Sparkles className="h-5 w-5" />
+                  Done
+                </button>
+              </div>
+
+              <p className="text-xs text-[#6b6b7a]">
+                For urgent inquiries, call us at
+                <a href="tel:+923254803957" className="text-[#ff003c] hover:underline ml-1">+92 325 4803957</a>
+              </p>
             </div>
-
-            <h3 className="text-2xl font-black text-white">Booking Request Received!</h3>
-            <p className="text-xs text-[#a1a1aa] max-w-sm mx-auto">
-              Our lead technical team will contact you at <span className="text-white font-bold">{bookingForm.email}</span> or <span className="text-white font-bold">{bookingForm.phone}</span> within 2 business hours.
-            </p>
-
-            <button
-              onClick={() => {
-                setSubmitted(false);
-                closeBooking();
-              }}
-              className="red-gradient-btn rounded-xl px-6 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-[#ff003c]/30"
-            >
-              Done
-            </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

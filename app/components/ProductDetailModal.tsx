@@ -1,168 +1,234 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/app/context/CartContext';
 import { formatPKR } from '@/sanity/lib/currency';
-import { X, Star, ShoppingBag, ShieldCheck, Truck, Check, Plus, Minus, Cpu } from 'lucide-react';
+import { X, Star, ShoppingBag, ShieldCheck, Truck, Check, Plus, Minus, Cpu, Zap, RotateCcw, ArrowRight, Sparkles, Headphones } from 'lucide-react';
 
 export function ProductDetailModal() {
   const { activeProductDetail, closeProductDetail, addToCart, openCheckout } = useCart();
   const [quantity, setQuantity] = useState(1);
 
-  if (!activeProductDetail) return null;
-
   const product = activeProductDetail;
-  const discount = product.discountPrice ? product.discountPrice - product.price : 0;
+  const discount = product?.discountPrice ? product.discountPrice - product.price : 0;
+  const discountPercent = product?.discountPrice ? Math.round((discount / product.discountPrice) * 100) : 0;
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
-    closeProductDetail();
+    if (product) {
+      addToCart(product, quantity);
+      closeProductDetail();
+    }
   };
 
   const handleBuyNow = () => {
-    addToCart(product, quantity);
-    closeProductDetail();
-    openCheckout();
+    if (product) {
+      addToCart(product, quantity);
+      closeProductDetail();
+      openCheckout();
+    }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeProductDetail();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [closeProductDetail]);
+
+  if (!product) return null;
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-      {/* Dark Overlay */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in">
       <div
         onClick={closeProductDetail}
-        className="fixed inset-0 bg-[#050505]/80 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-[#030305]/90 backdrop-blur-sm transition-opacity"
+        aria-hidden="true"
       />
 
-      {/* Modal Card */}
-      <div data-lenis-prevent className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#ff003c]/40 bg-[#0e0e12] p-6 shadow-2xl shadow-[#ff003c]/20 glass-panel-red">
-        {/* Close Button */}
+      <div
+        data-lenis-prevent
+        className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#232330] bg-[#0d0d12] shadow-2xl shadow-[#000000]/50 animate-scale-in"
+      >
         <button
           onClick={closeProductDetail}
-          className="absolute right-4 top-4 rounded-full bg-[#16161f] p-2 text-[#a1a1aa] transition hover:bg-[#ff003c] hover:text-white"
+          className="absolute right-4 top-4 z-10 btn btn-icon btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+          aria-label="Close product details"
         >
           <X className="h-5 w-5" />
         </button>
 
-        <div className="grid gap-6 md:grid-cols-12">
-          {/* Product Image Column */}
-          <div className="md:col-span-6 flex flex-col justify-between">
-            <div className="relative h-72 w-full overflow-hidden rounded-xl bg-[#050505] p-2">
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover rounded-lg"
-              />
-              <span className="absolute left-3 top-3 rounded-md bg-[#ff003c] px-2.5 py-1 text-xs font-extrabold text-white">
-                {product.brand}
-              </span>
+        <div className="p-6 sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-2">
+            {/* Product Image Column */}
+            <div className="space-y-4">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#030305]">
+                <Image
+                  src={product.imageUrl}
+                  alt={product.name}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                />
+                {discountPercent > 0 && (
+                  <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-xl bg-[#ff003c] px-3 py-1.5 text-sm font-black text-white shadow-lg shadow-[#ff003c]/30">
+                    <Sparkles className="h-4 w-4" />
+                    <span>SAVE {discountPercent}%</span>
+                  </div>
+                )}
+                <div className="absolute right-4 top-4">
+                  <span className="badge badge-primary">{product.brand}</span>
+                </div>
+              </div>
+
+              {/* Guarantees */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center gap-2.5 rounded-xl border border-[#232330] bg-[#030305] p-3 hover:border-[#ff003c]/30 transition-colors">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c] shrink-0">
+                    <ShieldCheck className="h-4.5 w-4.5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">1 Year Official Warranty</p>
+                    <p className="text-[10px] text-[#6b6b7a]">Manufacturer backed</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 rounded-xl border border-[#232330] bg-[#030305] p-3 hover:border-[#ff003c]/30 transition-colors">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#00d4aa]/10 text-[#00d4aa] shrink-0">
+                    <Truck className="h-4.5 w-4.5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">Free Express Shipping</p>
+                    <p className="text-[10px] text-[#6b6b7a]">Insured & tracked</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 rounded-xl border border-[#232330] bg-[#030305] p-3 hover:border-[#ff003c]/30 transition-colors">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f5a623]/10 text-[#f5a623] shrink-0">
+                    <RotateCcw className="h-4.5 w-4.5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">14-Day Easy Returns</p>
+                    <p className="text-[10px] text-[#6b6b7a]">Hassle-free policy</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 rounded-xl border border-[#232330] bg-[#030305] p-3 hover:border-[#ff003c]/30 transition-colors">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#03b3c3]/10 text-[#03b3c3] shrink-0">
+                    <Headphones className="h-4.5 w-4.5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white">24/7 Expert Support</p>
+                    <p className="text-[10px] text-[#6b6b7a]">Technical assistance</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Guarantees */}
-            <div className="mt-4 grid grid-cols-2 gap-2 text-xs border-t border-[#1f1f2b] pt-4">
-              <div className="flex items-center gap-2 text-[#a1a1aa]">
-                <ShieldCheck className="h-4 w-4 text-[#ff003c]" />
-                <span>1 Year Official Warranty</span>
-              </div>
-              <div className="flex items-center gap-2 text-[#a1a1aa]">
-                <Truck className="h-4 w-4 text-[#ff003c]" />
-                <span>Express Insured Shipping</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Details Column */}
-          <div className="md:col-span-6 flex flex-col justify-between space-y-4">
-            <div>
+            {/* Details Column */}
+            <div className="space-y-6">
               {/* Category & Rating */}
-              <div className="flex items-center justify-between text-xs mb-1">
-                <span className="font-extrabold text-[#ff003c] uppercase tracking-wider">
-                  {product.category}
-                </span>
-                <div className="flex items-center gap-1 text-[#ffb800]">
-                  <Star className="h-4 w-4 fill-current" />
-                  <span className="font-bold text-white">{product.rating}</span>
-                  <span className="text-xs text-[#71717a]">({product.reviewsCount} reviews)</span>
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="badge badge-primary">{product.category}</span>
+                  {product.isNewRelease && <span className="badge badge-new">New</span>}
+                  {product.isFeatured && <span className="badge badge-accent">Featured</span>}
+                </div>
+                <div className="flex items-center gap-1">
+                  <Star className="h-4.5 w-4.5 fill-current text-[#ffb800]" />
+                  <span className="font-bold text-white text-lg">{product.rating}</span>
+                  <span className="text-sm text-[#6b6b7a]">({product.reviewsCount} reviews)</span>
                 </div>
               </div>
 
               {/* Product Title */}
-              <h2 className="text-xl font-extrabold text-white">{product.name}</h2>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white leading-snug">{product.name}</h2>
 
               {/* Pricing */}
-              <div className="mt-3 flex items-baseline gap-3">
-                <span className="text-2xl font-black text-white">{formatPKR(product.price)}</span>
+              <div className="flex flex-wrap items-baseline gap-3">
+                <span className="text-3xl font-black text-white">{formatPKR(product.price)}</span>
                 {product.discountPrice && (
-                  <span className="text-sm text-[#71717a] line-through">
-                    {formatPKR(product.discountPrice)}
-                  </span>
+                  <span className="text-lg text-[#6b6b7a] line-through">{formatPKR(product.discountPrice)}</span>
                 )}
                 {discount > 0 && (
-                  <span className="rounded bg-[#ff003c]/20 px-2 py-0.5 text-xs font-bold text-[#ff003c]">
+                  <span className="badge badge-sale flex items-center gap-1.5">
+                    <Zap className="h-3.5 w-3.5" />
                     Save {formatPKR(discount)}
                   </span>
                 )}
               </div>
 
+              {/* Stock Status */}
+              <div className="flex items-center gap-3 text-sm">
+                <span className="flex items-center gap-1.5 text-[#30d158] font-semibold">
+                  <ShieldCheck className="h-4 w-4" />
+                  In Stock ({product.stock} available)
+                </span>
+              </div>
+
               {/* Description */}
-              <p className="mt-3 text-xs text-[#a1a1aa] leading-relaxed">
-                {product.description}
-              </p>
+              <div className="rounded-xl border border-[#232330] bg-[#030305] p-5">
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Cpu className="h-4.5 w-4.5 text-[#ff003c]" />
+                  Description
+                </h4>
+                <p className="text-sm text-[#9c9ca8] leading-relaxed whitespace-pre-line">{product.description}</p>
+              </div>
 
               {/* Specs List */}
-              <div className="mt-4 space-y-2">
-                <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                  <Cpu className="h-3.5 w-3.5 text-[#ff003c]" />
+              <div className="rounded-xl border border-[#232330] bg-[#030305] p-5">
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Cpu className="h-4.5 w-4.5 text-[#ff003c]" />
                   Key Specifications
                 </h4>
-                <div className="space-y-1.5">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {product.specs.map((spec, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs text-white">
-                      <Check className="h-3.5 w-3.5 text-[#ff003c]" />
+                    <div key={idx} className="flex items-center gap-2.5 rounded-lg bg-[#08080c] border border-[#1a1a24] p-3 text-sm text-white transition-colors hover:border-[#ff003c]/30">
+                      <Check className="h-4.5 w-4.5 text-[#ff003c] flex-shrink-0" />
                       <span>{spec}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Quantity & Actions */}
-            <div className="space-y-3 pt-4 border-t border-[#1f1f2b]">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-[#a1a1aa]">Select Quantity:</span>
-                <div className="flex items-center gap-3 rounded-xl border border-[#22222e] bg-[#050505] px-3 py-1.5">
+              {/* Quantity & Actions */}
+              <div className="space-y-4 pt-4 border-t border-[#1a1a24]">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-semibold text-[#9c9ca8]">Quantity</span>
+                  <div className="flex items-center gap-2 rounded-xl border border-[#232330] bg-[#030305] px-4 py-2">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="btn btn-icon btn-sm btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </button>
+                    <span className="text-lg font-bold text-white min-w-8 text-center">{quantity}</span>
+                    <button
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="btn btn-icon btn-sm btn-ghost text-[#6b6b7a] hover:text-white hover:bg-[#14141a]"
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="text-[#a1a1aa] hover:text-white"
+                    onClick={handleAddToCart}
+                    className="btn btn-secondary btn-lg flex-1 justify-center gap-2"
                   >
-                    <Minus className="h-3.5 w-3.5" />
+                    <ShoppingBag className="h-5 w-5" />
+                    Add to Cart
                   </button>
-                  <span className="text-sm font-bold text-white min-w-4 text-center">{quantity}</span>
                   <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="text-[#a1a1aa] hover:text-white"
+                    onClick={handleBuyNow}
+                    className="btn btn-primary btn-lg flex-1 justify-center gap-2"
                   >
-                    <Plus className="h-3.5 w-3.5" />
+                    Buy Now
+                    <ArrowRight className="h-5 w-5" />
                   </button>
                 </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={handleAddToCart}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-[#ff003c]/50 bg-[#16161f] py-3 text-xs font-bold text-white transition hover:bg-[#ff003c]/20"
-                >
-                  <ShoppingBag className="h-4 w-4 text-[#ff003c]" />
-                  Add to Cart
-                </button>
-                <button
-                  onClick={handleBuyNow}
-                  className="red-gradient-btn flex items-center justify-center gap-2 rounded-xl py-3 text-xs font-extrabold text-white shadow-lg shadow-[#ff003c]/30"
-                >
-                  Buy Now
-                </button>
               </div>
             </div>
           </div>
@@ -171,3 +237,4 @@ export function ProductDetailModal() {
     </div>
   );
 }
+

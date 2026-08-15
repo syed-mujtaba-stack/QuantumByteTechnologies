@@ -20,7 +20,7 @@ export function CategoryFilter() {
   ];
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3">
+    <div className="flex flex-wrap items-center justify-center gap-2.5" role="group" aria-label="Product categories">
       {categories.map((cat) => {
         const Icon = cat.icon;
         const isActive = selectedCategory === cat.id && !searchQuery;
@@ -28,14 +28,15 @@ export function CategoryFilter() {
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`group flex items-center gap-2.5 rounded-xl border px-4 py-2.5 text-xs font-bold transition-all duration-300 ${
+            className={`group relative flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 ${
               isActive
-                ? 'border-[#ff003c] bg-[#ff003c] text-white shadow-lg shadow-[#ff003c]/30 scale-105'
-                : 'border-[#22222e] bg-[#0e0e12] text-[#a1a1aa] hover:border-[#ff003c]/50 hover:bg-[#16161f] hover:text-white'
+                ? 'border-[#ff003c] bg-[#ff003c] text-white shadow-lg shadow-[#ff003c]/30'
+                : 'border-[#232330] bg-[#08080c] text-[#9c9ca8] hover:border-[#ff003c]/50 hover:bg-[#14141a] hover:text-white hover:shadow-md hover:shadow-[#ff003c]/10'
             }`}
+            aria-pressed={isActive}
           >
-            <Icon className={`h-4 w-4 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-[#ff003c]'}`} />
-            {cat.name}
+            <Icon className={`h-4.5 w-4.5 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-[#ff003c]'}`} />
+            <span className="hidden sm:inline">{cat.name}</span>
           </button>
         );
       })}
