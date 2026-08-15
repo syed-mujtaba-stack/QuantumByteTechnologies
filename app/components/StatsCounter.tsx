@@ -91,9 +91,3 @@ export function StatsCounter({ productsCount }: { productsCount: number }) {
     </section>
   );
 }
-
-interface StatItem {
-  value: number;
-  suffix: string;
-  label: string;
-}

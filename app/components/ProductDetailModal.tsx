@@ -59,7 +59,7 @@ export function ProductDetailModal() {
           <X className="h-5 w-5" />
         </button>
 
-        <div className="p-6 sm:p-8">
+        <div className="p-4 sm:p-8">
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Product Image Column */}
             <div className="space-y-4">
@@ -70,7 +70,7 @@ export function ProductDetailModal() {
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  className="object-contain bg-[#030305] transition-transform duration-500"
                 />
                 {discountPercent > 0 && (
                   <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-xl bg-[#ff003c] px-3 py-1.5 text-sm font-black text-white shadow-lg shadow-[#ff003c]/30">
@@ -84,7 +84,7 @@ export function ProductDetailModal() {
               </div>
 
               {/* Guarantees */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="flex items-center gap-2.5 rounded-xl border border-[#232330] bg-[#030305] p-3 hover:border-[#ff003c]/30 transition-colors">
                   <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#ff003c]/10 text-[#ff003c] shrink-0">
                     <ShieldCheck className="h-4.5 w-4.5" />

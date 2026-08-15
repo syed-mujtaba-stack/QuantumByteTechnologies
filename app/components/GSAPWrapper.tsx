@@ -192,6 +192,7 @@ export function GSAPHoverTilt({
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = cardRef.current;
     if (!card) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) return;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;

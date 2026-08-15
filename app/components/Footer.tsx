@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Cpu, ShieldCheck, Mail, Send, MapPin, Phone, Truck, Wallet, Headphones, RotateCcw } from 'lucide-react';
+import { Cpu, ShieldCheck, Mail, Send, MapPin, Phone, Truck, Wallet, Headphones, RotateCcw, ChevronDown } from 'lucide-react';
 
 const SocialIcons = {
   Twitter: () => (
@@ -91,6 +91,40 @@ const socialLinks = [
   { Icon: SocialIcons.Github, href: '#', label: 'GitHub', color: 'hover:text-white' },
 ];
 
+function FooterLinkColumn({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="border-b border-[#1a1a24] lg:border-0">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between py-3 lg:py-0 lg:mb-4 text-left touch-target min-h-[44px]"
+      >
+        <h4 className="text-xs font-bold text-white uppercase tracking-wider">{title}</h4>
+        <ChevronDown
+          className={`h-4.5 w-4.5 text-[#6b6b7a] transition-transform duration-300 lg:hidden ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      <ul
+        role="list"
+        className={`space-y-3 text-sm overflow-hidden transition-all duration-300 lg:!h-auto lg:!opacity-100 ${
+          open ? 'max-h-96 opacity-100 pb-3' : 'max-h-0 opacity-0 lg:max-h-none lg:opacity-100 lg:pb-0'
+        }`}
+      >
+        {links.map(({ label, href }) => (
+          <li key={href}>
+            <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2 py-1 block">
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -170,42 +204,15 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Shop</h4>
-            <ul className="space-y-3 text-sm" role="list">
-              {footerLinks.shop.map(({ label, href }) => (
-                <li key={href}>
-                  <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <FooterLinkColumn title="Shop" links={footerLinks.shop} />
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Categories</h4>
-            <ul className="space-y-3 text-sm" role="list">
-              {footerLinks.categories.map(({ label, href }) => (
-                <li key={href}>
-                  <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <FooterLinkColumn title="Categories" links={footerLinks.categories} />
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
-            <ul className="space-y-3 text-sm" role="list">
-              {footerLinks.company.map(({ label, href }) => (
-                <li key={href}>
-                  <Link href={href} className="text-[#9c9ca8] hover:text-[#ff003c] transition-colors flex items-center gap-2">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <FooterLinkColumn title="Company" links={footerLinks.company} />
           </div>
 
           <div className="space-y-4 lg:col-span-2">
@@ -243,7 +250,7 @@ export function Footer() {
                   disabled={subscribed}
                 >
                   <Send className="h-4.5 w-4.5" />
-                  {subscribed ? '��� Subscribed!' : 'Subscribe'}
+                  {subscribed ? 'Subscribed!' : 'Subscribe'}
                 </button>
               </form>
             </div>

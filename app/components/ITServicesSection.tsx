@@ -53,11 +53,6 @@ export function ITServicesSection({ itServices }: ITServicesSectionProps) {
             return (
               <GSAPReveal key={service.id} direction="up" delay={0.2 + index * 0.08} distance={30}>
                 <div className="group rounded-2xl border border-[#1a1a24] bg-[#08080c] overflow-hidden transition-all duration-300 hover:border-[#ff003c]/30 hover:shadow-xl hover:shadow-[#ff003c]/10">
-                  {service.popularBadge && (
-                    <div className="absolute left-4 top-4 z-10 rounded-full bg-[#ff003c] px-3 py-1 text-[10px] font-extrabold text-white uppercase tracking-wider shadow-lg shadow-[#ff003c]/30">
-                      Popular Choice
-                    </div>
-                  )}
 
                   {/* Mobile: Image on top, Content below */}
                   <div className="lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center">
