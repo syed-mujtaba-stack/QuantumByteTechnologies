@@ -18,9 +18,9 @@ export function SmoothScroll() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const lenis = new Lenis({
-      lerp: 0.12,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      lerp: 0.08,           // snappier — was 0.12 (lower = faster response)
+      wheelMultiplier: 1.2, // slightly more scroll per wheel tick
+      touchMultiplier: 2,   // responsive on touch
       smoothWheel: true,
       anchors: true,
     });

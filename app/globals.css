@@ -1070,35 +1070,17 @@ pre, code {
 
 /* ── Section animated background keyframes ─────────────────────── */
 
-/* Floating orb drift */
-@keyframes qb-drift {
-  0%   { transform: translate(0px, 0px) scale(1); }
-  33%  { transform: translate(30px, -20px) scale(1.05); }
-  66%  { transform: translate(-20px, 15px) scale(0.95); }
-  100% { transform: translate(0px, 0px) scale(1); }
-}
+/* Floating orb drift — REMOVED (causes continuous GPU paint).
+   Orbs are now static radial blurs — same visual, zero animation cost. */
 
-@keyframes qb-drift-slow {
-  0%   { transform: translate(0px, 0px) scale(1); }
-  50%  { transform: translate(-40px, 25px) scale(1.08); }
-  100% { transform: translate(0px, 0px) scale(1); }
-}
-
-.qb-orb-drift {
-  animation: qb-drift 12s ease-in-out infinite;
-}
-
-.qb-orb-drift-slow {
-  animation: qb-drift-slow 18s ease-in-out infinite;
-}
-
+.qb-orb-drift,
+.qb-orb-drift-slow,
 .qb-orb-drift-rev {
-  animation: qb-drift 15s ease-in-out infinite reverse;
+  /* intentionally no animation — static position only */
 }
 
 /* ── Section distinct dark backgrounds ─────────────────────────────
    Each section has its own base color so sections visually separate.
-   Orb glows are stronger to create the animated Hero-like feel.
 ─────────────────────────────────────────────────────────────────── */
 
 /* CATALOG — Deep Navy Blue */
@@ -1124,10 +1106,4 @@ pre, code {
 /* CLIENT VOICES — Deep Violet-Black */
 .qb-section-purple {
   background-color: #08021A;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .qb-orb-drift, .qb-orb-drift-slow, .qb-orb-drift-rev {
-    animation: none;
-  }
 }

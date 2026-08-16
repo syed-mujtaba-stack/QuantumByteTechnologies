@@ -5,7 +5,6 @@ import { useCart } from '@/app/context/CartContext';
 import { useAuth } from '@/app/context/AuthContext';
 import { formatPKR } from '@/sanity/lib/currency';
 import { createOrder } from '@/app/checkout/actions';
-import confetti from 'canvas-confetti';
 import {
   X,
   Truck,
@@ -94,12 +93,15 @@ export function CheckoutModal() {
     clearCart();
     setStep('success');
 
-    confetti({
-      particleCount: 150,
-      spread: 90,
-      origin: { y: 0.5 },
-      colors: ['#3B82F6', '#ffffff', '#06B6D4', '#8B5CF6'],
-      zIndex: 100,
+    // Lazy load confetti — only needed on order success
+    import('canvas-confetti').then(({ default: confetti }) => {
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.5 },
+        colors: ['#3B82F6', '#ffffff', '#06B6D4', '#8B5CF6'],
+        zIndex: 100,
+      });
     });
   };
 

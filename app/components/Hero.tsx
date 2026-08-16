@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useCart } from '@/app/context/CartContext';
 import { GSAPFadeIn } from './GSAPWrapper';
-import Hyperspeed from './Hyperspeed';
 import {
   ShieldCheck,
   Cpu,
@@ -16,6 +16,12 @@ import {
   Headphones,
   ArrowUpRight,
 } from 'lucide-react';
+
+// Lazy-load the heavy THREE.js scene — excluded from initial bundle
+const Hyperspeed = dynamic(() => import('./Hyperspeed'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-[#05070D]" />,
+});
 
 const HYPERSPEED_OPTIONS = {
   distortion: 'turbulentDistortion',
@@ -64,6 +70,16 @@ const features = [
 
 export function Hero() {
   const { openBooking, setSelectedCategory } = useCart();
+  const [showWebGL, setShowWebGL] = useState(false);
+
+  useEffect(() => {
+    // Only run WebGL on desktop + devices without reduced-motion preference
+    const isMobile = window.innerWidth < 1024;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!isMobile && !reducedMotion) {
+      setShowWebGL(true);
+    }
+  }, []);
 
   const handleExploreStore = () => {
     setSelectedCategory('all');
@@ -82,9 +98,12 @@ export function Hero() {
       id="hero-section"
       className="relative overflow-hidden bg-[#05070D] min-h-[100svh] flex items-center"
     >
-      {/* ── Hyperspeed background — DO NOT MODIFY ────────────────── */}
+      {/* ── Hyperspeed background — lazy loaded, desktop only ────── */}
       <div className="absolute inset-0 z-0">
-        <Hyperspeed effectOptions={HYPERSPEED_OPTIONS} />
+        {showWebGL
+          ? <Hyperspeed effectOptions={HYPERSPEED_OPTIONS} />
+          : <div className="absolute inset-0 bg-[#020C1B]" />
+        }
       </div>
 
       {/* ── Gradient overlays ────────────────────────────────────── */}
