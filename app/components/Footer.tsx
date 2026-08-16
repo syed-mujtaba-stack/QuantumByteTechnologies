@@ -183,11 +183,11 @@ export function Footer() {
                 </div>
                 +92 325 4803957
               </a>
-              <a href="mailto:support@quantumbyte.tech" className="flex items-center gap-2.5 text-[12.5px] text-[#64748B] hover:text-white transition-colors duration-200 group">
+              <a href="mailto:supportquantumbytetechnologies@gmail.com" className="flex items-center gap-2.5 text-[12.5px] text-[#64748B] hover:text-white transition-colors duration-200 group">
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/[0.03] border border-white/[0.05] group-hover:border-[#3B82F6]/20 transition-colors shrink-0">
                   <Mail className="h-3 w-3 text-[#475569]" />
                 </div>
-                support@quantumbyte.tech
+                supportquantumbytetechnologies@gmail.com
               </a>
               <div className="flex items-start gap-2.5 text-[12.5px] text-[#64748B]">
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/[0.03] border border-white/[0.05] shrink-0 mt-0.5">
