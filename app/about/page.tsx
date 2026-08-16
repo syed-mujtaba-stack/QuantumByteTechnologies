@@ -235,7 +235,7 @@ export default function AboutPage() {
                       </div>
                       <div>
                         <p className="font-semibold text-white">Office 7, 2nd Floor, AZ Mall Platform</p>
-                        <p className="text-sm text-[#94A3B8]">Back Side Al-Fateh Kohinoor, Madina Town, Faisalabad, Punjab</p>
+                        <p className="text-sm text-[#94A3B8]">Faisalabad, Punjab, Pakistan</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">

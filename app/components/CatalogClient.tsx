@@ -52,124 +52,126 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
     <>
       <section
         id="catalog-section"
-        className={`relative overflow-hidden bg-[#05070D] ${homeMode ? 'py-12 lg:py-16' : 'py-16 lg:py-24'}`}
+        className={`relative overflow-hidden bg-[#05070D] ${homeMode ? 'py-14 lg:py-20' : 'py-14 lg:py-20'}`}
       >
-        {/* ── Background ──────────────────────────────────────────── */}
+        {/* Background */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[900px] rounded-full bg-[#3B82F6]/[0.03] blur-[120px]" />
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/10 to-transparent" />
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#3B82F6]/[0.025] blur-[100px]" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/[0.08] to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-          {/* ── Section Header ──────────────────────────────────────── */}
-          <div className={homeMode ? 'mb-8' : 'mb-12'}>
+          {/* Section Header */}
+          <div className={homeMode ? 'mb-8 lg:mb-10' : 'mb-10 lg:mb-12'}>
+
+            {/* Eyebrow + product count */}
             <GSAPReveal direction="down" delay={0.05}>
-              <div className="flex items-center gap-3 mb-5">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/[0.06] px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#3B82F6]">
+              <div className="flex items-center gap-2.5 mb-4">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/[0.06] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-[#3B82F6]">
                   <Cpu className="h-3 w-3" />
                   Official Hardware Inventory
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-white/[0.05] bg-white/[0.025] px-3 py-1.5 text-[11px] font-semibold text-[#64748B]">
+                <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-white/[0.05] bg-white/[0.02] px-3 py-1 text-[11px] font-medium text-[#64748B]">
                   <Package className="h-3 w-3" />
                   {products.length} Products
                 </span>
               </div>
             </GSAPReveal>
 
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            {/* Title row — stacked on mobile, side-by-side on lg */}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
               <div className="max-w-2xl">
                 <GSAPReveal direction="up" delay={0.1}>
-                  <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-black tracking-[-0.03em] leading-[1.1] text-white">
+                  <h2 className="text-[1.85rem] sm:text-4xl lg:text-[2.5rem] font-black tracking-[-0.03em] leading-[1.1] text-white">
                     Explore{' '}
                     <span className="bg-gradient-to-r from-[#60A5FA] via-[#3B82F6] to-[#06B6D4] bg-clip-text text-transparent">
                       Products
                     </span>
-                    {' '}&{' '}
+                    {' '}&amp;{' '}
                     <span className="bg-gradient-to-r from-[#60A5FA] via-[#3B82F6] to-[#06B6D4] bg-clip-text text-transparent">
                       Parts
                     </span>
                   </h2>
                 </GSAPReveal>
                 <GSAPReveal direction="up" delay={0.15}>
-                  <p className="mt-3 text-[15px] text-[#64748B] max-w-xl leading-relaxed">
-                    Premium gaming rigs, flagship laptops, cutting-edge smartphones, GaN chargers, GPUs, RAM, SSDs — every component genuinely sourced &amp; warranty-backed.
+                  <p className="mt-2.5 text-[14px] text-[#64748B] max-w-xl leading-relaxed">
+                    Premium gaming rigs, flagship laptops, smartphones, GaN chargers, GPUs, RAM, SSDs — every component genuinely sourced &amp; warranty-backed.
                   </p>
                 </GSAPReveal>
               </div>
 
-              <GSAPReveal direction="left" delay={0.2}>
-                <div className="flex items-center gap-2.5">
-                  {/* Count indicator */}
-                  <div className="flex items-center gap-2 rounded-xl border border-white/[0.05] bg-white/[0.025] px-3.5 py-2 text-[12px]">
-                    <Sparkles className="h-3.5 w-3.5 text-[#3B82F6]/70" />
-                    <span className="text-[#475569]]">Showing</span>
-                    <strong className="text-white font-bold">{Math.min(10, showcaseProducts.length)}</strong>
-                    <span className="text-[#475569]">{homeMode ? 'of' : 'of'}</span>
-                    <strong className="text-white font-bold">{products.length}</strong>
-                  </div>
+              {/* Controls — only in full catalog mode */}
+              {!homeMode && (
+                <GSAPReveal direction="left" delay={0.2}>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {/* Count */}
+                    <div className="flex items-center gap-1.5 rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2 text-[12px]">
+                      <Sparkles className="h-3 w-3 text-[#3B82F6]/60" />
+                      <span className="text-[#475569]">Showing</span>
+                      <strong className="text-white font-bold">{filteredProducts.length}</strong>
+                      <span className="text-[#475569]">of</span>
+                      <strong className="text-white font-bold">{products.length}</strong>
+                    </div>
 
-                  {/* View toggles */}
-                  <div className="flex items-center rounded-xl border border-white/[0.05] bg-white/[0.025] p-0.5">
-                    <button
-                      onClick={() => setViewMode('grid')}
-                      className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200 ${
-                        viewMode === 'grid'
-                          ? 'bg-[#3B82F6]/15 text-[#3B82F6]'
-                          : 'text-[#475569] hover:text-white'
-                      }`}
-                      aria-label="Grid view"
-                    >
-                      <Grid3X3 className="h-4 w-4" />
-                    </button>
-                    <button
-                      onClick={() => setViewMode('list')}
-                      className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200 ${
-                        viewMode === 'list'
-                          ? 'bg-[#3B82F6]/15 text-[#3B82F6]'
-                          : 'text-[#475569] hover:text-white'
-                      }`}
-                      aria-label="List view"
-                    >
-                      <List className="h-4 w-4" />
-                    </button>
-                  </div>
+                    {/* View toggle */}
+                    <div className="flex items-center rounded-xl border border-white/[0.05] bg-white/[0.02] p-0.5">
+                      <button
+                        onClick={() => setViewMode('grid')}
+                        className={`flex h-8 w-8 items-center justify-center rounded-[9px] transition-all duration-200 ${
+                          viewMode === 'grid' ? 'bg-[#3B82F6]/15 text-[#3B82F6]' : 'text-[#475569] hover:text-white'
+                        }`}
+                        aria-label="Grid view"
+                      >
+                        <Grid3X3 className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => setViewMode('list')}
+                        className={`flex h-8 w-8 items-center justify-center rounded-[9px] transition-all duration-200 ${
+                          viewMode === 'list' ? 'bg-[#3B82F6]/15 text-[#3B82F6]' : 'text-[#475569] hover:text-white'
+                        }`}
+                        aria-label="List view"
+                      >
+                        <List className="h-4 w-4" />
+                      </button>
+                    </div>
 
-                  {/* Sort */}
-                  <div className="flex items-center gap-2 rounded-xl border border-white/[0.05] bg-white/[0.025] px-3 py-2 text-[12px]">
-                    <SlidersHorizontal className="h-3.5 w-3.5 text-[#475569]" />
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                      className="bg-transparent text-[12px] font-semibold text-white outline-none cursor-pointer appearance-none"
-                    >
-                      <option value="featured" className="bg-[#0B0F18]">Featured</option>
-                      <option value="newest" className="bg-[#0B0F18]">Newest</option>
-                      <option value="price-low" className="bg-[#0B0F18]">Price ↑</option>
-                      <option value="price-high" className="bg-[#0B0F18]">Price ↓</option>
-                      <option value="rating" className="bg-[#0B0F18]">Top Rated</option>
-                    </select>
+                    {/* Sort */}
+                    <div className="flex items-center gap-1.5 rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2 text-[12px]">
+                      <SlidersHorizontal className="h-3.5 w-3.5 text-[#475569]" />
+                      <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+                        className="bg-transparent text-[12px] font-semibold text-white outline-none cursor-pointer appearance-none"
+                      >
+                        <option value="featured"   className="bg-[#0B0F18]">Featured</option>
+                        <option value="newest"     className="bg-[#0B0F18]">Newest</option>
+                        <option value="price-low"  className="bg-[#0B0F18]">Price ↑</option>
+                        <option value="price-high" className="bg-[#0B0F18]">Price ↓</option>
+                        <option value="rating"     className="bg-[#0B0F18]">Top Rated</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-              </GSAPReveal>
+                </GSAPReveal>
+              )}
             </div>
           </div>
 
-          {/* ── Category Filter ────────────────────────────────────── */}
-          <div className={homeMode ? 'mb-6' : 'mb-8'}>
+          {/* Category Filter */}
+          <div className="mb-8">
             <CategoryFilter />
           </div>
 
-          {/* ── Search Results Banner ──────────────────────────────── */}
+          {/* Search results banner */}
           {searchQuery && (
-            <div className="mb-6 flex items-center justify-between rounded-xl border border-[#3B82F6]/20 bg-[#3B82F6]/[0.06] px-4 py-3 text-[13px] text-white animate-slide-down">
+            <div className="mb-6 flex items-center justify-between rounded-xl border border-[#3B82F6]/20 bg-[#3B82F6]/[0.05] px-4 py-3 text-[13px] text-white animate-slide-down">
               <span>
                 Results for <strong className="text-[#3B82F6]">&ldquo;{searchQuery}&rdquo;</strong>
                 <span className="ml-2 text-[#64748B]">— {filteredProducts.length} found</span>
               </span>
               <button
                 onClick={() => setSearchQuery('')}
-                className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-[12px] font-semibold text-white/70 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
+                className="flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-[12px] font-semibold text-white/60 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
               >
                 <SearchX className="h-3.5 w-3.5" />
                 Clear
@@ -177,11 +179,35 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
             </div>
           )}
 
-          {/* ── Product Grid ───────────────────────────────────────── */}
+          {/* Product area */}
           {showcaseProducts.length > 0 ? (
             <>
               {homeMode ? (
-                <ProductMarquee products={showcaseProducts} />
+                <>
+                  <ProductMarquee products={showcaseProducts} />
+
+                  {/* See more CTA */}
+                  <div className="mt-10 flex justify-center">
+                    <Link
+                      href="/shop"
+                      className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-[#3B82F6]/25 bg-[#3B82F6]/[0.06] px-7 py-3.5 text-[14px] font-bold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#3B82F6]/50 hover:bg-[#3B82F6]/[0.1] hover:shadow-[0_0_32px_rgba(59,130,246,0.18)] hover:scale-[1.015] active:scale-[0.99]"
+                    >
+                      {/* Shine sweep */}
+                      <span className="pointer-events-none absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#3B82F6]/15 text-[#3B82F6] transition-colors duration-200 group-hover:bg-[#3B82F6]/25">
+                        <Package className="h-4 w-4" />
+                      </span>
+
+                      <span className="flex flex-col items-start leading-tight">
+                        <span className="text-[14px] font-black tracking-tight">See All {products.length} Products</span>
+                        <span className="text-[11px] font-normal text-[#64748B]">Full catalog · All categories · Sort &amp; filter</span>
+                      </span>
+
+                      <ArrowRight className="ml-auto h-4.5 w-4.5 text-[#3B82F6] transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                </>
               ) : (
                 <>
                   <div
@@ -194,22 +220,22 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
                     aria-label="Product catalog"
                   >
                     {filteredProducts.map((product, index) => (
-                      <GSAPReveal key={product.id} direction="up" delay={index * 0.03} distance={20}>
+                      <GSAPReveal key={product.id} direction="up" delay={Math.min(index * 0.03, 0.3)} distance={16}>
                         <ProductCard product={product} />
                       </GSAPReveal>
                     ))}
                   </div>
 
-                  {/* Footer */}
-                  <div className={`flex flex-col items-center gap-4 text-center ${homeMode ? 'mt-8' : 'mt-14'}`}>
-                    <p className="text-[13px] text-[#475569]">
-                      Showing <strong className="text-white">{homeMode ? Math.min(10, showcaseProducts.length) : filteredProducts.length}</strong> of <strong className="text-white">{products.length}</strong> products
+                  <div className="mt-12 flex flex-col items-center gap-3 text-center">
+                    <p className="text-[12px] text-[#475569]">
+                      Showing <strong className="text-white">{filteredProducts.length}</strong> of{' '}
+                      <strong className="text-white">{products.length}</strong> products
                     </p>
                     <Link
                       href="/shop"
-                      className="group flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#2563EB] px-7 py-3.5 text-[14px] font-bold text-white transition-all duration-300 hover:shadow-[0_0_32px_rgba(59,130,246,0.35)] hover:scale-[1.02] active:scale-[0.98]"
+                      className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#2563EB] px-7 py-3 text-[14px] font-bold text-white transition-all duration-300 hover:shadow-[0_0_28px_rgba(59,130,246,0.35)] hover:scale-[1.02] active:scale-[0.98]"
                     >
-                      <Package className="h-4.5 w-4.5" />
+                      <Package className="h-4 w-4" />
                       View Full Shop — All {products.length} Products
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </Link>
@@ -218,23 +244,20 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
               )}
             </>
           ) : (
-            /* ── Empty State ─────────────────────────────────────── */
-            <div className="my-20 flex flex-col items-center justify-center text-center space-y-5 py-16 rounded-2xl border border-dashed border-white/[0.06] bg-white/[0.015]">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.03] border border-white/[0.05]">
-                <SearchX className="h-8 w-8 text-[#475569]" />
+            /* Empty state */
+            <div className="my-16 flex flex-col items-center justify-center text-center space-y-4 py-14 rounded-2xl border border-dashed border-white/[0.06] bg-white/[0.01]">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.03] border border-white/[0.05]">
+                <SearchX className="h-7 w-7 text-[#475569]" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">No matching products</h3>
-                <p className="mt-2 text-[14px] text-[#64748B] max-w-sm">
+                <h3 className="text-lg font-bold text-white">No matching products</h3>
+                <p className="mt-1.5 text-[13px] text-[#64748B] max-w-sm">
                   Try switching category filters or clearing your search to browse all {products.length} products.
                 </p>
               </div>
               <button
-                onClick={() => {
-                  setSelectedCategory('all');
-                  setSearchQuery('');
-                }}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#2563EB] px-6 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] active:scale-[0.98]"
+                onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#3B82F6] to-[#2563EB] px-5 py-2.5 text-[13px] font-bold text-white transition-all duration-200 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] active:scale-[0.98]"
               >
                 Reset Filters
               </button>
@@ -250,24 +273,23 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
 
 function ProductMarquee({ products }: { products: Product[] }) {
   if (!products.length) return null;
-
   const items = [...products, ...products];
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
       <style jsx>{`
         @keyframes qb-marquee {
           from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+          to   { transform: translateX(-50%); }
         }
         .qb-marquee-track {
           display: flex;
           width: max-content;
-          padding: 0.5rem 0;
-          animation: qb-marquee 44s linear infinite;
+          padding: 4px 0 8px;
+          animation: qb-marquee 48s linear infinite;
           will-change: transform;
         }
-        .qb-marquee-carousel:hover .qb-marquee-track {
+        .qb-marquee-wrap:hover .qb-marquee-track {
           animation-play-state: paused;
         }
         @media (prefers-reduced-motion: reduce) {
@@ -275,15 +297,18 @@ function ProductMarquee({ products }: { products: Product[] }) {
         }
       `}</style>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-24 bg-gradient-to-r from-[#05070D] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-24 bg-gradient-to-l from-[#05070D] to-transparent" />
+      {/* Edge fades */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 sm:w-20 bg-gradient-to-r from-[#05070D] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 sm:w-20 bg-gradient-to-l from-[#05070D] to-transparent" />
 
-      <div className="qb-marquee-track">
-        {items.map((product, idx) => (
-          <div key={`${product.id}-${idx}`} className="w-[260px] sm:w-[280px] lg:w-[300px] shrink-0 pr-4">
-            <ProductCard product={product} />
-          </div>
-        ))}
+      <div className="qb-marquee-wrap overflow-hidden">
+        <div className="qb-marquee-track">
+          {items.map((product, idx) => (
+            <div key={`${product.id}-${idx}`} className="w-[250px] sm:w-[270px] lg:w-[288px] shrink-0 pr-4">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

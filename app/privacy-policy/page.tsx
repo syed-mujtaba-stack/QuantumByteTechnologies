@@ -185,7 +185,7 @@ export default function PrivacyPolicyPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-[#3B82F6]">📍</span>
-                  <address className="not-italic text-[#94A3B8]">Office 7, 2nd Floor, AZ Mall Platform, Back Side Al-Fateh Kohinoor, Madina Town, Faisalabad, Punjab, Pakistan</address>
+                  <address className="not-italic text-[#94A3B8]">Office 7, 2nd Floor, AZ Mall Platform, Faisalabad, Punjab, Pakistan</address>
                 </div>
               </div>
             </section>

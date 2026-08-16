@@ -6,6 +6,7 @@ import { CheckoutModal } from '@/app/components/CheckoutModal';
 import { ServiceBookingModal } from '@/app/components/ServiceBookingModal';
 import { TechFeaturesBanner } from '@/app/components/TechFeaturesBanner';
 import { StatsCounter } from '@/app/components/StatsCounter';
+import { ClientVoices } from '@/app/components/ClientVoices';
 import { Footer } from '@/app/components/Footer';
 import { CatalogClient } from '@/app/components/CatalogClient';
 import { fetchProducts, fetchITServices } from '@/sanity/lib/fetch';
@@ -35,6 +36,9 @@ export default async function Home() {
 
         {/* Stats Counter — GSAP count-up */}
         <StatsCounter productsCount={products.length} />
+
+        {/* Client Voices — testimonials */}
+        <ClientVoices />
       </main>
 
       <Footer />

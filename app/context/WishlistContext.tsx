@@ -10,29 +10,18 @@ interface WishlistContextType {
   removeFromWishlist: (productId: string) => void;
   isInWishlist: (productId: string) => boolean;
   clearWishlist: () => void;
-  
-  // Compare State
-  compareList: Product[];
-  addToCompare: (product: Product) => void;
-  removeFromCompare: (productId: string) => void;
-  isInCompare: (productId: string) => boolean;
-  clearCompare: () => void;
 }
 
 const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
 
 export function WishlistProvider({ children }: { children: React.ReactNode }) {
   const [wishlist, setWishlist] = useState<Product[]>([]);
-  const [compareList, setCompareList] = useState<Product[]>([]);
   const { showToast } = useCart();
 
   useEffect(() => {
     try {
       const savedW = localStorage.getItem('quantumbyte_wishlist');
       if (savedW) setWishlist(JSON.parse(savedW));
-
-      const savedC = localStorage.getItem('quantumbyte_compare');
-      if (savedC) setCompareList(JSON.parse(savedC));
     } catch (e) {
       console.error(e);
     }
@@ -45,14 +34,6 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
       console.error(e);
     }
   }, [wishlist]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('quantumbyte_compare', JSON.stringify(compareList));
-    } catch (e) {
-      console.error(e);
-    }
-  }, [compareList]);
 
   const addToWishlist = (product: Product) => {
     if (!isInWishlist(product.id)) {
@@ -74,29 +55,6 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
 
   const clearWishlist = () => setWishlist([]);
 
-  const addToCompare = (product: Product) => {
-    if (compareList.length >= 4 && !isInCompare(product.id)) {
-      showToast('You can compare a maximum of 4 products at once.');
-      return;
-    }
-    if (!isInCompare(product.id)) {
-      setCompareList((prev) => [...prev, product]);
-      showToast(`Added "${product.name}" to comparison matrix.`);
-    } else {
-      removeFromCompare(product.id);
-    }
-  };
-
-  const removeFromCompare = (productId: string) => {
-    setCompareList((prev) => prev.filter((item) => item.id !== productId));
-  };
-
-  const isInCompare = (productId: string) => {
-    return compareList.some((item) => item.id === productId);
-  };
-
-  const clearCompare = () => setCompareList([]);
-
   return (
     <WishlistContext.Provider
       value={{
@@ -105,11 +63,6 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
         removeFromWishlist,
         isInWishlist,
         clearWishlist,
-        compareList,
-        addToCompare,
-        removeFromCompare,
-        isInCompare,
-        clearCompare,
       }}
     >
       {children}

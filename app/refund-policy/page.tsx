@@ -218,7 +218,7 @@ export default function RefundPolicyPage() {
                   <CheckCircle2 className="h-5 w-5 text-[#3B82F6]" />
                   <div>
                     <p className="font-semibold text-white">Office Address</p>
-                    <p className="text-sm text-[#94A3B8]">Office 7, 2nd Floor, AZ Mall Platform, Back Side Al-Fateh Kohinoor, Madina Town, Faisalabad</p>
+                    <p className="text-sm text-[#94A3B8]">Office 7, 2nd Floor, AZ Mall Platform, Faisalabad, Punjab, Pakistan</p>
                   </div>
                 </div>
               </div>

@@ -36,6 +36,15 @@ export function CheckoutModal() {
   const [orderId, setOrderId] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && step !== 'success') closeCheckout();
+    };
+    if (!isCheckoutOpen) return;
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isCheckoutOpen, step, closeCheckout]);
+
   if (!isCheckoutOpen) return null;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -93,14 +102,6 @@ export function CheckoutModal() {
       zIndex: 100,
     });
   };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && step !== 'success') closeCheckout();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [step, closeCheckout]);
 
   const steps = [
     { key: 'shipping', label: 'Shipping', icon: Truck },

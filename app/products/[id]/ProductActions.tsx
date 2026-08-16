@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { Product } from '@/sanity/lib/data';
 import { useCart } from '@/app/context/CartContext';
 import { useWishlist } from '@/app/context/WishlistContext';
-import { ShoppingBag, Heart, Scale, Plus, Minus } from 'lucide-react';
+import { ShoppingBag, Heart, Plus, Minus } from 'lucide-react';
 
 export function ProductActions({ product }: { product: Product }) {
   const { addToCart, openCheckout } = useCart();
-  const { addToWishlist, isInWishlist, addToCompare, isInCompare } = useWishlist();
+  const { addToWishlist, isInWishlist } = useWishlist();
   const [quantity, setQuantity] = useState(1);
 
   const handleBuyNow = () => {
@@ -56,11 +56,11 @@ export function ProductActions({ product }: { product: Product }) {
         </button>
       </div>
 
-      {/* Wishlist & Compare Quick Toggles */}
-      <div className="grid grid-cols-2 gap-3 pt-2">
+      {/* Wishlist Quick Toggle */}
+      <div className="pt-2">
         <button
           onClick={() => addToWishlist(product)}
-          className={`flex items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-bold transition ${
+          className={`w-full flex items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-bold transition ${
             isInWishlist(product.id)
               ? 'border-[#ff003c] bg-[#ff003c]/20 text-[#ff003c]'
               : 'border-[#22222e] bg-[#0e0e12] text-[#a1a1aa] hover:text-white hover:border-[#ff003c]'
@@ -68,18 +68,6 @@ export function ProductActions({ product }: { product: Product }) {
         >
           <Heart className={`h-4 w-4 ${isInWishlist(product.id) ? 'fill-current text-[#ff003c]' : ''}`} />
           {isInWishlist(product.id) ? 'In Wishlist' : 'Add to Wishlist'}
-        </button>
-
-        <button
-          onClick={() => addToCompare(product)}
-          className={`flex items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-bold transition ${
-            isInCompare(product.id)
-              ? 'border-[#ff003c] bg-[#ff003c]/20 text-[#ff003c]'
-              : 'border-[#22222e] bg-[#0e0e12] text-[#a1a1aa] hover:text-white hover:border-[#ff003c]'
-          }`}
-        >
-          <Scale className="h-4 w-4" />
-          {isInCompare(product.id) ? 'Comparing' : 'Add to Compare'}
         </button>
       </div>
     </div>
