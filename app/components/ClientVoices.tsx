@@ -180,18 +180,20 @@ export function ClientVoices() {
 
   return (
     <section
-      className="relative overflow-hidden bg-[#05070D] py-14 lg:py-20"
+      className="relative overflow-hidden qb-section-purple py-14 lg:py-20"
       aria-labelledby="testimonials-heading"
     >
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[300px] w-[600px] rounded-full bg-[#8b5cf6]/[0.022] blur-[100px]" />
-        <div className="absolute top-0    inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      {/* Animated background orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="qb-orb-drift-slow absolute -top-32 left-1/4 h-[520px] w-[520px] rounded-full bg-[#7C3AED]/[0.18] blur-[110px]" />
+        <div className="qb-orb-drift absolute -bottom-32 right-1/4 h-[420px] w-[420px] rounded-full bg-[#5B21B6]/[0.14] blur-[100px]" />
+        <div className="qb-orb-drift-rev absolute top-1/2 left-3/4 h-[280px] w-[280px] rounded-full bg-[#BE185D]/[0.08] blur-[80px]" />
+        <div className="absolute top-0    inset-x-0 h-px bg-gradient-to-r from-transparent via-[#8B5CF6]/[0.2] to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#8B5CF6]/[0.12] to-transparent" />
       </div>
 
       {/* ── Header ────────────────────────────────────────────────── */}
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 lg:mb-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10 lg:mb-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
 
           <div className="max-w-xl">
@@ -240,8 +242,8 @@ export function ClientVoices() {
         </div>
       </div>
 
-      {/* ── Scrolling marquee — full bleed, overflows container ──── */}
-      <div className="relative">
+      {/* ── Scrolling marquee — full bleed ───────────────────────── */}
+      <div className="relative z-10">
         {/* Left & right fade masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-28 bg-gradient-to-r from-[#05070D] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-28 bg-gradient-to-l from-[#05070D] to-transparent" />
@@ -277,7 +279,7 @@ export function ClientVoices() {
       </div>
 
       {/* Bottom note */}
-      <p className="relative mt-8 text-center text-[11.5px] text-[#475569] px-4">
+      <p className="relative z-10 mt-8 text-center text-[11.5px] text-[#475569] px-4">
         All reviews are from verified customers. Orders tracked &amp; fulfilled through QuantumByte Technologies.
       </p>
     </section>

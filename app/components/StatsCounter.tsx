@@ -62,18 +62,20 @@ export function StatsCounter({ productsCount }: { productsCount: number }) {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#05070D]"
+      className="relative overflow-hidden qb-section-amber"
       aria-labelledby="stats-heading"
     >
-      {/* Subtle centre glow */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[200px] w-[400px] rounded-full bg-[#3B82F6]/[0.025] blur-[80px]" />
+      {/* Animated background orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="qb-orb-drift absolute -top-20 left-1/4 h-[380px] w-[380px] rounded-full bg-[#D97706]/[0.16] blur-[100px]" />
+        <div className="qb-orb-drift-rev absolute -bottom-20 right-1/4 h-[320px] w-[320px] rounded-full bg-[#DC2626]/[0.1] blur-[90px]" />
+        <div className="qb-orb-drift-slow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[250px] w-[500px] rounded-full bg-[#B45309]/[0.08] blur-[80px]" />
       </div>
 
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/[0.2] to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F59E0B]/[0.12] to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 id="stats-heading" className="sr-only">Company Statistics</h2>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/[0.05]">

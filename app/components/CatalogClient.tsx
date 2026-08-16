@@ -52,12 +52,14 @@ export function CatalogClient({ products, itServices, homeMode = false }: Catalo
     <>
       <section
         id="catalog-section"
-        className={`relative overflow-hidden bg-[#05070D] ${homeMode ? 'py-14 lg:py-20' : 'py-14 lg:py-20'}`}
+        className={`relative overflow-hidden qb-section-blue ${homeMode ? 'py-14 lg:py-20' : 'py-14 lg:py-20'}`}
       >
-        {/* Background */}
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-[#3B82F6]/[0.025] blur-[100px]" />
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/[0.08] to-transparent" />
+        {/* Animated background orbs */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="qb-orb-drift absolute -top-40 -left-32 h-[500px] w-[500px] rounded-full bg-[#1D4ED8]/[0.18] blur-[100px]" />
+          <div className="qb-orb-drift-rev absolute top-1/2 right-0 h-[350px] w-[350px] rounded-full bg-[#0891B2]/[0.12] blur-[90px]" />
+          <div className="qb-orb-drift-slow absolute bottom-0 left-1/3 h-[300px] w-[300px] rounded-full bg-[#1E40AF]/[0.1] blur-[80px]" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/[0.2] to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

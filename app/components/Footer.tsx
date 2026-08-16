@@ -140,10 +140,16 @@ export function Footer() {
   };
 
   return (
-    <footer id="site-footer" className="relative bg-[#06080F] text-[#94A3B8]">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+    <footer id="site-footer" className="relative overflow-hidden text-[#94A3B8]" style={{ backgroundColor: '#010408' }}>
+      {/* Animated background orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="qb-orb-drift-slow absolute -top-40 -left-20 h-[450px] w-[450px] rounded-full bg-[#1E3A5F]/[0.25] blur-[110px]" />
+        <div className="qb-orb-drift absolute -bottom-20 -right-20 h-[380px] w-[380px] rounded-full bg-[#1E1B4B]/[0.2] blur-[100px]" />
+        <div className="qb-orb-drift-rev absolute top-1/2 left-1/2 h-[300px] w-[300px] rounded-full bg-[#0F172A]/[0.3] blur-[80px]" />
+      </div>
+      <div className="absolute top-0 inset-x-0 z-10 h-px bg-gradient-to-r from-transparent via-[#1D4ED8]/[0.25] to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-8">
 
         {/* Main grid — brand (4) + shop (2) + cats (2) + company (1) + support (1) + newsletter (2) = 12 */}
         <div className="grid gap-8 lg:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">

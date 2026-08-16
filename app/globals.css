@@ -1067,3 +1067,67 @@ pre, code {
 .animate-slide-in {
   animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ── Section animated background keyframes ─────────────────────── */
+
+/* Floating orb drift */
+@keyframes qb-drift {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(30px, -20px) scale(1.05); }
+  66%  { transform: translate(-20px, 15px) scale(0.95); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes qb-drift-slow {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  50%  { transform: translate(-40px, 25px) scale(1.08); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.qb-orb-drift {
+  animation: qb-drift 12s ease-in-out infinite;
+}
+
+.qb-orb-drift-slow {
+  animation: qb-drift-slow 18s ease-in-out infinite;
+}
+
+.qb-orb-drift-rev {
+  animation: qb-drift 15s ease-in-out infinite reverse;
+}
+
+/* ── Section distinct dark backgrounds ─────────────────────────────
+   Each section has its own base color so sections visually separate.
+   Orb glows are stronger to create the animated Hero-like feel.
+─────────────────────────────────────────────────────────────────── */
+
+/* CATALOG — Deep Navy Blue */
+.qb-section-blue {
+  background-color: #020C1B;
+}
+
+/* IT SERVICES — Deep Purple-Black */
+.qb-section-indigo {
+  background-color: #0A0414;
+}
+
+/* TRUST BADGES — Deep Teal-Black */
+.qb-section-teal {
+  background-color: #021210;
+}
+
+/* STATS — Deep Amber-Black */
+.qb-section-amber {
+  background-color: #0D0600;
+}
+
+/* CLIENT VOICES — Deep Violet-Black */
+.qb-section-purple {
+  background-color: #08021A;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qb-orb-drift, .qb-orb-drift-slow, .qb-orb-drift-rev {
+    animation: none;
+  }
+}

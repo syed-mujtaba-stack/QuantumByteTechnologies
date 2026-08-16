@@ -16,10 +16,16 @@ const features = [
 export function TechFeaturesBanner() {
   return (
     <section
-      className="border-y border-white/[0.06] bg-[#05070D] py-8 lg:py-10"
+      className="relative overflow-hidden qb-section-teal border-y border-white/[0.06] py-8 lg:py-10"
       aria-labelledby="trust-heading"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Animated background orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="qb-orb-drift absolute top-1/2 -translate-y-1/2 -left-20 h-[320px] w-[320px] rounded-full bg-[#0D9488]/[0.18] blur-[90px]" />
+        <div className="qb-orb-drift-rev absolute top-1/2 -translate-y-1/2 -right-20 h-[320px] w-[320px] rounded-full bg-[#0891B2]/[0.14] blur-[90px]" />
+        <div className="qb-orb-drift-slow absolute top-0 left-1/2 -translate-x-1/2 h-[200px] w-[600px] rounded-full bg-[#047857]/[0.08] blur-[80px]" />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 id="trust-heading" className="sr-only">Trust Guarantees</h2>
 
         <div className="grid grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-6 lg:gap-x-8 lg:gap-y-0">

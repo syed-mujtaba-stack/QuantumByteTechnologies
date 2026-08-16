@@ -31,13 +31,15 @@ export function ITServicesSection({ itServices }: ITServicesSectionProps) {
 
   return (
     <section
-      className="relative overflow-hidden border-y border-white/[0.06] bg-[#05070D] py-14 lg:py-20"
+      className="relative overflow-hidden qb-section-indigo border-y border-white/[0.06] py-14 lg:py-20"
       aria-labelledby="services-heading"
     >
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[350px] w-[600px] rounded-full bg-[#3B82F6]/[0.025] blur-[100px]" />
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#3B82F6]/[0.08] to-transparent" />
+      {/* Animated background orbs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="qb-orb-drift-slow absolute -top-32 right-0 h-[500px] w-[500px] rounded-full bg-[#7C3AED]/[0.18] blur-[100px]" />
+        <div className="qb-orb-drift absolute bottom-0 -left-24 h-[420px] w-[420px] rounded-full bg-[#4F46E5]/[0.14] blur-[90px]" />
+        <div className="qb-orb-drift-rev absolute top-1/2 left-1/2 h-[300px] w-[300px] rounded-full bg-[#9333EA]/[0.08] blur-[80px]" />
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#7C3AED]/[0.2] to-transparent" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
