@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
 import { Cpu, ShieldCheck, Mail, Send, MapPin, Phone, ChevronDown } from 'lucide-react';
 
 const SocialIcons = {
@@ -289,6 +290,13 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      {/* AI Chat Bot Widget */}
+      <Script
+        src="https://cdn.zanderio.ai/widget/loader.js"
+        data-id="wdg_Jjgq5uftnDQOdOQHaeMbqyI3"
+        strategy="afterInteractive"
+      />
     </footer>
   );
 }
