@@ -7,8 +7,6 @@ import { Footer } from '@/app/components/Footer';
 import { CatalogClient } from '@/app/components/CatalogClient';
 import { LazyModals } from '@/app/components/LazyModals';
 import { fetchProducts, fetchITServices } from '@/sanity/lib/fetch';
-
-// Revalidate every 60 seconds — ISR
 export const revalidate = 60;
 
 export default async function Home() {
