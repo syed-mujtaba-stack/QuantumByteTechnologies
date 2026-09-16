@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
@@ -32,233 +32,7 @@ import {
   Send,
 } from "lucide-react";
 
-/* ─────────────────────────────── DATA ─────────────────────────────── */
-const services = [
-  {
-    id: "web-development",
-    category: "Development",
-    badge: null,
-    icon: Globe,
-    color: "#3B82F6",
-    colorSubtle: "rgba(59,130,246,0.08)",
-    colorGlow: "rgba(59,130,246,0.25)",
-    title: "Web Development",
-    subtitle:
-      "Custom, high-performance websites and web applications built on modern stacks — React, Next.js, Node.js, and more. From landing pages to enterprise portals.",
-    image: "/images/services/service_web_mobile.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 25,000",
-    features: [
-      "Custom responsive design",
-      "Next.js / React / Node.js",
-      "SEO-optimized architecture",
-      "Fast page load & Core Web Vitals",
-      "Admin dashboard integration",
-      "Ongoing support & maintenance",
-    ],
-    highlights: [
-      { icon: Zap,    label: "Fast Delivery" },
-      { icon: Shield, label: "Secure Code"   },
-      { icon: Code2,  label: "Clean Stack"   },
-    ],
-  },
-  {
-    id: "mobile-apps",
-    category: "Mobile",
-    badge: "Popular",
-    icon: Smartphone,
-    color: "#8B5CF6",
-    colorSubtle: "rgba(139,92,246,0.08)",
-    colorGlow: "rgba(139,92,246,0.25)",
-    title: "Mobile App Development",
-    subtitle:
-      "iOS and Android apps built with React Native and Flutter. Pixel-perfect UI, smooth UX, and seamless backend integrations for your business needs.",
-    image: "/images/services/service_web_mobile.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 40,000",
-    features: [
-      "Cross-platform (iOS & Android)",
-      "React Native / Flutter",
-      "Push notifications & offline mode",
-      "App Store & Play Store submission",
-      "Backend API integration",
-      "Performance optimization",
-    ],
-    highlights: [
-      { icon: Smartphone, label: "Cross-Platform" },
-      { icon: Zap,        label: "60fps UI"        },
-      { icon: Shield,     label: "Secure Auth"     },
-    ],
-  },
-  {
-    id: "ecommerce",
-    category: "E-Commerce",
-    badge: "In Demand",
-    icon: ShoppingBag,
-    color: "#06B6D4",
-    colorSubtle: "rgba(6,182,212,0.08)",
-    colorGlow: "rgba(6,182,212,0.25)",
-    title: "E-Commerce Solutions",
-    subtitle:
-      "Complete online store setups — product catalog, cart, checkout, inventory management, and multi-vendor support. We build stores that convert visitors into buyers.",
-    image: "/images/services/service_ecommerce_payment.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 35,000",
-    features: [
-      "Custom storefront design",
-      "Product & inventory management",
-      "Multi-vendor marketplace support",
-      "Order tracking & management",
-      "Discount & coupon engine",
-      "Analytics & sales dashboard",
-    ],
-    highlights: [
-      { icon: ShoppingBag, label: "Full Store"    },
-      { icon: BarChart3,   label: "Analytics"    },
-      { icon: Users,       label: "Multi-Vendor" },
-    ],
-  },
-  {
-    id: "payment-gateway",
-    category: "Payments",
-    badge: null,
-    icon: CreditCard,
-    color: "#10B981",
-    colorSubtle: "rgba(16,185,129,0.08)",
-    colorGlow: "rgba(16,185,129,0.25)",
-    title: "Payment Gateway Integration",
-    subtitle:
-      "Secure, PCI-compliant payment integration for your website or app. We support JazzCash, Easypaisa, Stripe, PayPal, HBL, and custom bank APIs.",
-    image: "/images/services/service_ecommerce_payment.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 15,000",
-    features: [
-      "JazzCash & Easypaisa integration",
-      "Stripe & PayPal support",
-      "Bank transfer & HBL API",
-      "Secure SSL & 3DS verification",
-      "Webhook & callback handling",
-      "Refund & dispute management",
-    ],
-    highlights: [
-      { icon: Lock,    label: "PCI Secure"  },
-      { icon: Repeat,  label: "Auto Refund" },
-      { icon: Send,    label: "Instant Pay" },
-    ],
-  },
-  {
-    id: "uiux-design",
-    category: "Design",
-    badge: null,
-    icon: Palette,
-    color: "#F59E0B",
-    colorSubtle: "rgba(245,158,11,0.08)",
-    colorGlow: "rgba(245,158,11,0.25)",
-    title: "UI / UX Design & Branding",
-    subtitle:
-      "Beautiful, conversion-focused designs using Figma. From brand identity and logo design to complete design systems, wireframes, and interactive prototypes.",
-    image: "/images/services/service_uiux_design.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 12,000",
-    features: [
-      "Brand identity & logo design",
-      "Figma wireframes & prototypes",
-      "Design system creation",
-      "Mobile & desktop UI screens",
-      "User research & journey mapping",
-      "Handoff-ready developer specs",
-    ],
-    highlights: [
-      { icon: Palette, label: "Brand Identity" },
-      { icon: Layers,  label: "Design System" },
-      { icon: Zap,     label: "Fast Turnaround" },
-    ],
-  },
-  {
-    id: "cloud-hosting",
-    category: "Cloud",
-    badge: null,
-    icon: Cloud,
-    color: "#06B6D4",
-    colorSubtle: "rgba(6,182,212,0.08)",
-    colorGlow: "rgba(6,182,212,0.25)",
-    title: "Cloud Hosting & DevOps",
-    subtitle:
-      "Scalable cloud infrastructure on AWS, Vercel, and DigitalOcean. We handle deployment, CI/CD pipelines, monitoring, and 99.9% uptime guarantees.",
-    image: "/images/services/service_cloud_marketing.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 10,000 / mo",
-    features: [
-      "AWS / Vercel / DigitalOcean setup",
-      "CI/CD pipeline automation",
-      "SSL, CDN & domain management",
-      "Auto-scaling & load balancing",
-      "24/7 uptime monitoring",
-      "Backup & disaster recovery",
-    ],
-    highlights: [
-      { icon: Server,  label: "99.9% Uptime" },
-      { icon: Shield,  label: "DDoS Protect" },
-      { icon: Zap,     label: "Auto-Scale"   },
-    ],
-  },
-  {
-    id: "digital-marketing",
-    category: "Marketing",
-    badge: null,
-    icon: TrendingUp,
-    color: "#EF4444",
-    colorSubtle: "rgba(239,68,68,0.08)",
-    colorGlow: "rgba(239,68,68,0.25)",
-    title: "Digital Marketing & SEO",
-    subtitle:
-      "Data-driven digital marketing — SEO, Google Ads, Facebook & Instagram campaigns, content marketing, and social media management to grow your online presence.",
-    image: "/images/services/service_cloud_marketing.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 15,000 / mo",
-    features: [
-      "Technical & on-page SEO",
-      "Google Ads & PPC campaigns",
-      "Facebook & Instagram Ads",
-      "Social media management",
-      "Content strategy & copywriting",
-      "Monthly analytics reports",
-    ],
-    highlights: [
-      { icon: TrendingUp, label: "More Traffic"    },
-      { icon: BarChart3,  label: "ROI Tracking"   },
-      { icon: Users,      label: "Audience Growth" },
-    ],
-  },
-  {
-    id: "it-support",
-    category: "Support",
-    badge: null,
-    icon: Headphones,
-    color: "#8B5CF6",
-    colorSubtle: "rgba(139,92,246,0.08)",
-    colorGlow: "rgba(139,92,246,0.25)",
-    title: "IT Support & Consultation",
-    subtitle:
-      "Dedicated IT support plans for businesses — hardware troubleshooting, software setup, network configuration, staff training, and strategic tech consulting.",
-    image: "/images/services/service_uiux_design.jpg",
-    priceLabel: "Starting from",
-    price: "PKR 8,000 / mo",
-    features: [
-      "Remote & on-site IT support",
-      "Hardware & software troubleshooting",
-      "Network setup & configuration",
-      "Cybersecurity audits",
-      "Staff training & onboarding",
-      "Strategic IT roadmap planning",
-    ],
-    highlights: [
-      { icon: Headphones, label: "24/7 Support"  },
-      { icon: Shield,     label: "Cyber-Secure"  },
-      { icon: Users,      label: "Team Training" },
-    ],
-  },
-];
+import { services } from "./servicesData";
 
 const processSteps = [
   { step: "01", title: "Discovery Call",       desc: "We understand your goals, timeline, and budget in a free 30-minute consultation." },
@@ -405,16 +179,18 @@ export function ServicesPageClient() {
                       {/* Image column */}
                       <div className={`relative overflow-hidden lg:col-span-5 ${isReversed ? "lg:order-2" : "lg:order-1"}`}>
                         <div className="relative h-52 sm:h-60 lg:h-full lg:min-h-[300px]">
-                          <Image
-                            src={service.image}
-                            alt={service.title}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 42vw"
-                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F18]/60 to-transparent lg:hidden" />
+                          <Link href={`/services/${service.id}`} className="block h-full w-full">
+                            <Image
+                              src={service.image}
+                              alt={service.title}
+                              fill
+                              sizes="(max-width: 1024px) 100vw, 42vw"
+                              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                            />
+                          </Link>
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F18]/60 to-transparent lg:hidden pointer-events-none" />
                           <div
-                            className={`hidden lg:block absolute inset-0 ${
+                            className={`hidden lg:block absolute inset-0 pointer-events-none ${
                               isReversed
                                 ? "bg-gradient-to-l from-[#0B0F18]/30 to-transparent"
                                 : "bg-gradient-to-r from-transparent to-[#0B0F18]/30"
@@ -450,9 +226,11 @@ export function ServicesPageClient() {
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-xl sm:text-2xl lg:text-[1.65rem] font-black tracking-[-0.02em] text-white leading-tight mb-3">
-                          {service.title}
-                        </h2>
+                        <Link href={`/services/${service.id}`}>
+                          <h2 className="text-xl sm:text-2xl lg:text-[1.65rem] font-black tracking-[-0.02em] text-white leading-tight mb-3 hover:text-[#3B82F6] transition-colors">
+                            {service.title}
+                          </h2>
+                        </Link>
 
                         {/* Subtitle */}
                         <p className="text-[13.5px] text-[#64748B] leading-relaxed mb-5 max-w-xl">
@@ -496,24 +274,33 @@ export function ServicesPageClient() {
                               {service.price}
                             </span>
                           </div>
-                          <button
-                            id={`book-${service.id}`}
-                            onClick={() => openBooking()}
-                            className="group/btn inline-flex items-center justify-center gap-2 rounded-xl px-6 py-2.5 text-[13px] font-bold text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                            style={{
-                              background: `linear-gradient(135deg, ${service.color}, ${service.color}CC)`,
-                              boxShadow: `0 0 0 rgba(0,0,0,0)`,
-                            }}
-                            onMouseEnter={(e) => {
-                              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 24px ${service.colorGlow}`;
-                            }}
-                            onMouseLeave={(e) => {
-                              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 0 rgba(0,0,0,0)`;
-                            }}
-                          >
-                            Book This Service
-                            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
-                          </button>
+                          <div className="flex flex-wrap items-center gap-2.5">
+                            <Link
+                              href={`/services/${service.id}`}
+                              className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/[0.12] bg-white/[0.04] px-4 py-2.5 text-[13px] font-semibold text-white hover:bg-white/[0.08] hover:border-white/[0.2] transition-all duration-200"
+                            >
+                              View Details
+                              <ArrowRight className="h-3.5 w-3.5 text-[#3B82F6]" />
+                            </Link>
+                            <button
+                              id={`book-${service.id}`}
+                              onClick={() => openBooking()}
+                              className="group/btn inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-[13px] font-bold text-white transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                              style={{
+                                background: `linear-gradient(135deg, ${service.color}, ${service.color}CC)`,
+                                boxShadow: `0 0 0 rgba(0,0,0,0)`,
+                              }}
+                              onMouseEnter={(e) => {
+                                (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 24px ${service.colorGlow}`;
+                              }}
+                              onMouseLeave={(e) => {
+                                (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 0 rgba(0,0,0,0)`;
+                              }}
+                            >
+                              Book Now
+                              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>

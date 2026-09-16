@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { ServicesPageClient } from "./ServicesPageClient";
 import { Navbar } from "@/app/components/Navbar";
 import { Footer } from "@/app/components/Footer";
-import { LazyModals } from "@/app/components/LazyModals";
+import { ServiceBookingModal } from "@/app/components/ServiceBookingModal";
+import { CartDrawer } from "@/app/components/CartDrawer";
 
 export const metadata: Metadata = {
   title: "IT & Software Services | QuantumByte Technologies",
@@ -29,7 +30,8 @@ export default function ServicesPage() {
         <ServicesPageClient />
       </main>
       <Footer />
-      <LazyModals />
+      <CartDrawer />
+      <ServiceBookingModal />
     </div>
   );
 }

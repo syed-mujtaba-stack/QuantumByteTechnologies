@@ -43,12 +43,12 @@ const SocialIcons = {
 const footerLinks = {
   services: [
     { label: 'All IT Services',         href: '/services' },
-    { label: 'Web Development',         href: '/services' },
-    { label: 'Mobile Apps',             href: '/services' },
-    { label: 'E-Commerce Platforms',    href: '/services' },
-    { label: 'Payment Gateways',        href: '/services' },
-    { label: 'Cloud Infrastructure',    href: '/services' },
-    { label: 'Book Consultation',       href: '/services' },
+    { label: 'Web Development',         href: '/services/web-development' },
+    { label: 'Mobile Apps',             href: '/services/mobile-apps' },
+    { label: 'E-Commerce Platforms',    href: '/services/ecommerce' },
+    { label: 'Payment Gateways',        href: '/services/payment-gateway' },
+    { label: 'Cloud Infrastructure',    href: '/services/cloud-hosting' },
+    { label: 'Book Consultation',       href: '/services#inquiry-form' },
   ],
   shop: [
     { label: 'All Products',   href: '/shop' },
@@ -118,7 +118,7 @@ function FooterLinkGroup({ title, links }: { title: string; links: { label: stri
         }`}
       >
         {links.map(({ label, href }) => (
-          <li key={href}>
+          <li key={`${href}-${label}`}>
             <Link
               href={href}
               className="text-[12.5px] text-[#64748B] hover:text-white/90 transition-colors duration-200 block"
