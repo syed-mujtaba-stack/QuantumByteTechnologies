@@ -351,6 +351,9 @@ export function Navbar() {
             <Link href="/best-sellers" className="px-3 py-2 text-[13px] font-medium text-white/60 hover:text-white rounded-lg hover:bg-white/[0.04] transition-all duration-200">
               Best Sellers
             </Link>
+            <Link href="/services" className="px-3 py-2 text-[13px] font-medium text-[#06B6D4] hover:text-[#22D3EE] rounded-lg hover:bg-[#06B6D4]/[0.06] transition-all duration-200">
+              Services
+            </Link>
           </nav>
 
           {/* Right Actions */}
@@ -474,9 +477,10 @@ export function Navbar() {
                   { href: '/new-arrivals', label: 'New Arrivals' },
                   { href: '/best-sellers', label: 'Best Sellers' },
                   { href: '/deals', label: '⚡ Flash Deals', highlight: true },
+                  { href: '/services', label: '🛠️ Our Services', accent: true },
                   { href: '/wishlist', label: 'My Wishlist' },
                   { href: user ? '/account/dashboard' : '/account/login', label: user ? 'My Account' : 'Sign In' },
-                ].map(({ href, label, highlight }) => (
+                ].map(({ href, label, highlight, accent }) => (
                   <Link
                     key={href}
                     href={href}
@@ -484,6 +488,8 @@ export function Navbar() {
                     className={`flex items-center rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ${
                       highlight
                         ? 'text-[#3B82F6] hover:bg-[#3B82F6]/[0.06]'
+                        : accent
+                        ? 'text-[#06B6D4] hover:bg-[#06B6D4]/[0.06]'
                         : 'text-white/65 hover:text-white hover:bg-white/[0.04]'
                     }`}
                   >
