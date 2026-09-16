@@ -28,6 +28,7 @@ import {
   Truck,
   Tag,
   Star,
+  Briefcase,
 } from 'lucide-react';
 
 // Rotating announcement messages — full text for xl, short for lg/md
@@ -438,10 +439,60 @@ export function Navbar() {
               />
             </div>
 
-            {/* Categories */}
+            {/* Quick Action Badges */}
+            <div className="grid grid-cols-2 gap-2">
+              <Link
+                href="/services"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#06B6D4]/15 to-[#3B82F6]/15 border border-[#06B6D4]/30 px-3 py-2.5 text-[13px] font-bold text-[#22D3EE] hover:bg-[#06B6D4]/25 transition-all duration-200 shadow-sm"
+              >
+                <Briefcase className="h-4 w-4 text-[#06B6D4]" />
+                <span>IT Services</span>
+              </Link>
+              <Link
+                href="/deals"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/25 px-3 py-2.5 text-[13px] font-bold text-[#60A5FA] hover:bg-[#3B82F6]/20 transition-all duration-200"
+              >
+                <Zap className="h-4 w-4 text-[#3B82F6]" />
+                <span>⚡ Flash Deals</span>
+              </Link>
+            </div>
+
+            {/* Nav Links */}
             <div>
+              <p className="px-1 mb-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#475569]">
+                Menu
+              </p>
+              <div className="space-y-1">
+                {[
+                  { href: '/services', label: '💼 IT Services & Solutions', accent: true },
+                  { href: '/shop', label: '🛍️ All Products' },
+                  { href: '/new-arrivals', label: '✨ New Arrivals' },
+                  { href: '/best-sellers', label: '🔥 Best Sellers' },
+                  { href: '/wishlist', label: '❤️ My Wishlist' },
+                  { href: user ? '/account/dashboard' : '/account/login', label: user ? '👤 My Account' : '🔑 Sign In' },
+                ].map(({ href, label, accent }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ${
+                      accent
+                        ? 'bg-[#06B6D4]/10 text-[#22D3EE] border border-[#06B6D4]/20 font-semibold'
+                        : 'text-white/70 hover:text-white hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Categories */}
+            <div className="border-t border-white/[0.06] pt-4">
               <p className="px-1 mb-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#475569]">
-                Categories
+                Product Categories
               </p>
               <div className="grid grid-cols-2 gap-1.5">
                 {categoriesList.map((cat) => {
@@ -463,39 +514,6 @@ export function Navbar() {
                     </Link>
                   );
                 })}
-              </div>
-            </div>
-
-            {/* Nav Links */}
-            <div className="border-t border-white/[0.06] pt-4">
-              <p className="px-1 mb-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#475569]">
-                Navigate
-              </p>
-              <div className="space-y-1">
-                {[
-                  { href: '/shop', label: 'All Products' },
-                  { href: '/new-arrivals', label: 'New Arrivals' },
-                  { href: '/best-sellers', label: 'Best Sellers' },
-                  { href: '/deals', label: '⚡ Flash Deals', highlight: true },
-                  { href: '/services', label: '🛠️ Our Services', accent: true },
-                  { href: '/wishlist', label: 'My Wishlist' },
-                  { href: user ? '/account/dashboard' : '/account/login', label: user ? 'My Account' : 'Sign In' },
-                ].map(({ href, label, highlight, accent }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ${
-                      highlight
-                        ? 'text-[#3B82F6] hover:bg-[#3B82F6]/[0.06]'
-                        : accent
-                        ? 'text-[#06B6D4] hover:bg-[#06B6D4]/[0.06]'
-                        : 'text-white/65 hover:text-white hover:bg-white/[0.04]'
-                    }`}
-                  >
-                    {label}
-                  </Link>
-                ))}
               </div>
             </div>
 

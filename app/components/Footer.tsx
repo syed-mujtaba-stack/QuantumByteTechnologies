@@ -41,8 +41,18 @@ const SocialIcons = {
 };
 
 const footerLinks = {
+  services: [
+    { label: 'All IT Services',         href: '/services' },
+    { label: 'Web Development',         href: '/services' },
+    { label: 'Mobile Apps',             href: '/services' },
+    { label: 'E-Commerce Platforms',    href: '/services' },
+    { label: 'Payment Gateways',        href: '/services' },
+    { label: 'Cloud Infrastructure',    href: '/services' },
+    { label: 'Book Consultation',       href: '/services' },
+  ],
   shop: [
     { label: 'All Products',   href: '/shop' },
+    { label: 'IT Services',    href: '/services' },
     { label: 'New Arrivals',   href: '/new-arrivals' },
     { label: 'Best Sellers',   href: '/best-sellers' },
     { label: 'Flash Deals',    href: '/deals' },
@@ -60,18 +70,13 @@ const footerLinks = {
     { label: 'All Categories',       href: '/categories' },
   ],
   company: [
-    { label: 'About Us',      href: '/about' },
-    { label: 'Contact Us',    href: '/contact' },
-    { label: 'Press & Media', href: '/press' },
-    { label: 'FAQ',           href: '/faq' },
-  ],
-  support: [
-    { label: 'Track My Order',    href: '/track-order' },
+    { label: 'About Us',          href: '/about' },
+    { label: 'IT Services',       href: '/services' },
+    { label: 'Contact Us',        href: '/contact' },
+    { label: 'Track Order',       href: '/track-order' },
     { label: 'Warranty Info',     href: '/warranty' },
     { label: 'Repair Services',   href: '/repair' },
-    { label: 'Shipping Policy',   href: '/shipping-policy' },
-    { label: 'Refund & Returns',  href: '/refund-policy' },
-    { label: 'Contact Support',   href: '/contact' },
+    { label: 'FAQ',               href: '/faq' },
   ],
   legal: [
     { label: 'Privacy Policy',    href: '/privacy-policy' },
@@ -152,11 +157,11 @@ export function Footer() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-8">
 
-        {/* Main grid — brand (4) + shop (2) + cats (2) + company (1) + support (1) + newsletter (2) = 12 */}
-        <div className="grid gap-8 lg:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">
+        {/* Main grid — brand (3) + services (2) + shop (2) + cats (2) + company (1) + newsletter (2) = 12 */}
+        <div className="grid gap-8 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-12">
 
           {/* Brand column */}
-          <div className="sm:col-span-2 lg:col-span-4 space-y-5">
+          <div className="sm:col-span-2 lg:col-span-3 space-y-5">
             <Link href="/" className="inline-flex items-center gap-2.5" aria-label="QuantumByte Technologies Home">
               <div className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8]">
                 <Cpu className="h-4.5 w-4.5 text-white" />
@@ -218,6 +223,11 @@ export function Footer() {
             </div>
           </div>
 
+          {/* IT Services links */}
+          <div className="lg:col-span-2">
+            <FooterLinkGroup title="IT Services" links={footerLinks.services} />
+          </div>
+
           {/* Shop links */}
           <div className="lg:col-span-2">
             <FooterLinkGroup title="Shop" links={footerLinks.shop} />
@@ -231,11 +241,6 @@ export function Footer() {
           {/* Company links */}
           <div className="lg:col-span-1">
             <FooterLinkGroup title="Company" links={footerLinks.company} />
-          </div>
-
-          {/* Support links */}
-          <div className="lg:col-span-1">
-            <FooterLinkGroup title="Support" links={footerLinks.support} />
           </div>
 
           {/* Newsletter */}
@@ -277,6 +282,12 @@ export function Footer() {
               &copy; {new Date().getFullYear()} QuantumByte Technologies. All rights reserved.
             </p>
             <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-4" aria-label="Legal links">
+              <Link
+                href="/services"
+                className="text-[11.5px] text-[#06B6D4] hover:text-[#22D3EE] font-medium transition-colors duration-200"
+              >
+                Services
+              </Link>
               {footerLinks.legal.map(({ label, href }) => (
                 <Link
                   key={href}
