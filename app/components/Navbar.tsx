@@ -29,6 +29,7 @@ import {
   Tag,
   Star,
   Briefcase,
+  LogIn,
 } from 'lucide-react';
 
 // Rotating announcement messages — full text for xl, short for lg/md
@@ -455,7 +456,7 @@ export function Navbar() {
                 className="flex items-center justify-center gap-2 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/25 px-3 py-2.5 text-[13px] font-bold text-[#60A5FA] hover:bg-[#3B82F6]/20 transition-all duration-200"
               >
                 <Zap className="h-4 w-4 text-[#3B82F6]" />
-                <span>⚡ Flash Deals</span>
+                <span>Flash Deals</span>
               </Link>
             </div>
 
@@ -466,24 +467,25 @@ export function Navbar() {
               </p>
               <div className="space-y-1">
                 {[
-                  { href: '/services', label: '💼 IT Services & Solutions', accent: true },
-                  { href: '/shop', label: '🛍️ All Products' },
-                  { href: '/new-arrivals', label: '✨ New Arrivals' },
-                  { href: '/best-sellers', label: '🔥 Best Sellers' },
-                  { href: '/wishlist', label: '❤️ My Wishlist' },
-                  { href: user ? '/account/dashboard' : '/account/login', label: user ? '👤 My Account' : '🔑 Sign In' },
-                ].map(({ href, label, accent }) => (
+                  { href: '/services', label: 'IT Services & Solutions', icon: Briefcase, accent: true },
+                  { href: '/shop', label: 'All Products', icon: ShoppingBag },
+                  { href: '/new-arrivals', label: 'New Arrivals', icon: Sparkles },
+                  { href: '/best-sellers', label: 'Best Sellers', icon: Flame },
+                  { href: '/wishlist', label: 'My Wishlist', icon: Heart },
+                  { href: user ? '/account/dashboard' : '/account/login', label: user ? 'My Account' : 'Sign In', icon: user ? User : LogIn },
+                ].map(({ href, label, icon: Icon, accent }) => (
                   <Link
                     key={href}
                     href={href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ${
+                    className={`flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all duration-200 ${
                       accent
                         ? 'bg-[#06B6D4]/10 text-[#22D3EE] border border-[#06B6D4]/20 font-semibold'
                         : 'text-white/70 hover:text-white hover:bg-white/[0.04]'
                     }`}
                   >
-                    {label}
+                    <Icon className={`h-4 w-4 shrink-0 ${accent ? 'text-[#06B6D4]' : 'text-[#64748B]'}`} />
+                    <span>{label}</span>
                   </Link>
                 ))}
               </div>
