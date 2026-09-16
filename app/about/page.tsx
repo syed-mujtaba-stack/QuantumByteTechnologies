@@ -234,8 +234,8 @@ export default function AboutPage() {
                         <MapPin className="h-5 w-5" />
                       </div>
                       <div>
-                        <p className="font-semibold text-white">Office 7, 2nd Floor, AZ Mall Platform</p>
-                        <p className="text-sm text-[#94A3B8]">Faisalabad, Punjab, Pakistan</p>
+                        <p className="font-semibold text-white">Office No 7, Second Floor, AZ Mall Platform</p>
+                        <p className="text-sm text-[#94A3B8]">Back Side Alfathy Kohinoor, Faisalabad</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">

@@ -200,8 +200,8 @@ export function Footer() {
                   <MapPin className="h-3 w-3 text-[#475569]" />
                 </div>
                 <address className="not-italic leading-relaxed">
-                  Office 7, 2nd Floor, AZ Mall Platform,<br />
-                  Faisalabad, Punjab, Pakistan
+                  Office No 7, Second Floor, AZ Mall Platform,<br />
+                  Back Side Alfathy Kohinoor, Faisalabad
                 </address>
               </div>
             </div>

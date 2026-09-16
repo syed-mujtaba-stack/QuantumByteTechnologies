@@ -51,7 +51,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-white">Headquarters & Tech Lab</h4>
-                    <p className="text-[#94A3B8] mt-0.5">Office 7, 2nd Floor, AZ Mall Platform, Faisalabad, Punjab, Pakistan</p>
+                    <p className="text-[#94A3B8] mt-0.5">Office No 7, Second Floor, AZ Mall Platform, Back Side Alfathy Kohinoor, Faisalabad</p>
                   </div>
                 </div>
 
