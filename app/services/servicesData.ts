@@ -86,9 +86,9 @@ export const services: ServiceItem[] = [
     colorGlow: "rgba(16,185,129,0.25)",
     title: "Payment Gateway Integration",
     subtitle:
-      "Secure, PCI-compliant payment integrations for websites and apps. We connect JazzCash, Easypaisa, Stripe, PayPal, HBL Pay, and custom banking APIs.",
+      "We provide secure payment gateways including JazzCash and Easypaisa for E-Commerce stores and commercial merchants, complete with instant webhook verification, Debit/Credit card processing, and seamless checkout integration.",
     fullDescription:
-      "Never lose a sale due to clunky or insecure checkout flows. QuantumByte integrates seamless, bank-grade payment processing gateways into any existing or new application. From local Pakistani payment rails (JazzCash, Easypaisa, Bank Alfalah, HBL) to global processors (Stripe, PayPal, Payoneer), we ensure 100% data integrity and instant automated webhook processing.",
+      "We provide secure payment gateway integration for JazzCash and Easypaisa specifically tailored for E-Commerce stores, online retail brands, and commercial merchants. We eliminate technical friction by connecting your digital storefront directly with Pakistan's leading mobile wallets and banking rails (JazzCash, Easypaisa, Visa, MasterCard, and PayPak). Your store receives real-time automated IPN and webhook callbacks, instant order status confirmation, automated customer receipts, and bank-grade SSL/3DS anti-fraud encryption. Whether you run a Shopify, WooCommerce, Next.js, or custom web portal, our engineers deliver a turnkey, production-grade checkout pipeline that operates 24/7 with zero recurring software fees.",
     image: "/images/services/service_ecommerce_payment.jpg",
     priceLabel: "Starting from",
     price: "PKR 15,000",
