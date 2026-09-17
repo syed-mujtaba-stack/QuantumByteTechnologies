@@ -289,7 +289,7 @@ export default function ShippingPolicyPage() {
                   <Package className="h-5 w-5 text-[#3B82F6]" />
                   <div>
                     <p className="font-semibold text-white">Warehouse Address</p>
-                    <p className="text-sm text-[#94A3B8]">Office 7, 2nd Floor, AZ Mall Platform, Faisalabad, Punjab, Pakistan</p>
+                    <p className="text-sm text-[#94A3B8]">Office No 7, Second Floor, AZ Mall Platform, Back Side Alfathy Kohinoor, Faisalabad</p>
                   </div>
                 </div>
               </div>

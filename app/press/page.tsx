@@ -353,8 +353,8 @@ export default function PressPage() {
                 <div className="flex items-start gap-3 text-[#94a3b8]">
                   <MapPin className="h-4.5 w-4.5 shrink-0 mt-0.5 text-[#3B82F6]" />
                   <address className="not-italic leading-relaxed">
-                    Office 7, 2nd Floor, AZ Mall Platform,<br />
-                    Faisalabad, Punjab, Pakistan
+                    Office No 7, Second Floor, AZ Mall Platform,<br />
+                    Back Side Alfathy Kohinoor, Faisalabad
                   </address>
                 </div>
               </div>

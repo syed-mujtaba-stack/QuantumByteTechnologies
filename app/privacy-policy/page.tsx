@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
-import { ShieldCheck, ChevronRight } from 'lucide-react';
+import { ShieldCheck, ChevronRight, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function PrivacyPolicyPage() {
   return (
@@ -176,16 +176,16 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="bg-[white/[0.04]] border border-[white/[0.06]] rounded-xl p-6 space-y-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-[#3B82F6]">📧</span>
+                  <Mail className="h-4.5 w-4.5 text-[#3B82F6] shrink-0" />
                   <a href="mailto:privacy@quantumbyte.tech" className="text-[#3B82F6] hover:underline">privacy@quantumbyte.tech</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[#3B82F6]">📞</span>
+                  <Phone className="h-4.5 w-4.5 text-[#3B82F6] shrink-0" />
                   <a href="tel:+923254803957" className="text-[#3B82F6] hover:underline">+92 325 4803957</a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-[#3B82F6]">📍</span>
-                  <address className="not-italic text-[#94A3B8]">Office 7, 2nd Floor, AZ Mall Platform, Faisalabad, Punjab, Pakistan</address>
+                  <MapPin className="h-4.5 w-4.5 text-[#3B82F6] shrink-0" />
+                  <address className="not-italic text-[#94A3B8]">Office No 7, Second Floor, AZ Mall Platform, Back Side Alfathy Kohinoor, Faisalabad</address>
                 </div>
               </div>
             </section>

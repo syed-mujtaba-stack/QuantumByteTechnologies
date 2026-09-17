@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { GSAPReveal } from './GSAPWrapper';
-import { Star, Quote, MessageSquare } from 'lucide-react';
+import { Star, Quote, MessageSquare, Package } from 'lucide-react';
 
 interface Review {
   name: string;
@@ -154,7 +154,7 @@ function ReviewCard({ review }: { review: Review }) {
       {review.product && (
         <div className="mt-3">
           <span className="inline-flex items-center gap-1 rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 text-[10px] font-medium text-[#475569] max-w-full truncate">
-            <span className="shrink-0 text-[9px]">📦</span>
+            <Package className="shrink-0 h-3 w-3" />
             <span className="truncate">{review.product}</span>
           </span>
         </div>

@@ -25,6 +25,7 @@ import {
   Layers,
   Award,
   HelpCircle,
+  Lock,
 } from "lucide-react";
 
 interface Props {
@@ -528,7 +529,9 @@ export function ServiceDetailClient({ slug }: Props) {
                         : "border border-white/[0.12] bg-white/[0.04] text-white hover:bg-white/[0.08] hover:border-white/[0.2] active:scale-[0.98]"
                     }`}
                   >
-                    {isSelected ? "Selected ✓" : "Choose This Plan"}
+                    {isSelected ? (
+                      <span className="inline-flex items-center gap-1.5"><Check className="h-3.5 w-3.5" /> Selected</span>
+                    ) : "Choose This Plan"}
                   </button>
                 </div>
               );
@@ -674,8 +677,8 @@ export function ServiceDetailClient({ slug }: Props) {
                   </button>
                 </div>
 
-                <p className="text-[11px] text-center text-[#475569] pt-1">
-                  🔒 We respect your privacy. No spam. You will be connected directly with an engineer.
+                <p className="text-[11px] text-center text-[#475569] pt-1 flex items-center justify-center gap-1.5">
+                  <Lock className="h-3 w-3 shrink-0" /> We respect your privacy. No spam. You will be connected directly with an engineer.
                 </p>
               </form>
             )}

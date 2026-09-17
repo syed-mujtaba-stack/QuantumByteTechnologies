@@ -180,7 +180,7 @@ export const services: ServiceItem[] = [
       },
     ],
     specialOffer: {
-      badge: "⭐ Exclusive E-Commerce & Merchant Package",
+      badge: "Exclusive E-Commerce & Merchant Package",
       heading: "One-Time Payment Gateway Setup for E-Commerce & Merchants",
       price: "PKR 35,000",
       priceSubtext: "One-Time Flat Investment · Zero Recurring Tech Charges",
