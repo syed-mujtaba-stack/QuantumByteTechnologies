@@ -39,6 +39,16 @@ export interface ServiceFAQ {
   a: string;
 }
 
+export interface SpecialOffer {
+  badge?: string;
+  heading: string;
+  price: string;
+  priceSubtext?: string;
+  subtitle: string;
+  description: string;
+  benefits: string[];
+}
+
 export interface ServiceItem {
   id: string;
   slug: string;
@@ -61,6 +71,7 @@ export interface ServiceItem {
   techStack: { name: string; tag: string }[];
   packages: PackageTier[];
   faqs: ServiceFAQ[];
+  specialOffer?: SpecialOffer;
 }
 
 export const services: ServiceItem[] = [
@@ -455,9 +466,24 @@ export const services: ServiceItem[] = [
         ],
       },
       {
+        name: "One-Time Setup for E-Commerce & Merchants",
+        price: "PKR 35,000",
+        popular: true,
+        description: "Complete turnkey payment integration for online stores and merchants with JazzCash, Easypaisa, and Debit/Credit card processing.",
+        turnaround: "3 – 5 Days",
+        features: [
+          "Full One-Time Setup for E-Commerce Stores & Merchants",
+          "JazzCash + Easypaisa Merchant Wallets integration",
+          "Direct Debit & Credit Card (Visa/MasterCard) checkout",
+          "Automated instant order confirmation via Webhooks",
+          "Custom checkout UI matching your store design",
+          "Zero recurring technical charges — one-time flat fee",
+          "30 days dedicated post-launch support & merchant onboarding",
+        ],
+      },
+      {
         name: "Dual Multi-Wallet Gateway",
         price: "PKR 28,000",
-        popular: true,
         description: "Complete checkout experience with both JazzCash and Easypaisa wallets + Debit/Credit cards.",
         turnaround: "4 – 6 Days",
         features: [
@@ -482,7 +508,31 @@ export const services: ServiceItem[] = [
         ],
       },
     ],
+    specialOffer: {
+      badge: "⭐ Exclusive E-Commerce & Merchant Package",
+      heading: "One-Time Payment Gateway Setup for E-Commerce & Merchants",
+      price: "PKR 35,000",
+      priceSubtext: "One-Time Flat Investment · Zero Recurring Tech Charges",
+      subtitle:
+        "Complete turnkey payment solution engineered specifically for Pakistani online retail brands, Shopify / WooCommerce / Custom e-commerce stores, and corporate merchants.",
+      description:
+        "For e-commerce store owners, digital retail brands, and commercial merchants, QuantumByte Technologies offers an all-inclusive One-Time Payment Gateway Setup for PKR 35,000. Managing digital transactions shouldn't involve recurring monthly technical fees or complex bank integrations. We handle the complete setup from scratch: connecting JazzCash Merchant, Easypaisa Merchant, and direct Credit/Debit cards (Visa, MasterCard & PayPak) straight into your online checkout. Your store gets real-time automated webhook callbacks, instant order confirmation receipts, automated inventory sync, and bank-grade SSL/3DS anti-fraud encryption. Best of all, this is a genuine 100% one-time investment with zero recurring developer charges — pay once, own your payment infrastructure forever, and receive 30 days of free dedicated technical support and merchant onboarding assistance.",
+      benefits: [
+        "100% One-Time Setup (Zero monthly developer retainers or hidden fees)",
+        "Both JazzCash & Easypaisa Merchant Wallets fully connected",
+        "Direct Credit / Debit Cards (Visa, MasterCard, PayPak) checkout",
+        "Instant automated webhook callbacks & receipt generation",
+        "Custom branded checkout UI matching your store theme",
+        "Full sandbox testing & live transaction audit before launch",
+        "Step-by-step assistance with official merchant account registration",
+        "30 Days of dedicated post-launch monitoring and technical support",
+      ],
+    },
     faqs: [
+      {
+        q: "What is included in the PKR 35,000 One-Time Setup for E-Commerce & Merchants?",
+        a: "Our PKR 35,000 package is an all-inclusive, one-time turnkey payment integration for online stores and digital merchants. It includes connecting both JazzCash and Easypaisa merchant digital wallet gateways along with direct Credit and Debit card processing (Visa & MasterCard). We configure automated IPN webhooks for instant order status confirmation, test everything thoroughly in sandbox, and ensure your store accepts payments without any recurring monthly software fees.",
+      },
       {
         q: "What do I need to integrate JazzCash or Easypaisa?",
         a: "You need a registered JazzCash or Easypaisa Merchant / Corporate account. If you don't have one yet, our team will guide you through the merchant registration documentation step-by-step.",

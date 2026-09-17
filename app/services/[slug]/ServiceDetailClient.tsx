@@ -301,6 +301,88 @@ export function ServiceDetailClient({ slug }: Props) {
         </div>
       </section>
 
+      {/* ─── SPECIAL FEATURED OFFER (e.g. 35,000 PKR E-Commerce & Merchant Setup) ─── */}
+      {service.specialOffer && (
+        <section className="relative py-16 bg-gradient-to-b from-[#060D18] via-[#0A1828] to-[#060D18] border-b border-white/[0.08] overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative rounded-3xl border border-[#10B981]/30 bg-gradient-to-br from-[#0D1F2D]/90 to-[#0A131F]/95 p-6 sm:p-10 lg:p-12 shadow-2xl shadow-[#10B981]/10 backdrop-blur-xl overflow-hidden">
+              {/* Top ambient glow */}
+              <div className="absolute top-0 right-0 -mr-24 -mt-24 h-96 w-96 rounded-full bg-[#10B981]/15 blur-3xl pointer-events-none" />
+
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                <div className="lg:col-span-8 space-y-5">
+                  {service.specialOffer.badge && (
+                    <span className="inline-flex items-center gap-1.5 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 px-3.5 py-1 text-xs font-bold text-[#34D399]">
+                      <Sparkles className="h-3.5 w-3.5" />
+                      {service.specialOffer.badge}
+                    </span>
+                  )}
+
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                    {service.specialOffer.heading}
+                  </h3>
+
+                  <p className="text-sm sm:text-base font-semibold text-[#6EE7B7] leading-relaxed">
+                    {service.specialOffer.subtitle}
+                  </p>
+
+                  <div className="space-y-4 pt-1">
+                    <p className="text-sm sm:text-[15px] text-[#94A3B8] leading-relaxed">
+                      {service.specialOffer.description}
+                    </p>
+                  </div>
+
+                  {/* Key Benefits Checklist */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-3">
+                    {service.specialOffer.benefits.map((benefit, bIdx) => (
+                      <div key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/90">
+                        <CheckCircle2 className="h-4 w-4 text-[#10B981] shrink-0 mt-0.5" />
+                        <span>{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Callout Box */}
+                <div className="lg:col-span-4 flex flex-col justify-center items-center text-center p-6 sm:p-8 rounded-2xl border border-white/[0.08] bg-black/40 backdrop-blur-md">
+                  <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider mb-1">
+                    Flat Investment
+                  </span>
+                  <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-1">
+                    {service.specialOffer.price}
+                  </span>
+                  {service.specialOffer.priceSubtext && (
+                    <span className="text-[11px] font-medium text-[#6EE7B7] mb-6 leading-tight block">
+                      {service.specialOffer.priceSubtext}
+                    </span>
+                  )}
+
+                  <button
+                    onClick={() => handlePackageSelect(service.specialOffer?.heading || "One-Time Setup for E-Commerce & Merchants")}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#10B981] to-[#059669] h-12 text-sm font-bold text-white shadow-lg shadow-[#10B981]/25 hover:shadow-[#10B981]/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 mb-3"
+                  >
+                    <Send className="h-4 w-4" />
+                    Book 35,000 PKR Setup
+                  </button>
+
+                  <a
+                    href={`https://wa.me/923254803957?text=${encodeURIComponent(
+                      "Hi QuantumByte Technologies, I want to book the One-Time Payment Gateway Setup for E-Commerce & Merchants (PKR 35,000). Please provide more details."
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.04] h-11 text-xs font-semibold text-white hover:bg-white/[0.08] transition-colors"
+                  >
+                    <MessageCircle className="h-4 w-4 text-[#25D366]" />
+                    Inquire via WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ─── DELIVERABLES & TECH STACK ─────────────────────────────────── */}
       <section className="relative py-16 lg:py-24 bg-[#05070D]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
