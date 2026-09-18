@@ -63,7 +63,7 @@ const faqs = [
       },
       {
         q: 'What happens if my package arrives damaged?',
-        a: 'If the outer box shows visible damage, refuse delivery OR accept with "Damaged — Subject to Inspection" written on the courier receipt. Take photos of the box, packaging, and product. Email claims@quantumbyte.tech within 24 hours. We file the insurance claim and dispatch a replacement free of charge upon approval.'
+        a: 'If the outer box shows visible damage, refuse delivery OR accept with "Damaged — Subject to Inspection" written on the courier receipt. Take photos of the box, packaging, and product. Email supportquantumbytetechnologies@gmail.com within 24 hours. We file the insurance claim and dispatch a replacement free of charge upon approval.'
       },
       {
         q: 'Do you ship to remote areas, AJK, or Gilgit-Baltistan?',
@@ -109,7 +109,7 @@ const faqs = [
       },
       {
         q: 'How do I file a warranty claim?',
-        a: 'Contact support via WhatsApp (+92 325 4803957) or email (warranty@quantumbyte.tech) with order ID, issue description, and photos/videos. We attempt remote troubleshooting first. If hardware fault suspected: RMA issued, free courier pickup arranged. Lab diagnosis (3-5 days). Covered repairs free. Non-covered: quote provided. Free return shipping after repair.'
+        a: 'Contact support via WhatsApp (+92 325 4803957) or email (supportquantumbytetechnologies@gmail.com) with order ID, issue description, and photos/videos. We attempt remote troubleshooting first. If hardware fault suspected: RMA issued, free courier pickup arranged. Lab diagnosis (3-5 days). Covered repairs free. Non-covered: quote provided. Free return shipping after repair.'
       },
       {
         q: 'Do you offer hardware repair services for products not purchased from you?',
@@ -242,7 +242,7 @@ export default function FAQPage() {
                 WhatsApp Support
               </a>
               <a
-                href="mailto:support@quantumbyte.tech"
+                href="mailto:supportquantumbytetechnologies@gmail.com"
                 className="btn btn-secondary flex items-center gap-2"
               >
                 <Package className="h-4.5 w-4.5" />

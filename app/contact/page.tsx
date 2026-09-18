@@ -61,8 +61,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-white">Direct Email Inquiries</h4>
-                    <p className="text-[#94A3B8] mt-0.5">support@quantumbyte.tech</p>
-                    <p className="text-[#94A3B8]">sales@quantumbyte.tech</p>
+                    <p className="text-[#94A3B8] mt-0.5">supportquantumbytetechnologies@gmail.com</p>
+                    <p className="text-[#94A3B8]">supportquantumbytetechnologies@gmail.com</p>
                   </div>
                 </div>
 

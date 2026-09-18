@@ -4,7 +4,7 @@ import { formatPKR } from '@/sanity/lib/currency';
 
 export default function AdminCustomersPage() {
   const customers = [
-    { id: 'CUST-001', name: 'Alex Morgan', email: 'alex.morgan@quantumbyte.tech', phone: '+92 300 9876543', orders: 12, spent: 14820, rank: 'VIP Platinum' },
+    { id: 'CUST-001', name: 'Alex Morgan', email: 'supportquantumbytetechnologies@gmail.com', phone: '+92 300 9876543', orders: 12, spent: 14820, rank: 'VIP Platinum' },
     { id: 'CUST-002', name: 'Sarah Jenkins', email: 'sarah@tech.io', phone: '+92 321 4567890', orders: 5, spent: 6890, rank: 'Gold' },
     { id: 'CUST-003', name: 'Michael Chang', email: 'm.chang@dev.co', phone: '+92 333 1122334', orders: 3, spent: 5490, rank: 'Gold' },
     { id: 'CUST-004', name: 'Elena Rostova', email: 'elena@design.net', phone: '+92 301 9988776', orders: 8, spent: 9450, rank: 'VIP Platinum' },

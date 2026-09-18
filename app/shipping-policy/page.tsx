@@ -227,7 +227,7 @@ export default function ShippingPolicyPage() {
               <ol className="list-decimal list-inside space-y-2 text-[#94A3B8] leading-relaxed ml-4 mt-2">
                 <li>Refuse delivery OR accept with "Damaged — Subject to Inspection" written on receipt</li>
                 <li>Take photos: outer box (all sides), shipping label, internal packaging, product damage</li>
-                <li>Email photos to <a href="mailto:claims@quantumbyte.tech" className="text-[#3B82F6] hover:underline">claims@quantumbyte.tech</a> within 24 hours</li>
+                <li>Email photos to <a href="mailto:supportquantumbytetechnologies@gmail.com" className="text-[#3B82F6] hover:underline">supportquantumbytetechnologies@gmail.com</a> within 24 hours</li>
                 <li>We file insurance claim with courier (typically 3-7 business days)</li>
                 <li>Replacement dispatched upon claim approval (free shipping)</li>
               </ol>
@@ -247,7 +247,7 @@ export default function ShippingPolicyPage() {
             <section className="space-y-4">
               <h2 className="text-lg font-bold text-white">10. International Shipping</h2>
               <p className="text-[#94A3B8] leading-relaxed">
-    Currently, we ship <strong>within Pakistan only</strong>. For international inquiries (UAE, Saudi Arabia, UK, USA, EU), contact <a href="mailto:international@quantumbyte.tech" className="text-[#3B82F6] hover:underline">international@quantumbyte.tech</a> for custom quotes. International shipping involves customs duties, import taxes, and compliance certifications (CE, FCC, RoHS) which are buyer's responsibility.
+    Currently, we ship <strong>within Pakistan only</strong>. For international inquiries (UAE, Saudi Arabia, UK, USA, EU), contact <a href="mailto:supportquantumbytetechnologies@gmail.com" className="text-[#3B82F6] hover:underline">supportquantumbytetechnologies@gmail.com</a> for custom quotes. International shipping involves customs duties, import taxes, and compliance certifications (CE, FCC, RoHS) which are buyer's responsibility.
               </p>
             </section>
 
@@ -268,7 +268,7 @@ export default function ShippingPolicyPage() {
                   <Truck className="h-5 w-5 text-[#3B82F6]" />
                   <div>
                     <p className="font-semibold text-white">Shipping & Logistics Team</p>
-                    <p className="text-sm text-[#94A3B8]">shipping@quantumbyte.tech</p>
+                    <p className="text-sm text-[#94A3B8]">supportquantumbytetechnologies@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

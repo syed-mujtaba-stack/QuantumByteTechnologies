@@ -239,7 +239,7 @@ export default function TermsPage() {
               <div className="bg-[white/[0.04]] border border-[white/[0.06]] rounded-xl p-6 space-y-3">
                 <div className="flex items-center gap-3">
                   <Mail className="h-4.5 w-4.5 text-[#3B82F6] shrink-0" />
-                  <a href="mailto:legal@quantumbyte.tech" className="text-[#3B82F6] hover:underline">legal@quantumbyte.tech</a>
+                  <a href="mailto:supportquantumbytetechnologies@gmail.com" className="text-[#3B82F6] hover:underline">supportquantumbytetechnologies@gmail.com</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="h-4.5 w-4.5 text-[#3B82F6] shrink-0" />

@@ -162,7 +162,7 @@ export default function PressPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <a
-                  href="mailto:press@quantumbyte.tech"
+                  href="mailto:supportquantumbytetechnologies@gmail.com"
                   className="btn btn-primary inline-flex items-center justify-center gap-2"
                 >
                   <Mail className="h-4.5 w-4.5" />
@@ -170,7 +170,7 @@ export default function PressPage() {
                   <ArrowRight className="h-4.5 w-4.5" />
                 </a>
                 <a
-                  href="mailto:press@quantumbyte.tech?subject=Press%20Kit%20Request"
+                  href="mailto:supportquantumbytetechnologies@gmail.com?subject=Press%20Kit%20Request"
                   className="btn btn-secondary inline-flex items-center justify-center gap-2"
                 >
                   <Download className="h-4.5 w-4.5" />
@@ -236,7 +236,7 @@ export default function PressPage() {
                 BRAND <span className="text-[#3B82F6]">ASSETS</span>
               </h2>
               <p className="text-sm text-[#94A3B8] max-w-xl mx-auto">
-                All assets available on request. Email press@quantumbyte.tech with your publication name and intended use.
+                All assets available on request. Email supportquantumbytetechnologies@gmail.com with your publication name and intended use.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -264,7 +264,7 @@ export default function PressPage() {
                       </span>
                     ))}
                     <a
-                      href="mailto:press@quantumbyte.tech?subject=Asset%20Request%3A%20Press%20Kit"
+                      href="mailto:supportquantumbytetechnologies@gmail.com?subject=Asset%20Request%3A%20Press%20Kit"
                       className="ml-auto flex items-center gap-1 text-[10px] font-bold text-[#3B82F6] hover:underline uppercase tracking-wider"
                     >
                       Request <ExternalLink className="h-3 w-3" />
@@ -340,8 +340,8 @@ export default function PressPage() {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-3">
                   <Mail className="h-4.5 w-4.5 text-[#3B82F6]" />
-                  <a href="mailto:press@quantumbyte.tech" className="text-white font-semibold hover:text-[#3B82F6] transition-colors">
-                    press@quantumbyte.tech
+                  <a href="mailto:supportquantumbytetechnologies@gmail.com" className="text-white font-semibold hover:text-[#3B82F6] transition-colors">
+                    supportquantumbytetechnologies@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
@@ -406,7 +406,7 @@ export default function PressPage() {
               customer satisfaction rate."
             </blockquote>
             <p className="text-xs text-[#475569]">
-              Approved for reproduction in full. Contact press@quantumbyte.tech for customized or extended descriptions.
+              Approved for reproduction in full. Contact supportquantumbytetechnologies@gmail.com for customized or extended descriptions.
             </p>
           </section>
 

@@ -270,7 +270,7 @@ export default function RepairPage() {
                   <ArrowRight className="h-4.5 w-4.5" />
                 </a>
                 <a
-                  href="mailto:repair@quantumbyte.tech"
+                  href="mailto:supportquantumbytetechnologies@gmail.com"
                   className="btn btn-secondary inline-flex items-center justify-center gap-2"
                 >
                   <Mail className="h-4.5 w-4.5" />
@@ -419,11 +419,11 @@ export default function RepairPage() {
                   WhatsApp: +92 325 4803957
                 </a>
                 <a
-                  href="mailto:repair@quantumbyte.tech"
+                  href="mailto:supportquantumbytetechnologies@gmail.com"
                   className="btn btn-secondary w-full justify-center gap-2 inline-flex"
                 >
                   <Mail className="h-4.5 w-4.5" />
-                  repair@quantumbyte.tech
+                  supportquantumbytetechnologies@gmail.com
                 </a>
               </div>
             </div>

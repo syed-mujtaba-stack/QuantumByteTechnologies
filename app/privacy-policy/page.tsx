@@ -131,7 +131,7 @@ export default function PrivacyPolicyPage() {
                 <li>Lodge a complaint with a supervisory authority</li>
               </ul>
               <p className="text-[#94A3B8] leading-relaxed mt-4">
-                To exercise these rights, contact us at <a href="mailto:privacy@quantumbyte.tech" className="text-[#3B82F6] hover:underline">privacy@quantumbyte.tech</a>
+                To exercise these rights, contact us at <a href="mailto:supportquantumbytetechnologies@gmail.com" className="text-[#3B82F6] hover:underline">supportquantumbytetechnologies@gmail.com</a>
               </p>
             </section>
 
@@ -177,7 +177,7 @@ export default function PrivacyPolicyPage() {
               <div className="bg-[white/[0.04]] border border-[white/[0.06]] rounded-xl p-6 space-y-3">
                 <div className="flex items-center gap-3">
                   <Mail className="h-4.5 w-4.5 text-[#3B82F6] shrink-0" />
-                  <a href="mailto:privacy@quantumbyte.tech" className="text-[#3B82F6] hover:underline">privacy@quantumbyte.tech</a>
+                  <a href="mailto:supportquantumbytetechnologies@gmail.com" className="text-[#3B82F6] hover:underline">supportquantumbytetechnologies@gmail.com</a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="h-4.5 w-4.5 text-[#3B82F6] shrink-0" />

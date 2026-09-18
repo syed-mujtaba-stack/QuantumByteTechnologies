@@ -60,7 +60,7 @@ export default function RefundPolicyPage() {
             <section className="space-y-4">
               <h2 className="text-lg font-bold text-white">3. Return & Exchange Process</h2>
               <ol className="list-decimal list-inside space-y-3 text-[#94A3B8] leading-relaxed ml-4 mt-2">
-                <li><strong>Initiate Request:</strong> Contact support via WhatsApp (+92 325 4803957) or email (returns@quantumbyte.tech) with order ID, reason, and photos (if DOA/damage).</li>
+                <li><strong>Initiate Request:</strong> Contact support via WhatsApp (+92 325 4803957) or email (supportquantumbytetechnologies@gmail.com) with order ID, reason, and photos (if DOA/damage).</li>
                 <li><strong>RMA Issuance:</strong> We issue a Return Merchandise Authorization (RMA) number and return instructions within 4 business hours.</li>
                 <li><strong>Packaging:</strong> Repack in original box with all accessories. Include RMA slip. Use anti-static bag for components (GPU, RAM, SSD, motherboard).</li>
                 <li><strong>Shipment:</strong> We arrange free courier pickup for DOA/wrong item/damage. For change-of-mind returns, customer bears return shipping (Rs. 500-1,500 depending on size/weight).</li>
@@ -197,7 +197,7 @@ export default function RefundPolicyPage() {
                   <ShieldCheck className="h-5 w-5 text-[#3B82F6]" />
                   <div>
                     <p className="font-semibold text-white">Returns & RMA Department</p>
-                    <p className="text-sm text-[#94A3B8]">returns@quantumbyte.tech</p>
+                    <p className="text-sm text-[#94A3B8]">supportquantumbytetechnologies@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -211,7 +211,7 @@ export default function RefundPolicyPage() {
                   <RotateCcw className="h-5 w-5 text-[#3B82F6]" />
                   <div>
                     <p className="font-semibold text-white">Warranty & Repair Lab</p>
-                    <p className="text-sm text-[#94A3B8]">warranty@quantumbyte.tech</p>
+                    <p className="text-sm text-[#94A3B8]">supportquantumbytetechnologies@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

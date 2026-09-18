@@ -64,7 +64,7 @@ const claimSteps = [
     step: '01',
     icon: Phone,
     title: 'Contact Support',
-    desc: 'WhatsApp (+92 325 4803957) or email warranty@quantumbyte.tech with your Order ID, issue description, and photos or video clearly showing the defect.',
+    desc: 'WhatsApp (+92 325 4803957) or email supportquantumbytetechnologies@gmail.com with your Order ID, issue description, and photos or video clearly showing the defect.',
   },
   {
     step: '02',
@@ -113,7 +113,7 @@ const faqItems = [
   },
   {
     q: 'My product arrived damaged — what do I do?',
-    a: 'Shipping damage must be reported within 24 hours of delivery with photos of the outer packaging and product. Email claims@quantumbyte.tech immediately. If the outer box was visibly damaged, note "Damaged — Subject to Inspection" on the courier receipt before signing. We file the insurance claim and dispatch a replacement.',
+    a: 'Shipping damage must be reported within 24 hours of delivery with photos of the outer packaging and product. Email supportquantumbytetechnologies@gmail.com immediately. If the outer box was visibly damaged, note "Damaged — Subject to Inspection" on the courier receipt before signing. We file the insurance claim and dispatch a replacement.',
   },
   {
     q: 'Does warranty transfer if I sell the product?',
@@ -182,11 +182,11 @@ export default function WarrantyPage() {
                   <ArrowRight className="h-4.5 w-4.5" />
                 </a>
                 <a
-                  href="mailto:warranty@quantumbyte.tech"
+                  href="mailto:supportquantumbytetechnologies@gmail.com"
                   className="btn btn-secondary inline-flex items-center justify-center gap-2"
                 >
                   <Mail className="h-4.5 w-4.5" />
-                  warranty@quantumbyte.tech
+                  supportquantumbytetechnologies@gmail.com
                 </a>
               </div>
             </div>
@@ -332,11 +332,11 @@ export default function WarrantyPage() {
                 WhatsApp Support
               </a>
               <a
-                href="mailto:warranty@quantumbyte.tech"
+                href="mailto:supportquantumbytetechnologies@gmail.com"
                 className="btn btn-secondary inline-flex items-center gap-2"
               >
                 <Mail className="h-4.5 w-4.5" />
-                warranty@quantumbyte.tech
+                supportquantumbytetechnologies@gmail.com
               </a>
               <Link href="/refund-policy" className="btn btn-outline inline-flex items-center gap-2">
                 <AlertTriangle className="h-4.5 w-4.5" />

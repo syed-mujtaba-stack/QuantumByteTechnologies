@@ -7,7 +7,7 @@ export default function AdminSettingsPage() {
   const [saved, setSaved] = useState(false);
   const [storeSettings, setStoreSettings] = useState({
     storeName: 'QuantumByte Technologies',
-    supportEmail: 'support@quantumbyte.tech',
+    supportEmail: 'supportquantumbytetechnologies@gmail.com',
     currency: 'USD ($)',
     taxRate: '0',
     sanityDataset: 'production',

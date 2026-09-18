@@ -241,8 +241,8 @@ function OrderResult({ order }: { order: TrackedOrder }) {
             WhatsApp
           </a>{' '}
           or email{' '}
-          <a href="mailto:support@quantumbyte.tech" className="text-[#3B82F6] hover:underline font-semibold">
-            support@quantumbyte.tech
+          <a href="mailto:supportquantumbytetechnologies@gmail.com" className="text-[#3B82F6] hover:underline font-semibold">
+            supportquantumbytetechnologies@gmail.com
           </a>
         </p>
       </div>
@@ -398,7 +398,7 @@ export default function TrackOrderPage() {
               {[
                 { icon: ShoppingBag, title: 'Order ID', desc: 'Check your confirmation SMS/email for QB-XXXXXX format.' },
                 { icon: Truck, title: 'Shipping Time', desc: 'Urban: 1–2 days. Other cities: 2–4 days. Custom builds: 5–10 days.' },
-                { icon: Phone, title: 'Need Help?', desc: 'WhatsApp +92 325 4803957 or email support@quantumbyte.tech' },
+                { icon: Phone, title: 'Need Help?', desc: 'WhatsApp +92 325 4803957 or email supportquantumbytetechnologies@gmail.com' },
               ].map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="rounded-xl border border-white/[0.06] bg-[#080B12] p-4 space-y-2 text-center">
                   <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-[#3B82F6]/10 text-[#3B82F6]">
